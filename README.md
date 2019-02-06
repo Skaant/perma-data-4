@@ -21,6 +21,15 @@ access to these [app]s is set in the `firebase.json` file such as :
 ]
 ```
 
+## patterns
+
+### router, currents, lowers
+```javascript
+const router = { currents, lowers }
+const currents = [ endpoints ]
+const lowers = [ routers ]
+```
+
 ## lexicon
 
 ### app
