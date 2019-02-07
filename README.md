@@ -91,12 +91,12 @@ module.exports = (req, res) => res.send()
 
 ##### _lowers/index.js
 ```javascript
-const pathA = require('./{ nodeA-folder }/{ nodeA-file }')
-const pathB = require('./{ nodeB-folder }/{ nodeB-file }')
+const nodeA = require('./{ nodeA-folder }/{ nodeA-file }')
+const nodeB = require('./{ nodeB-folder }/{ nodeB-file }')
 
 module.exports = {
-  pathA,
-  pathB
+  nodeA,
+  nodeB
 }
 ```
 
