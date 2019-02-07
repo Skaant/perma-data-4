@@ -30,7 +30,7 @@ access to these [app]s is set in the `firebase.json` file such as :
 to process the routing map, three objets are used :
 * router (**node**), contains _currents &/or _lowers props
 * _currents (**leaves**), object, associate a *method* keyword with a function *handler*
-* _lowers (**branch**), object, associate an atomic *path* with a sub-*router*
+* _lowers (**branches**), object, associate an atomic *path* with a sub-*router*
 
 ```javascript
 const router = { currents, lowers }
@@ -41,24 +41,28 @@ const lowers = { *[path]: router }
 
 #### usage
 find the root **node** of a P_RCL arborescence
-* content: `apps/content/langRouter/root`
-* api: `apps/api/root`
+* content: `apps/content/langRouter/root/root.js`
+* api: `apps/api/root/root.js`
 
-from there is used this recursive folder pattern:
-  
-  { **node** folder }
-  +-- { **node** file }
+from there is used the following recursive folder pattern :
+```
+{ node-folder }
+  +-- { node-file }
   +-- _currents
-  |   +-- { **method** folder }
-  |   |   +-- { **method** file }
+  |   +-- { method-folder }
+  |   |   +-- { method-file }
   |   +-- ..*
   |   +-- index.js
   +-- _lowers
-  |   +-- { **node** folder }
+  |   +-- { node-folder }
   |   +-- ..*
   |   +-- index.js
+```
+to add a route, create a { methode-file } at the right place in the hierarchy
 
-`{ node-file }.js`
+see generic file content below :
+
+##### { node-file }.js
 ```javascript
 const _currents = require('./_currents')
 const _lowers = require('./_lowers')
@@ -69,7 +73,7 @@ module.exports = {
 }
 ```
 
-`_currents/index.js`
+##### _currents/index.js
 ```javascript
 const methodA = require('./{ methodA-folder }/{ methodA-file }')
 const methodB = require('./{ methodB-folder }/{ methodB-file }')
@@ -80,24 +84,21 @@ module.exports = {
 }
 ```
 
-`_currents/{ method-folder }/{ method-file }.js`
+##### _currents/{ method-folder }/{ method-file }.js
 ```javascript
 module.exports = (req, res) => res.send()
 ```
 
-`_lowers/index.js`
+##### _lowers/index.js
 ```javascript
-const pathA = require('./{ pathA-folder }/{ pathA-file }')
-const pathB = require('./{ pathB-folder }/{ pathB-file }')
+const pathA = require('./{ nodeA-folder }/{ nodeA-file }')
+const pathB = require('./{ nodeB-folder }/{ nodeB-file }')
 
 module.exports = {
   pathA,
   pathB
 }
 ```
-
-`_lowers/{ path-folder }/{ path-file }.js`
-**is a node-file** (recursive point)
 
 ## lexicon
 
