@@ -23,13 +23,81 @@ access to these [app]s is set in the `firebase.json` file such as :
 
 ## patterns
 
-### router, currents, lowers
-*based on tree-leaves-branches*
+### P_RCL (router, currents, lowers)
+*project, arborescence, route, router*
+
+#### concept
+to process the routing map, three objets are used :
+* router (**node**), contains _currents &/or _lowers props
+* _currents (**leaves**), object, associate a *method* keyword with a function *handler*
+* _lowers (**branch**), object, associate an atomic *path* with a sub-*router*
+
 ```javascript
 const router = { currents, lowers }
-const currents = [ endpoints ]
-const lowers = [ routers ]
+const currents = { *[method]: handler }
+// where method from ['get', 'put', 'post', 'delete' ...]
+const lowers = { *[path]: router }
 ```
+
+#### usage
+find the root **node** of a P_RCL arborescence
+* content: `apps/content/langRouter/root`
+* api: `apps/api/root`
+
+from there is used this recursive folder pattern:
+  
+  { **node** folder }
+  +-- { **node** file }
+  +-- _currents
+  |   +-- { **method** folder }
+  |   |   +-- { **method** file }
+  |   +-- ..*
+  |   +-- index.js
+  +-- _lowers
+  |   +-- { **node** folder }
+  |   +-- ..*
+  |   +-- index.js
+
+`{ node-file }.js`
+```javascript
+const _currents = require('./_currents')
+const _lowers = require('./_lowers')
+
+module.exports = {
+  _currents,
+  _lowers
+}
+```
+
+`_currents/index.js`
+```javascript
+const methodA = require('./{ methodA-folder }/{ methodA-file }')
+const methodB = require('./{ methodB-folder }/{ methodB-file }')
+
+module.exports = { 
+  methodA,
+  methodB
+}
+```
+
+`_currents/{ method-folder }/{ method-file }.js`
+```javascript
+module.exports = (req, res) => res.send()
+```
+
+`_lowers/index.js`
+```javascript
+const pathA = require('./{ pathA-folder }/{ pathA-file }')
+const pathB = require('./{ pathB-folder }/{ pathB-file }')
+
+module.exports = {
+  pathA,
+  pathB
+}
+```
+
+`_lowers/{ path-folder }/{ path-file }.js`
+**is a node-file** (recursive point)
 
 ## lexicon
 
