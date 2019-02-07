@@ -1,11 +1,11 @@
 const { Router } = require('express')
 const langRefs = require('./langRefs/langRefs')
+const P_RCL = require('../../../patterns/P_RCL/P_RCL')
 const root = require('./root/root')
 
-module.exports = app => {
+module.exports = () => {
   const router = Router()
-  const rootRouter = root()
+  const rootRouter = P_RCL(root)
   langRefs.map(lang => router.use(`/${ lang }`, rootRouter))
-  app.use(router)
-  return app
+  return router
 }

@@ -1,14 +1,8 @@
 const { Router } = require('express')
-const home = require('./home/home')
-const plant = require('./plant/plant')
-const inventory = require('./inventory/inventory')
-const contributor = require('./contributor/contributor')
+const _currents = require('./_currents')
+const _lowers = require('./_lowers')
 
-module.exports = () => {
-  const router = Router()
-  router.route('/').get(home)
-  router.route('/plant').get(plant)
-  router.route('/inventory').get(inventory)
-  router.route('/contributor').get(contributor)
-  return router
+module.exports = {
+  _currents,
+  _lowers
 }

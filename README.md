@@ -24,6 +24,7 @@ access to these [app]s is set in the `firebase.json` file such as :
 ## patterns
 
 ### router, currents, lowers
+*based on tree-leaves-branches*
 ```javascript
 const router = { currents, lowers }
 const currents = [ endpoints ]
