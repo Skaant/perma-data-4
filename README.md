@@ -23,19 +23,18 @@ access to these [app]s is set in the `firebase.json` file such as :
 
 ## patterns
 
-### P_RCL (router, currents, lowers)
+### P_RCL (router, current, lowers)
 *project, arborescence, route, router*
 
 #### concept
 to process the routing map, three objets are used :
 * router (**node**), contains _currents &/or _lowers props
-* _currents (**leaves**), object, associate a *method* keyword with a function *handler*
+* _current (**leaf**), function, implement the *get* method
 * _lowers (**branches**), object, associate an atomic *path* with a sub-*router*
 
 ```javascript
-const router = { currents, lowers }
-const currents = { *[method]: handler }
-// where method from ['get', 'put', 'post', 'delete' ...]
+const router = { current, lowers }
+const current = handler
 const lowers = { *[path]: router }
 ```
 
@@ -48,43 +47,29 @@ from there is used the following recursive folder pattern :
 ```
 { node-folder }
   +-- { node-file }
-  +-- _currents
-  |   +-- { method-folder }
-  |   |   +-- { method-file }
-  |   +-- ..*
-  |   +-- index.js
+  +-- _current
+  |   +-- _current.js
   +-- _lowers
   |   +-- { node-folder }
   |   +-- ..*
   |   +-- index.js
 ```
-to add a route, create a { methode-file } at the right place in the hierarchy
+to add a route, create a *_current* file & repository at the right place in the hierarchy
 
 see generic file content below :
 
 ##### { node-file }.js
 ```javascript
-const _currents = require('./_currents')
+const _current = require('./_current')
 const _lowers = require('./_lowers')
 
 module.exports = {
-  _currents,
+  _current,
   _lowers
 }
 ```
 
-##### _currents/index.js
-```javascript
-const methodA = require('./{ methodA-folder }/{ methodA-file }')
-const methodB = require('./{ methodB-folder }/{ methodB-file }')
-
-module.exports = { 
-  methodA,
-  methodB
-}
-```
-
-##### _currents/{ method-folder }/{ method-file }.js
+##### _current/_current.js
 ```javascript
 module.exports = (req, res) => res.send()
 ```

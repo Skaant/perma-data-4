@@ -1,11 +1,6 @@
-const html = require('../../../html/html')
+const provisioner = require('./provisioner/provisioner')
 
-module.exports = (req, res) => 
-  res.send(
-    html({
-      id: 'home',
-      lang: req.lang || 'fr',
-      url: req.url
-    }
-  )
-)
+module.exports = {
+  id: 'home',
+  provisioner
+}

@@ -6,7 +6,7 @@ module.exports = props =>
 `
 <body>
   ${ navbar(props) }
-  <h1>${ props.title }</h1>
+  <h1>${ props.title || props.id }</h1>
   ${ footer(props) }
   ${ botScriptSwitch(props) }
 </body>
