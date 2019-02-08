@@ -1,0 +1,37 @@
+nav(
+  id="header"
+  class="navbar navbar-expand-lg navbar-light bg-light") 
+  a(
+    class="navbar-brand"
+    href="/${ lang }"
+  ) PERMADATA
+  button(
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbar-content"
+    aria-controls="navbar-content"
+    aria-expanded="false"
+    aria-label="toggle navigation")
+    span(class="navbar-toggler-icon")
+  div(
+    id="navbar-content"
+    class="collapse navbar-collapse")
+    ul(class="navbar-nav mr-auto")
+      li(class="nav-item mx-1")
+        a(
+          class="nav-link"
+          href=`/${ lang }/inventory`
+        )= `${ (langs && langs.inventory) || 'inventory' }`
+      li(class="nav-item mx-1")
+        a(
+          class="nav-link"
+          href=`/${ lang }/contributor`
+        )= `${ (langs && langs.contributor) || 'contributor' }`
+    ul(class="navbar-nav")
+      li(class="nav-item mx-1")
+        a(
+          class="nav-link"
+          href=`/${ lang === 'en' ? 'fr' : 'en' }${ url }`
+          title=`${ lang === 'en' ? 'fr' : 'en' }`
+        )= `${ lang === 'en' ? 'en' : 'fr' }`

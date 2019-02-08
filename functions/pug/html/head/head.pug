@@ -1,0 +1,29 @@
+head
+  meta(charset="utf-8")
+  meta(
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  )
+  meta(
+    name="theme-color"
+    content="#000000"
+  )
+  // ${ linksSwitch(props.id) || '' }
+  // ${ topScriptsSwitch(props.id) || '' }
+  title= `${ title ? `${ title } - ` : '' }PERMADATA ${ lang.toUpperCase() }`
+  if meta && meta.title
+    meta(
+      name="title"
+      content= `${ meta.title }`
+    )
+  if meta && meta.description
+    meta(
+      name="description"
+      content=`${ meta.description }`
+    )
+  meta(
+    name="keywords"
+    content=`permaculture,data${
+      (meta && meta.keywords) ? 
+        `,${ meta.keywords }` : '' }`
+  )

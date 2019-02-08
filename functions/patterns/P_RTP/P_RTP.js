@@ -1,9 +1,9 @@
-const html = require('./html/html')
+const renderer = require('./renderer/renderer')
 const baseProvision = require('./baseProvision/baseProvision')
 
 module.exports = ({ id, _provisioner }) =>
   (req, res) => 
     res.send(
-      html(
+      renderer(
         _provisioner(
           baseProvision(id, req))))

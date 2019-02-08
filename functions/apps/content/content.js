@@ -4,6 +4,8 @@ const langRouter = require('./langRouter/langRouter')
 
 const app = middlewares(express())
 
+app.set("view engine", "pug")
+
 app.use(langRouter())
 
 module.exports = app
