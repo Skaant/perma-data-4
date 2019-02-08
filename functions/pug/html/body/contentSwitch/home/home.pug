@@ -1,0 +1,23 @@
+.container(style="margin-top: 60px")
+  .row
+    .jumbotron.col-12.pb-4
+      h1.display-1.text-uppercase permadata
+      p.lead The knowledge growers community
+      hr
+      .container-fluid.pt-4
+        .row
+          .col-4
+            .input-group
+              input.form-control(
+                type="text",
+                placeholder="search plant")
+              .input-group-append
+                button.btn.btn-primary go
+          .col-4
+            a.col-12.btn.btn-primary(
+              href=`/${ lang }/inventory`
+            ) inventory
+          .col-4
+            a.col-12.btn.btn-primary(
+              href=`/${ lang }/contributor`
+            ) contributor

@@ -20,18 +20,18 @@ nav(
     ul(class="navbar-nav mr-auto")
       li(class="nav-item mx-1")
         a(
-          class="nav-link"
+          class="nav-link text-uppercase"
           href=`/${ lang }/inventory`
         )= `${ (langs && langs.inventory) || 'inventory' }`
       li(class="nav-item mx-1")
         a(
-          class="nav-link"
+          class="nav-link text-uppercase"
           href=`/${ lang }/contributor`
         )= `${ (langs && langs.contributor) || 'contributor' }`
     ul(class="navbar-nav")
       li(class="nav-item mx-1")
         a(
-          class="nav-link"
+          class="nav-link text-uppercase"
           href=`/${ lang === 'en' ? 'fr' : 'en' }${ url }`
           title=`${ lang === 'en' ? 'fr' : 'en' }`
         )= `${ lang === 'en' ? 'en' : 'fr' }`
