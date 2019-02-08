@@ -1,6 +1,6 @@
-const provisioner = require('./provisioner/provisioner')
+const _provisioner = require('./_provisioner/_provisioner')
 
 module.exports = {
   id: 'home',
-  provisioner
+  _provisioner
 }
