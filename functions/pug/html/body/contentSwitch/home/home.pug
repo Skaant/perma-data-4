@@ -1,23 +1,25 @@
-.container(style="margin-top: 60px")
+.container(style='margin-top: 60px')
   .row
     .jumbotron.col-12.pb-4
-      h1.display-1.text-uppercase permadata
+      h1.display-1.text-uppercase(
+        style='word-break: break-all;'
+      ) permadata
       p.lead= translation.subtitle || 'The knowledge growers community'
       hr
-      .container-fluid.pt-4
+      .container-fluid
         .row
-          .col-4
+          .col-md-12.col-lg-4.mt-4
             .input-group
               input.form-control(
-                type="text",
+                type='text',
                 placeholder= translation.plantSearch.placeholder)
               .input-group-append
                 button.btn.btn-primary.text-uppercase go
-          .col-4
+          .col-md-6.col-lg-4.mt-4
             a.col-12.btn.btn-primary.text-uppercase(
               href=`/${ lang }/inventory`
             )= translation.inventory || 'inventory'
-          .col-4
+          .col-md-6.col-lg-4.mt-4
             a.col-12.btn.btn-primary.text-uppercase(
               href=`/${ lang }/contributor`
             )= translation.contributor || 'contributor'
