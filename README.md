@@ -23,76 +23,68 @@ access to these [app]s is set in the `firebase.json` file such as :
 
 ## patterns
 
-### P_RCL (router, currents, lowers)
-*project, arborescence, route, router*
+### P_RCL (router, current, lowers)
+*project, arborescence, structure, route, router*
 
 #### concept
 to process the routing map, three objets are used :
 * router (**node**), contains _currents &/or _lowers props
-* _currents (**leaves**), object, associate a *method* keyword with a function *handler*
+* _current (**leaf**), [provisioner] function, implement the default *get* page method data requests
 * _lowers (**branches**), object, associate an atomic *path* with a sub-*router*
 
 ```javascript
-const router = { currents, lowers }
-const currents = { *[method]: handler }
-// where method from ['get', 'put', 'post', 'delete' ...]
+const router = { current, lowers }
+const current = handler
 const lowers = { *[path]: router }
 ```
 
-#### usage
-find the root **node** of a P_RCL arborescence
+#### exemples
 * content: `apps/content/langRouter/root/root.js`
 * api: `apps/api/root/root.js`
 
-from there is used the following recursive folder pattern :
+#### files structure & content
+following file organization is enforced by the pattern
 ```
 { node-folder }
   +-- { node-file }
-  +-- _currents
-  |   +-- { method-folder }
-  |   |   +-- { method-file }
-  |   +-- ..*
-  |   +-- index.js
+  +-- _current
+  |   +-- _provisioner
+  |   |   +-- _provisioner.js
+  |   +-- _current.js
   +-- _lowers
   |   +-- { node-folder }
   |   +-- ..*
   |   +-- index.js
 ```
-to add a route, create a { methode-file } at the right place in the hierarchy
-
-see generic file content below :
 
 ##### { node-file }.js
+group the current provider
 ```javascript
-const _currents = require('./_currents')
+const _current = require('./_current')
 const _lowers = require('./_lowers')
 
 module.exports = {
-  _currents,
+  _current,
   _lowers
 }
 ```
 
-##### _currents/index.js
+##### _current/_current.js
 ```javascript
-const methodA = require('./{ methodA-folder }/{ methodA-file }')
-const methodB = require('./{ methodB-folder }/{ methodB-file }')
-
-module.exports = { 
-  methodA,
-  methodB
+module.exports = props => {
+  const { id, lang, url } = props
+  return props
 }
 ```
 
-##### _currents/{ method-folder }/{ method-file }.js
-```javascript
-module.exports = (req, res) => res.send()
-```
+##### _current/_provisioner/_provisioner.js
+see `P_RTP` pattern details
 
 ##### _lowers/index.js
 ```javascript
 const nodeA = require('./{ nodeA-folder }/{ nodeA-file }')
 const nodeB = require('./{ nodeB-folder }/{ nodeB-file }')
+// node..N
 
 module.exports = {
   nodeA,
@@ -100,7 +92,41 @@ module.exports = {
 }
 ```
 
+#### usage 1 : add P_RCL arborescence root
+where you should have associate a new router, use the P_RCL method
+```javascript
+const target = app || router
+target.use(P_RCL(root))
+```
+the root object is a router node file
+
+#### usage 2 : add a route to arborescence
+from the root of a P_RCL arborescence, crawl node tree
+
+find or create a *_current* repository & file at the target level
+
+### P_RTP (render target page)
+* keywords: *provision, render, html, req, page*
+* used by: **P_RCL**
+
+#### concept
+at every content route endpoint (*_current* from [P_RCL]), encapsultate provision & rendering
+
+#### files structures & content
+see `P_RCL` *_current* folder structure for context
+
+##### _current/_provisioner/_provisioner.js
+```javascript
+module.exports = props => {
+  const { id, lang, url } = props
+  return Object.assign({}, props)
+}
+```
+
 ## lexicon
 
 ### app
 an app is server-side. It receives delegation of a route logic part in `functions/index.js`
+
+### provisioner
+a provisioner isolate a page data provisioning logic (required before rendering)

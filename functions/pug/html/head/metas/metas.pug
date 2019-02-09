@@ -1,0 +1,25 @@
+meta(charset="utf-8")
+meta(
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+)
+meta(
+  name="theme-color"
+  content="#000000"
+)
+if translation.meta && translation.meta.title
+  meta(
+    name="title"
+    content= `${ translation.meta.title }`
+  )
+if translation.meta && translation.meta.description
+  meta(
+    name="description"
+    content=`${ translation.meta.description }`
+  )
+meta(
+  name="keywords"
+  content=`permaculture,data${
+    (translation.meta && translation.meta.keywords) ? 
+      `,${ translation.meta.keywords }` : '' }`
+)

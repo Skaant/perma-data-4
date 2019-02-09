@@ -1,0 +1,8 @@
+.container(style="margin-top: 60px")
+  .row
+    h1.col-12.display-4.text-center.text-uppercase= `error ${ error.status ? `${ error.status } ` : '' } :/`
+  .row
+    .col-12.alert.alert-warning.mt-4
+      blockquote.blockquote.text-center
+        p.mt-4= error.title
+        footer.blockquote-footer= error.message

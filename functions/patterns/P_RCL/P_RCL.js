@@ -1,12 +1,16 @@
 const { Router } = require('express')
+const P_RTP = require('../P_RTP/P_RTP')
 
-const P_RCL = ({ _currents = {}, _lowers = {} }) => {
+const P_RCL = ({ _current, _lowers = {} }) => {
   const router = Router()
 
-  // 1. add '/' methods (type = key, handler = value)
-  Object.keys(_currents)
-    .map(key => router
-      .route('/')[key](_currents[key]))
+  // 1. if (_current) add '/' get method
+  if (_current) {
+    router.route('/')
+      .get(P_RTP(_current))
+  }
+
+  // TODO. add a new method handler (method = key, handler = value)
 
   // 2. add a new sub route level (path = key, router = value)
   Object.keys(_lowers)

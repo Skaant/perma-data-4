@@ -1,4 +1,1 @@
-module.exports = (req, res) => {
-  console.log(req)
-  res.json({ test: true })
-}
+module.exports = (req, res) => res.json({ test: true })
