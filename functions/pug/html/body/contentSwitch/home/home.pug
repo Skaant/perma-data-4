@@ -2,7 +2,7 @@
   .row
     .jumbotron.col-12.pb-4
       h1.display-1.text-uppercase permadata
-      p.lead The knowledge growers community
+      p.lead= translation.subtitle || 'The knowledge growers community'
       hr
       .container-fluid.pt-4
         .row
@@ -10,14 +10,14 @@
             .input-group
               input.form-control(
                 type="text",
-                placeholder="search plant")
+                placeholder= translation.plantSearch.placeholder)
               .input-group-append
-                button.btn.btn-primary go
+                button.btn.btn-primary.text-uppercase go
           .col-4
-            a.col-12.btn.btn-primary(
+            a.col-12.btn.btn-primary.text-uppercase(
               href=`/${ lang }/inventory`
-            ) inventory
+            )= translation.inventory || 'inventory'
           .col-4
-            a.col-12.btn.btn-primary(
+            a.col-12.btn.btn-primary.text-uppercase(
               href=`/${ lang }/contributor`
-            ) contributor
+            )= translation.contributor || 'contributor'

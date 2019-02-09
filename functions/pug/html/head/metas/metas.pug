@@ -7,19 +7,19 @@ meta(
   name="theme-color"
   content="#000000"
 )
-if meta && meta.title
+if translation.meta && translation.meta.title
   meta(
     name="title"
-    content= `${ meta.title }`
+    content= `${ translation.meta.title }`
   )
-if meta && meta.description
+if translation.meta && translation.meta.description
   meta(
     name="description"
-    content=`${ meta.description }`
+    content=`${ translation.meta.description }`
   )
 meta(
   name="keywords"
   content=`permaculture,data${
-    (meta && meta.keywords) ? 
-      `,${ meta.keywords }` : '' }`
+    (translation.meta && translation.meta.keywords) ? 
+      `,${ translation.meta.keywords }` : '' }`
 )

@@ -1,9 +1,19 @@
 const renderer = require('./renderer/renderer')
-const baseProvision = require('./baseProvision/baseProvision')
+const basics = require('./basics/basics')
+const P_ERR = require('../P_ERR/P_ERR')
 
 module.exports = ({ id, _provisioner }) =>
-  (req, res) => 
-    res.send(
-      renderer(
-        _provisioner(
-          baseProvision(id, req))))
+  (req, res) =>
+    basics(id, req)
+      .then(props => 
+        _provisioner(props)
+          .then(props =>{
+            try {
+              res.send(
+                renderer(props))
+            } catch(err) {
+              P_ERR(err, req.lang, res)
+            }}))
+      .catch(err => P_ERR(err, req.lang, res))
+      
+      
