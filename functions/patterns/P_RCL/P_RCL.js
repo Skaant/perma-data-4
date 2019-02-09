@@ -3,6 +3,7 @@ const P_RTP = require('../P_RTP/P_RTP')
 const P_DDA = require('../P_DDA/P_DDA')
 
 const P_RCL = ({ _current, _methods = {}, _lowers = {} }) => {
+  console.log(_methods, _lowers)
   const router = Router()
 
   // 1. if (_current) add '/' get method
