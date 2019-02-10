@@ -12,6 +12,7 @@
     "express": "^4.16.4",
     "firebase-admin": "^7.0.0",
     "firebase-functions": "^2.2.0",
+    "mongodb": "^3.1.13",
     "pug": "^2.0.3"
   },
   "private": true

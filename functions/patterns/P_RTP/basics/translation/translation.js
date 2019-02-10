@@ -1,9 +1,9 @@
 module.exports = props =>
   new Promise((resolve, reject) =>
     Promise.all([
-      global.db.collection('translations')
+      global.firestore.collection('translations')
         .doc(`global-${ props.lang }`).get(),
-      global.db.collection('translations')
+      global.firestore.collection('translations')
         .doc(`${ props.id }-${ props.lang }`).get()
     ])
       .then(([global, page]) => {

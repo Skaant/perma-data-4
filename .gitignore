@@ -64,3 +64,6 @@ functions/node_modules/
 
 # dotenv environment variables file
 .env
+
+# configuration files
+/functions/mongo.config.js

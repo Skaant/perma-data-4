@@ -3,5 +3,4 @@ module.exports = _provisioner =>
   (req, res) =>
     _provisioner(req)
       .then(data => res.json(data))
-      .catch(err => P_ERR(err, req.lang, res))
-  
+      .catch(err => P_ERR(err, 'en', res))
