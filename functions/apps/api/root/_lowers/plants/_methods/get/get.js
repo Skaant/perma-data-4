@@ -8,7 +8,6 @@ module.exports = req =>
         .collection('plants')
         .find({})
         .toArray((err, plants) => {
-          client.close()
           if (err) {
             reject(err)
           }

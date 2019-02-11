@@ -1,16 +1,19 @@
 module.exports = req =>
   new Promise((resolve, reject) => {
-    const { keys } = req.query
-    console.log(keys)
+    const { key } = req.query
+    console.log(key) 
     global.mongo.connect((err, client) => {
       if (err) {
         reject(err)
       }
       client.db('prod')
         .collection('plants')
-        .find({})
+        .find({
+          $text: {
+            $search: key
+          }
+        })
         .toArray((err, plants) => {
-          client.close()
           if (err) {
             reject(err)
           }

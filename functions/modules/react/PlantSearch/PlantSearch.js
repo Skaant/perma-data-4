@@ -26,17 +26,14 @@ export default class extends React.Component {
         load: true,
         results: []
       })
-      fetch(`/api/plants/search?keys=${ encodeURIComponent(value.split(' ')) }${
-        (ranks && ranks.length > 0) ? `&ranks=${ encodeURIComponent(ranks) }` : ''
+      fetch(`/api/plants/search?key=${ value }${
+        (ranks && ranks.length > 0) ? 
+          `&ranks=${ encodeURIComponent(ranks) }` : ''
       }`, {
         method: 'GET'
       })
         .then(result => result.json())
         .then(({ plants }) => {
-          const { selectPlant } = this.props
-          if (plants.length === 1) {
-            selectPlant(plants[0])
-          }
           this.setState({
             load: false,
             results: plants,
@@ -53,13 +50,23 @@ export default class extends React.Component {
     }
   }
 
+  handleResultValidation() {
+    this.props.selectPlant(
+      this.state.results[0])
+  }
+
   handleResultsSelect(plant) {
-    const { selectPlant } = this.props
-    selectPlant(plant)
+    this.props.selectPlant(plant)
+  }
+  
+  handleResultDismiss() {
+    this.state.setState({
+      results: []
+    })
   }
 
   render() {
-    const { langs = {}, selectPlant } = this.props
+    const { langs = {} } = this.props
     const { value, results, load, error } = this.state
     return (
       <div className='plant-search'>
@@ -99,6 +106,22 @@ export default class extends React.Component {
           )
         }
         {
+          results.length === 1 && (
+            <div className='row alert alert-success'>
+              <button type='button' className='close col-12 text-right'
+                  data-dismiss='alert' aria-label='Close'
+                  onClick={ () => this.handleResultDismiss() }>
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <p className='col-12'>
+                <b>{ results[0]._id } ?</b></p>
+              <button className='btn btn-success col-md-6 offset-md-6 col-12 my-1'
+                  onClick={ () => this.handleResultValidation() }>
+                yes</button>
+            </div>
+          )
+        }
+        {
           results.length > 1 && (
             <div className='row'>
               <label className='text-uppercase'>
@@ -108,9 +131,9 @@ export default class extends React.Component {
                 <option value={ null }>
                   { langs.choosePlant ||'choose a plant' }</option>
                 {
-                  results.map(plant => (
-                    <option key={ plant._id } value={ plant }>
-                      { plant.name || plant._id }</option>
+                  results.map(({ _id, name }) => (
+                    <option key={ _id } value={ _id }>
+                      { name || _id }</option>
                   ))
                 }
               </select>
