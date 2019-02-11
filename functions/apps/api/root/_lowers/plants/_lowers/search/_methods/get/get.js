@@ -1,6 +1,7 @@
 module.exports = req =>
   new Promise((resolve, reject) => {
     const { keys } = req.query
+    console.log(keys)
     global.mongo.connect((err, client) => {
       if (err) {
         reject(err)

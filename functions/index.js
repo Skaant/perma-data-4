@@ -6,9 +6,10 @@ const { api, content } = require('./apps/apps')
 
 admin.initializeApp(functions.config().firebase)
 global.firestore = admin.firestore()
-global.firestore.settings({ timestampsInSnapshots: true })
 
-global.mongo = new MongoClient(mongoConfig.url, { useNewUrlParser: true })
-
+global.mongo = new MongoClient(mongoConfig.url, {
+  useNewUrlParser: true
+})
+  
 exports.api = functions.https.onRequest(api)
 exports.content = functions.https.onRequest(content)
