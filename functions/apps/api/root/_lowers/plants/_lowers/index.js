@@ -1,3 +1,3 @@
-// const search = require('./search/search')
+const search = require('./search/search')
 
-module.exports = {  }
+module.exports = { search }
