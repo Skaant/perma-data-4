@@ -14,20 +14,18 @@ module.exports = props =>
           client.db('prod')
             .collection('datas')
             .find({
-              plants: plant._id,
-              tags:'name'
+              plants: {
+                $in: [plant._id].concat(plant.parents)
+              }
             })
-            .sort({
-              weight: -1
-            })
-            .toArray((err, names) => {
+            .toArray((err, datas) => {
               if (err) {
                 reject(err)
               }
+              console.log(datas)
               resolve(Object.assign({}, props, {
-                plant: Object.assign({}, plant, {
-                  name: names[0].value
-                })
+                plant,
+                datas
               }))
             })
         })

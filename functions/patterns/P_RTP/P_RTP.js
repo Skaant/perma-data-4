@@ -9,7 +9,6 @@ module.exports = ({ id, _provisioner }) =>
         if (_provisioner) {
           _provisioner(props)
             .then(props => {
-              console.log(props)
               try {
                 res.send(
                   renderer(props))
