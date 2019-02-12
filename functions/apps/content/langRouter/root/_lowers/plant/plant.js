@@ -1,3 +1,3 @@
-const _current = require('./_current/_current')
+const _params = require('./_params')
 
-module.exports = { _current }
+module.exports = { _params }

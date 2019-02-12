@@ -14,6 +14,8 @@ module.exports = (id, req) =>
           url: req.url
         }, {
           translation
-        })))
+        }, req.params ? {
+          params: req.params
+        } : {})))
       .catch(err => reject(err))
   })

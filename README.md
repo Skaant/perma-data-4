@@ -38,10 +38,6 @@ const current = handler
 const lowers = { *[path]: router }
 ```
 
-#### exemples
-* content: `apps/content/langRouter/root/root.js`
-* api: `apps/api/root/root.js`
-
 #### files structure & content
 following file organization is enforced by the pattern
 ```
@@ -102,6 +98,8 @@ the root object is a router node file
 
 #### usage 2 : add a route to arborescence
 from the root of a P_RCL arborescence, crawl node tree
+* content: `apps/content/langRouter/root/root.js`
+* api: `apps/api/root/root.js`
 
 find or create a *_current* repository & file at the target level
 
