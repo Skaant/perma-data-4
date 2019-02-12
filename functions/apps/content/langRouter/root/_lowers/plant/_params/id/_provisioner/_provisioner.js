@@ -13,19 +13,41 @@ module.exports = props =>
         .then(plant => {
           client.db('prod')
             .collection('datas')
-            .find({
-              plants: {
-                $in: [plant._id].concat(plant.parents)
+            .aggregate([{
+              $match: {
+                plants: {
+                  $in: [plant._id].concat(plant.parents)
+                }
               }
-            })
+            }, {
+              $unwind: {
+                path: '$plants'
+              }
+            }, {
+              $match: {
+                plants: {
+                  $in: [plant._id].concat(plant.parents)
+                }
+              }
+            }])
             .toArray((err, datas) => {
               if (err) {
                 reject(err)
               }
-              console.log(datas)
+              const datasByPlant = datas.reduce((datasByPlant, data) => {
+                if (!datasByPlant[data.plants]) {
+                  datasByPlant[data.plants] = [data]
+                } else {
+                  datasByPlant[data.plants].push(data)
+                }
+                return datasByPlant
+              }, {})
+              const name = datasByPlant[plant._id]
+                .filter(data => data.tags.includes('name') && data.tags.includes(props.lang))
+                .sort((a, b) => b - a)[0].value
               resolve(Object.assign({}, props, {
-                plant,
-                datas
+                plant: Object.assign({}, plant, { name }),
+                datas: datasByPlant
               }))
             })
         })

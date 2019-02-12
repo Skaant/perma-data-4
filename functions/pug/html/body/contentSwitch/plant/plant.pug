@@ -1,3 +1,9 @@
 .container(style="margin-top: 60px")
   .row
     h1.display-1.col-12.text-center= plant.name
+  .row
+    .col-md-8.offset-md-2.col-12.container.mt-4
+      each data in datas[plant._id]
+        .row.alert.alert-info
+          .col-4.text-right.font-weight-bold= data.tags.join(', ')
+          .col-8= data.value
