@@ -1,7 +1,6 @@
 import React from 'react'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import 'firebase/firestore'
 
 export default class extends React.Component {
   constructor() {
@@ -23,13 +22,14 @@ export default class extends React.Component {
 
   handleFormChange(key, value) {
     this.setState({
-      [key]: value
+      [key]: value,
+      info: null
     })
   }
 
   signIn() {
     const { email, pseudo, password } = this.state
-    if (!email || !pseudo || !password) {
+    if (!email || !password) {
       this.setState({
         info: 'Missing field'
       })
@@ -53,13 +53,6 @@ export default class extends React.Component {
           info: err.message
         }))
     }
-  }
-
-  signOut() {
-    firebase.auth().signOut()
-      .then(() => this.setState({
-        info: 'You are now disconnected'
-      }))
   }
 
   switchToLogin() {
@@ -97,7 +90,7 @@ export default class extends React.Component {
       <React.Fragment>
         <div className='modal-body container p-4'>
           <div className='row'>
-            <input type='email' className='form-control col-8 offset-2 my-4' value={ email }
+            <input type='email' className='form-control col-8 offset-2 my-2' value={ email }
                 placeholder='email'
                 onChange={ e => this.handleFormChange('email', e.target.value) }
                 onKeyPress={ e => (mode !== 'login' && email
@@ -107,15 +100,15 @@ export default class extends React.Component {
             mode === 'login' && (
               <React.Fragment>
                 <div className='row'>  
-                  <input type='text' className='form-control col-8 offset-2 my-4' value={ pseudo }
+                  <input type='text' className='form-control col-8 offset-2 my-2' value={ pseudo }
                       placeholder='pseudo'
                       onChange={ e => this.handleFormChange('pseudo', e.target.value) }/>
                 </div>
                 <div className='row'>
-                  <input type='password' className='form-control col-8 offset-2 my-4' value={ password }
+                  <input type='password' className='form-control col-8 offset-2 my-2' value={ password }
                       placeholder='password'
                       onChange={ e => this.handleFormChange('password', e.target.value) }
-                      onKeyPress={ e => email && pseudo && password
+                      onKeyPress={ e => email && password
                         && e.charCode === 13 && this.signIn() }/>
                 </div>
               </React.Fragment>
@@ -144,7 +137,7 @@ export default class extends React.Component {
                 <button type='button'
                     className='btn btn-primary'
                     onClick={ () => this.signIn() }
-                    disabled={ email === '' || pseudo === '' || password === '' }>
+                    disabled={ email === '' || password === '' }>
                   sign in</button>
               </React.Fragment>
             ) : (
