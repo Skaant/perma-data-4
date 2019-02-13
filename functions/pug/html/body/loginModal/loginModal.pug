@@ -1,0 +1,13 @@
+#login-modal.modal(
+  tab-index='-1'
+  role='dialog')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5.modal-title.display-2.text-uppercase= translation.login
+        button.close(
+          type='button'
+          data-dismiss='modal'
+          aria-label='Close')
+          span(aria-hidden='true') &times;
+      #anchor-login-form
