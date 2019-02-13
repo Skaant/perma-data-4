@@ -1,3 +1,5 @@
+const P_NAM = require('../../../../../../../../../patterns/P_NAM/P_NAM')
+
 module.exports = props =>
   new Promise((resolve, reject) => {
     const { id } = props.params
@@ -42,11 +44,10 @@ module.exports = props =>
                 }
                 return datasByPlant
               }, {})
-              const name = datasByPlant[plant._id]
-                .filter(data => data.tags.includes('name') && data.tags.includes(props.lang))
-                .sort((a, b) => b - a)[0].value
               resolve(Object.assign({}, props, {
-                plant: Object.assign({}, plant, { name }),
+                plant: Object.assign({}, plant, {
+                  name: P_NAM(datasByPlant[plant._id], props.lang)
+                }),
                 datas: datasByPlant
               }))
             })
