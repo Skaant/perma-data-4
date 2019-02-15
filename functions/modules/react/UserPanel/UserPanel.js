@@ -16,10 +16,14 @@ export default class extends React.Component {
   }
 
   render() {
+    const {
+      user : {
+        email,
+        pseudo }} = this.props
     return (
       <div>
         <b className='mb-0'>
-          { this.props.user.email }</b>
+          { pseudo || email }</b>
         <button type='button' className='close ml-4' aria-label='Close'
           onClick={ () => this.signOut() }>
         <span aria-hidden='true'>&times;</span>

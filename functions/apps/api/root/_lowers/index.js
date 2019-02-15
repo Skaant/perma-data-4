@@ -1,7 +1,9 @@
 const plants = require('./plants/plants')
 const modules = require('./modules/modules')
+const user = require('./user/user')
 
 module.exports = { 
   plants,
-  modules
+  modules,
+  user
 }

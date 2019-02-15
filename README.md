@@ -1,5 +1,10 @@
 # perma-data-4
 
+## use of patterns
+
+### black-boxed code patterns
+### developer structured behavior patterns (guidelines)
+
 ## functions, server [app]s
 two [app]s are imported in the `functions/index.js` file :
 * api (from `./apps/api`), for client-side queries

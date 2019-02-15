@@ -14,12 +14,6 @@ export default class extends React.Component {
     }
   }
 
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.props.updateUser(user)
-    })
-  }
-
   handleFormChange(key, value) {
     this.setState({
       [key]: value,

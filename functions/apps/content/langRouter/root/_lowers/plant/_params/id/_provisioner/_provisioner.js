@@ -13,7 +13,9 @@ module.exports = props =>
           _id: id
         })
         .then(plant => {
-          console.log(plant)
+          if (!plant) {
+            reject('no plant found')
+          }
           client.db('prod')
             .collection('datas')
             .aggregate([{

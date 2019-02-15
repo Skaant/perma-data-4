@@ -1,8 +1,8 @@
-const P_ERR = require('../P_ERR/P_ERR')
+const P_AER = require('../P_AER/P_AER')
 module.exports = _provisioner =>
   (req, res) =>
     _provisioner(req)
       .then(data =>{
         console.log(data)
         res.json(data)})
-      .catch(err => P_ERR(err, 'en', res))
+      .catch(err => P_AER(err, res))
