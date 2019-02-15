@@ -52,7 +52,7 @@ export default class extends React.Component {
 
   handleResultValidation() {
     this.props.selectPlant(
-      this.state.results[0])
+      this.state.results[0]._id)
   }
 
   handleResultsSelect(plant) {
@@ -66,14 +66,14 @@ export default class extends React.Component {
   }
 
   render() {
-    const { langs = {} } = this.props
+    const { translations = {} } = this.props
     const { value, results, load, error } = this.state
     return (
       <div className='plant-search'>
         <div className='row'>
           <div className='input-group mb-4'>
             <input type='text'
-                placeholder={ langs.plantSearchPlaceholder || 'type plant key here' }
+                placeholder={ translations.placeholder || 'type plant key here' }
                 className='form-control'
                 value={ value }
                 onChange={ e => this.handleValueChange(e.target.value) }
@@ -91,7 +91,7 @@ export default class extends React.Component {
           load && (
             <div className='row'>
               <div className='col-12 alert alert-info'>
-                .. { langs.searchResultsLoading || 'search results are loading' }
+                .. { translations.loading || 'search results are loading' }
               </div>
             </div>
           )
@@ -125,11 +125,11 @@ export default class extends React.Component {
           results.length > 1 && (
             <div className='row'>
               <label className='text-uppercase'>
-                { langs.searchResults || 'plant results' }</label>
+                { translations.resultsLabel || 'plant results' }</label>
               <select className='form-control mb-4'
                   onChange={ e => this.handleResultsSelect(e.target.value) }>
                 <option value={ null }>
-                  { langs.choosePlant ||'choose a plant' }</option>
+                  { translations.selectPlant ||'choose a plant' }</option>
                 {
                   results.map(({ _id, name }) => (
                     <option key={ _id } value={ _id }>
