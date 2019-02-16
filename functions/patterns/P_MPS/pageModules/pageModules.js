@@ -1,5 +1,5 @@
 const aggregateCommons = (specifics = []) =>
-  ['plantSearch', 'userPanel'].concat(specifics)
+  ['plantSearch', 'userPanel', 'loginForm'].concat(specifics)
 
 module.exports = id => {
   switch (id) {

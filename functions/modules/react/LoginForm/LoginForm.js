@@ -2,6 +2,17 @@ import React from 'react'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
+const modeToTranslationKey = mode => {
+  switch (mode) {
+    case 'sign-in':
+      return 'signIn'
+    case 'sign-up':
+      return 'signUp'
+    case 'reset':
+      return 'resetPassword'
+  }
+}
+
 export default class extends React.Component {
   constructor() {
     super()
@@ -9,7 +20,7 @@ export default class extends React.Component {
       email: '',
       pseudo: '',
       password: '',
-      mode: 'login',
+      mode: 'sign-in',
       info: null
     }
   }
@@ -49,9 +60,15 @@ export default class extends React.Component {
     }
   }
 
-  switchToLogin() {
+  switchToSignIn() {
     this.setState({
-      mode: 'login'
+      mode: 'sign-in'
+    })
+  }
+
+  switchToSignUp() {
+    this.setState({
+      mode: 'sign-up'
     })
   }
 
@@ -79,34 +96,42 @@ export default class extends React.Component {
   }
 
   render() {
+    const { translations } = this.props
     const { mode, email, pseudo, password, info } = this.state
     return (
       <React.Fragment>
         <div className='modal-body container p-4'>
           <div className='row'>
+            <h5 className='col-12 text-center my-4'>
+              { translations[modeToTranslationKey(mode)] }</h5>
+          </div>
+          <div className='row'>
             <input type='email' className='form-control col-8 offset-2 my-2' value={ email }
                 placeholder='email'
                 onChange={ e => this.handleFormChange('email', e.target.value) }
-                onKeyPress={ e => (mode !== 'login' && email
+                onKeyPress={ e => (mode === 'reset' && email
                   && e.charCode === 13) &&  this.resetPassword() }/>
           </div>
           {
-            mode === 'login' && (
-              <React.Fragment>
-                <div className='row'>  
-                  <input type='text' className='form-control col-8 offset-2 my-2' value={ pseudo }
-                      placeholder='pseudo'
-                      onChange={ e => this.handleFormChange('pseudo', e.target.value) }/>
-                </div>
-                <div className='row'>
-                  <input type='password' className='form-control col-8 offset-2 my-2' value={ password }
-                      placeholder='password'
-                      onChange={ e => this.handleFormChange('password', e.target.value) }
-                      onKeyPress={ e => email && password
-                        && e.charCode === 13 && this.signIn() }/>
-                </div>
-              </React.Fragment>
+            mode === 'sign-up' && (
+              <div className='row'>  
+                <input type='text' className='form-control col-8 offset-2 my-2' value={ pseudo }
+                    placeholder='pseudo'
+                    onChange={ e => this.handleFormChange('pseudo', e.target.value) }/>
+              </div>
             )
+          }
+          { 
+            (mode === 'sign-up' || mode === 'sign-in') && (
+              <div className='row'>
+                <input type='password' className='form-control col-8 offset-2 my-2' value={ password }
+                    placeholder='password'
+                    onChange={ e => this.handleFormChange('password', e.target.value) }
+                    onKeyPress={ e => email && password
+                      && e.charCode === 13 && this.signIn() }/>
+              </div>
+            )
+            
           }
           {
             info && (
@@ -117,34 +142,59 @@ export default class extends React.Component {
         </div>
         <div className='modal-footer'>
           {
-            mode == 'login' ? (
+            mode === 'reset' && (
               <React.Fragment>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.switchToResetPassword() }>
-                  reset password</button>
+                    onClick={ () => this.switchToSignUp() }>
+                  { translations.signUp }</button>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.signUp() }
-                    disabled={ email === '' || pseudo === '' || password === '' }>
-                  sign up</button>
-                <button type='button'
-                    className='btn btn-primary'
-                    onClick={ () => this.signIn() }
-                    disabled={ email === '' || password === '' }>
-                  sign in</button>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <button type='button'
-                    className='btn btn-secondary'
-                    onClick={ () => this.switchToLogin() }>
-                  back to login</button>
+                    onClick={ () => this.switchToSignIn() }>
+                  { translations.signIn }</button>
                 <button type='button'
                     className='btn btn-primary'
                     onClick={ () => this.resetPassword() }
                     disabled={ email === '' }>
-                  send recovery</button>
+                  { translations.send }</button>
+              </React.Fragment>
+            )
+          }
+          { 
+            mode === 'sign-up' && (
+              <React.Fragment>
+                <button type='button'
+                    className='btn btn-secondary'
+                    onClick={ () => this.switchToResetPassword() }>
+                  { translations.resetPassword }</button>
+                <button type='button'
+                    className='btn btn-secondary'
+                    onClick={ () => this.switchToSignIn() }>
+                  { translations.signIn }</button>
+                <button type='button'
+                    className='btn btn-primary'
+                    onClick={ () => this.signIn() }
+                    disabled={ !email || !pseudo || !password }>
+                  { translations.send }</button>
+              </React.Fragment>
+            )
+          } 
+          { 
+            mode === 'sign-in' && (
+              <React.Fragment>
+                <button type='button'
+                    className='btn btn-secondary'
+                    onClick={ () => this.switchToResetPassword() }>
+                  { translations.resetPassword }</button>
+                <button type='button'
+                    className='btn btn-secondary'
+                    onClick={ () => this.switchToSignUp() }>
+                  { translations.signUp }</button>
+                <button type='button'
+                    className='btn btn-primary'
+                    onClick={ () => this.signIn() }
+                    disabled={ !email || !password }>
+                  { translations.send }</button>
               </React.Fragment>
             )
           }

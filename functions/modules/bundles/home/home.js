@@ -40,10 +40,12 @@ P_MPC(id, lang)
   .then(({ translations }) => {
     Array.from(document.getElementsByClassName('anchor-plant-search'))
       .forEach(element => render(<PlantSearch
-        translations={ translations.plantSearch }
-        selectPlant={ selectPlant }/>, element))
+          translations={ translations.plantSearch }
+          selectPlant={ selectPlant }/>,
+        element))
 
-    render(<LoginForm updateUser={ userChange }/>,
+    render(<LoginForm updateUser={ userChange }
+        translations={ translations.loginForm }/>,
       document.getElementById('anchor-login-form'))
 
     $(document)
