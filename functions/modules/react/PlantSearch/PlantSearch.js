@@ -71,7 +71,7 @@ export default class extends React.Component {
     return (
       <div className='plant-search'>
         <div className='row'>
-          <div className='input-group mb-4'>
+          <div className='input-group mb-4 col-12'>
             <input type='text'
                 placeholder={ translations.placeholder || 'type plant key here' }
                 className='form-control'

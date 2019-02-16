@@ -32,8 +32,15 @@ export default class extends React.Component {
     })
   }
 
+  switchMode(mode) {
+    this.setState({
+      mode,
+      info: null
+    })
+  }
+
   signIn() {
-    const { email, pseudo, password } = this.state
+    const { email, password } = this.state
     if (!email || !password) {
       this.setState({
         info: 'Missing field'
@@ -52,30 +59,26 @@ export default class extends React.Component {
         info: 'Missing field'
       })
     } else {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => this.setState({ info: 'User created' }))
-        .catch(err => this.setState({
-          info: err.message
-        }))
+      fetch('/api/user/temp', {
+        method: 'PUT',
+        body: JSON.stringify({
+          email,
+          pseudo
+        })
+      })
+      .then(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(() => this.setState({
+            info: 'User created'
+          }))
+          .catch(err => this.setState({
+            info: err.message
+          }))
+      })
+      .catch(err => this.setState({
+        info: err.message
+      }))
     }
-  }
-
-  switchToSignIn() {
-    this.setState({
-      mode: 'sign-in'
-    })
-  }
-
-  switchToSignUp() {
-    this.setState({
-      mode: 'sign-up'
-    })
-  }
-
-  switchToResetPassword() {
-    this.setState({ 
-      mode: 'reset'
-    })
   }
 
   resetPassword() {
@@ -127,15 +130,16 @@ export default class extends React.Component {
                 <input type='password' className='form-control col-8 offset-2 my-2' value={ password }
                     placeholder='password'
                     onChange={ e => this.handleFormChange('password', e.target.value) }
-                    onKeyPress={ e => email && password
-                      && e.charCode === 13 && this.signIn() }/>
+                    onKeyPress={ e => e.charCode === 13 && email && password
+                      && (mode === 'sign-in' && this.signIn()
+                        || pseudo && mode === 'sign-up' && this.signUp()) }/>
               </div>
             )
             
           }
           {
             info && (
-              <div className='row alert alert-warning'>
+              <div className='row alert alert-warning mx-4 mt-4'>
                 { info }</div>
             )
           }
@@ -146,11 +150,11 @@ export default class extends React.Component {
               <React.Fragment>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.switchToSignUp() }>
+                    onClick={ () => this.switchMode('sign-up') }>
                   { translations.signUp }</button>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.switchToSignIn() }>
+                    onClick={ () => this.switchMode('sign-in') }>
                   { translations.signIn }</button>
                 <button type='button'
                     className='btn btn-primary'
@@ -165,15 +169,15 @@ export default class extends React.Component {
               <React.Fragment>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.switchToResetPassword() }>
+                    onClick={ () => this.switchMode('reset') }>
                   { translations.resetPassword }</button>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.switchToSignIn() }>
+                    onClick={ () => this.switchMode('sign-in') }>
                   { translations.signIn }</button>
                 <button type='button'
                     className='btn btn-primary'
-                    onClick={ () => this.signIn() }
+                    onClick={ () => this.signUp() }
                     disabled={ !email || !pseudo || !password }>
                   { translations.send }</button>
               </React.Fragment>
@@ -184,11 +188,11 @@ export default class extends React.Component {
               <React.Fragment>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.switchToResetPassword() }>
+                    onClick={ () => this.switchMode('reset') }>
                   { translations.resetPassword }</button>
                 <button type='button'
                     className='btn btn-secondary'
-                    onClick={ () => this.switchToSignUp() }>
+                    onClick={ () => this.switchMode('sign-up') }>
                   { translations.signUp }</button>
                 <button type='button'
                     className='btn btn-primary'
