@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./modules/bundles/home/home.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./modules/bundles/plant/plant.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,15 +97,15 @@ eval("module.exports = {\n  apiKey: \"AIzaSyBrGtyAbT6XTkYZ-m7tw2C5Nj_NlCwb8bk\",
 
 /***/ }),
 
-/***/ "./modules/bundles/home/home.js":
-/*!**************************************!*\
-  !*** ./modules/bundles/home/home.js ***!
-  \**************************************/
+/***/ "./modules/bundles/plant/plant.js":
+/*!****************************************!*\
+  !*** ./modules/bundles/plant/plant.js ***!
+  \****************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../patterns/P_CMI/P_CMI */ \"./patterns/P_CMI/P_CMI.js\");\n\nObject(_patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n//# sourceURL=webpack:///./modules/bundles/home/home.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../patterns/P_CMI/P_CMI */ \"./patterns/P_CMI/P_CMI.js\");\n\nObject(_patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n//# sourceURL=webpack:///./modules/bundles/plant/plant.js?");
 
 /***/ }),
 
