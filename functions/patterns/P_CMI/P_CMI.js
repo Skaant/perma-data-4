@@ -54,7 +54,7 @@ export default () =>
       $(document)
         .ready(() => {
           $('#login-button')
-            .click(() => $('#login-modal').modal('show'))
+            .click(() => $('#anchor-login-form').modal('toggle'))
           
           resolve()
         })
