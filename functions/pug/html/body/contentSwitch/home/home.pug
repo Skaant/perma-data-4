@@ -1,20 +1,27 @@
-.container(style='margin-top: 60px')
+.container.mt-md-4.auth-none
   .row
-    .jumbotron.col-12.pb-4
+    .jumbotron.col-12.mb-0.p-4
       h1.display-1.text-uppercase(
         style='word-break: break-all;'
       ) permadata
       p.lead= translation.subtitle || 'The knowledge growers community'
       hr
-      .container-fluid
+      .container.mt-4
         .row
-          .col-md-12.col-lg-4.mt-4
-            .anchor-plant-search
-          .col-md-6.col-lg-4.mt-4
-            a.col-12.btn.btn-primary.text-uppercase(
-              href=`/${ lang }/inventory`
-            )= translation.inventory || 'inventory'
-          .col-md-6.col-lg-4.mt-4
-            a.col-12.btn.btn-primary.text-uppercase(
-              href=`/${ lang }/contributor`
-            )= translation.contributor || 'contributor'
+          .col-12.col-md-6.container.p-4.mb-2
+            .row.mb-4.px-4
+              blockquote.blockquote.col-12.text-center
+                p= translation.searchIntro || 'Access tremendous amount of well-ordered data ..'
+            .row
+              .anchor-plant-search.col-12.col-lg-10.offset-lg-1
+          .col-12.col-md-6.container.alert.alert-primary.p-4(
+            style='height: min-content'
+          )
+            .row.mb-4.px-4
+              blockquote.blockquote.col-12.text-center
+                p= translation.authIntro || 'And improve your experience by playing the TRIGHBS game'
+            .row
+              button#home-login-button.btn.btn-light.text-uppercase.col-10.col-md-8.offset-1.offset-md-2(
+                type='button'
+              )= translation.authenticate
+#anchor-user-home.container(style='margin-top: 60px').auth-true.d-none

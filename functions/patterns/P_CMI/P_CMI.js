@@ -9,7 +9,7 @@ import UserPanel from '../../modules/react/UserPanel/UserPanel'
 import P_MPC from '../P_MPC/P_MPC'
 import P_UCH from '../P_UCH/P_UCH'
 
-export default () => 
+export default (specificsBase, specificsAuth, specificsOut) => 
   new Promise((resolve, reject) => {
     firebase.initializeApp(firebaseConfig)
     
@@ -17,23 +17,30 @@ export default () =>
   const lang = html.lang
   const id = html.id
 
-  const userChange = user => {
+  const userChange = (user, translations) => {
     if (user) {
       P_UCH(user)
         .then(provisionedUser => {
-          $('#login-modal').modal('hide')
-          $('#login-button-container').addClass('d-none')
+          Array.from(document.getElementsByClassName('auth-none'))
+            .forEach(element => $(element).addClass('d-none'))
+          Array.from(document.getElementsByClassName('auth-none'))
+            .forEach(element => $(element).removeClass('d-none'))
+            
+          specificsAuth && specificsAuth(user, translations)
+
           render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
-          $('#anchor-user-panel').removeClass('d-none')
+
+          $('#login-modal').modal('hide')
         })
     } else {
-      $('#anchor-user-panel').addClass('d-none')
-      $('#login-button-container').removeClass('d-none')
+      Array.from(document.getElementsByClassName('auth-none'))
+        .forEach(element => $(element).removeClass('d-none'))
+      Array.from(document.getElementsByClassName('auth-none'))
+        .forEach(element => $(element).addClass('d-none'))
+
+      specificsOut && specificsOut(translations)
     }
   }
-
-  firebase.auth().onAuthStateChanged(user =>
-    userChange(user))
 
   const selectPlant = plant =>
     document.location.href =
@@ -41,6 +48,11 @@ export default () =>
 
   P_MPC(id, lang)
     .then(({ translations }) => {
+      firebase.auth().onAuthStateChanged(user =>
+        userChange(user, translations))
+      
+        specificsBase && specificsBase(translations)
+
       Array.from(document.getElementsByClassName('anchor-plant-search'))
         .forEach(element => render(<PlantSearch
             translations={ translations.plantSearch }
@@ -60,6 +72,9 @@ export default () =>
               .click(() => $('#search-plant-modal').modal('toggle'))
             $('#search-plant-button-container')
               .removeClass('d-none')
+          } else {
+            $('#home-login-button')
+              .click(() => $('#anchor-login-form').modal('toggle'))
           }
           resolve()
         })

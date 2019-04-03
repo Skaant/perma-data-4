@@ -12,20 +12,12 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-primary
     span(class="navbar-toggler-icon")
   .collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      li.nav-item.mx-1
-        a.nav-link.text-uppercase(
-          href=`/${ lang }/inventory`
-        )= translation.inventory || 'inventory'
-      li.nav-item.mx-1
-        a.nav-link.text-uppercase(
-          href=`/${ lang }/contributor`
-        )= translation.contributor || 'contributor'
     ul.navbar-nav
-      li#anchor-user-panel.d-none.nav-item.mx-1.alert.alert-info.mb-0.pb-1.pt-2
+      li#anchor-user-panel.auth-true.d-none.nav-item.mx-1.alert.alert-info.mb-0.pb-1.pt-2
       li#search-plant-button-container.nav-item.mx-1.d-none
         button#search-plant-button.btn.btn-light.text-uppercase= translation.searchPlant
-      li#login-button-container.nav-item.mx-1
-        button#login-button.btn.btn-light.text-uppercase= translation.login
+      li#login-button-container.auth-none.nav-item.mx-1
+        button#login-button.btn.btn-light.text-uppercase= translation.authenticate
       li.nav-item.mx-1
         a.nav-link.text-uppercase(
           href=`/${ lang === 'en' ? 'fr' : 'en' }${ url }`

@@ -69,7 +69,7 @@ export default class extends React.Component {
     const { translations = {} } = this.props
     const { value, results, load, error } = this.state
     return (
-      <div className='plant-search'>
+      <div className='plant-search container'>
         <div className='row'>
           <div className='input-group mb-4 col-12'>
             <input type='text'
