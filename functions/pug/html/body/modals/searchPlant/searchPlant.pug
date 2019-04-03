@@ -1,0 +1,9 @@
+#search-plant-modal.modal(role='document')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5.modal-title= translation.plantSearchModal && translation.plantSearchModal.title || 'Search a plant'
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+        .modal-body
+          .anchor-plant-search

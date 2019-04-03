@@ -4,7 +4,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import firebaseConfig from '../../firebase.config'
 import PlantSearch from '../../modules/react/PlantSearch/PlantSearch'
-import LoginForm from '../../modules/react/LoginForm/LoginForm'
+import LoginFormModal from '../../modules/react/LoginFormModal/LoginFormModal'
 import UserPanel from '../../modules/react/UserPanel/UserPanel'
 import P_MPC from '../P_MPC/P_MPC'
 import P_UCH from '../P_UCH/P_UCH'
@@ -47,7 +47,7 @@ export default () =>
             selectPlant={ selectPlant }/>,
           element))
 
-      render(<LoginForm updateUser={ userChange }
+      render(<LoginFormModal updateUser={ userChange }
           translations={ translations.loginForm }/>,
         document.getElementById('anchor-login-form'))
 
@@ -55,7 +55,12 @@ export default () =>
         .ready(() => {
           $('#login-button')
             .click(() => $('#anchor-login-form').modal('toggle'))
-          
+          if (id !== 'home') {
+            $('#search-plant-button')
+              .click(() => $('#search-plant-modal').modal('toggle'))
+            $('#search-plant-button-container')
+              .removeClass('d-none')
+          }
           resolve()
         })
     })

@@ -1,5 +1,12 @@
 # perma-data-4
 
+## starting the project
+to start the project from the console :
+1. cd functions
+2. firebase serve
+
+*please check if your IP is allowed on mongodb*
+
 ## use of patterns
 
 ### black-boxed code patterns

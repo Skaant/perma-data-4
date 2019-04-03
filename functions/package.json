@@ -7,7 +7,8 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "build-home": "webpack --config ./webpack.config.js --output ../public/modules/home.js ./modules/bundles/home/home.js"
+    "build-home": "webpack --config ./webpack.config.js --output ../public/modules/home.js ./modules/bundles/home/home.js",
+    "build-plant": "webpack --config ./webpack.config.js --output ../public/modules/plant.js ./modules/bundles/plant/plant.js"
   },
   "dependencies": {
     "express": "^4.16.4",

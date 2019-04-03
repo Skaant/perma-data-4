@@ -22,6 +22,8 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-primary
         )= translation.contributor || 'contributor'
     ul.navbar-nav
       li#anchor-user-panel.d-none.nav-item.mx-1.alert.alert-info.mb-0.pb-1.pt-2
+      li#search-plant-button-container.nav-item.mx-1.d-none
+        button#search-plant-button.btn.btn-light.text-uppercase= translation.searchPlant
       li#login-button-container.nav-item.mx-1
         button#login-button.btn.btn-light.text-uppercase= translation.login
       li.nav-item.mx-1
