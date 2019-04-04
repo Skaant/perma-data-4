@@ -80,7 +80,7 @@ export default class extends React.Component {
                 onKeyPress={ e => e.charCode === 13
                   && value.length >= 3 && this.searchPlant() }/>
             <div className='input-group-append'>
-              <button className='btn btn-x btn-primary'
+              <button className='btn btn-info'
                   onClick={ () => this.searchPlant() }
                   disabled={ value.length < 3 }>
                 go</button>

@@ -164,7 +164,7 @@ export default class extends React.Component {
                       onClick={ () => this.switchMode('sign-in') }>
                     { translations.signIn }</button>
                   <button type='button'
-                      className='btn btn-primary'
+                      className='btn btn-info'
                       onClick={ () => this.resetPassword() }
                       disabled={ email === '' }>
                     { translations.send }</button>
@@ -183,7 +183,7 @@ export default class extends React.Component {
                       onClick={ () => this.switchMode('sign-in') }>
                     { translations.signIn }</button>
                   <button type='button'
-                      className='btn btn-primary'
+                      className='btn btn-info'
                       onClick={ () => this.signUp() }
                       disabled={ !email || !pseudo || !password }>
                     { translations.send }</button>
@@ -202,7 +202,7 @@ export default class extends React.Component {
                       onClick={ () => this.switchMode('sign-up') }>
                     { translations.signUp }</button>
                   <button type='button'
-                      className='btn btn-primary'
+                      className='btn btn-info'
                       onClick={ () => this.signIn() }
                       disabled={ !email || !password }>
                     { translations.send }</button>

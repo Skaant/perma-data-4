@@ -23,19 +23,19 @@ export default (specificsBase, specificsAuth, specificsOut) =>
         .then(provisionedUser => {
           Array.from(document.getElementsByClassName('auth-none'))
             .forEach(element => $(element).addClass('d-none'))
-          Array.from(document.getElementsByClassName('auth-none'))
+          Array.from(document.getElementsByClassName('auth-true'))
             .forEach(element => $(element).removeClass('d-none'))
             
           specificsAuth && specificsAuth(user, translations)
 
           render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
 
-          $('#login-modal').modal('hide')
+          $('#anchor-login-form').modal('hide')
         })
     } else {
       Array.from(document.getElementsByClassName('auth-none'))
         .forEach(element => $(element).removeClass('d-none'))
-      Array.from(document.getElementsByClassName('auth-none'))
+      Array.from(document.getElementsByClassName('auth-true'))
         .forEach(element => $(element).addClass('d-none'))
 
       specificsOut && specificsOut(translations)
