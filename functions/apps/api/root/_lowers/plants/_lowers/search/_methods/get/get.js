@@ -1,15 +1,10 @@
-const getByIdWithNames = require('../../../../../../../../provisioners/plants/getByIdWithNames/getByIdWithNames')
+const getById = require('../../../../../../../../provisioners/plants/getById/getById')
 const getByName = require('../../../../../../../../provisioners/plants/getByName/getByName')
 
 module.exports = req =>
   new Promise((resolve, reject) => {
     const { key, lang } = req.query
-    if (!lang) {
-      reject({
-        message: 'no lang specified'
-      })
-    } else {
-      getByIdWithNames(key, lang)
+      getById(key)
         .then(results => {
           if (!results.plants) {
             reject({
@@ -17,8 +12,15 @@ module.exports = req =>
               results
             })
           } else if (results.plants.length > 0) {
-            resolve(results)
+            resolve(Object.assign({}, results, {
+              step: 1
+            }))
           } else {
+            if (!lang) {
+              reject({
+                message: 'no lang specified'
+              })
+            } else {
               getByName(key, lang)
                 .then(results => {
                   if (!results.plants) {
@@ -27,12 +29,14 @@ module.exports = req =>
                       results
                     })
                   } else {
-                    resolve(results)
+                    resolve(Object.assign({}, results, {
+                      step: 2
+                    }))
                   }
                 })
               .catch(err => reject(err))
+            }
           }
         })
       .catch(err => reject(err))
-    }
   })
