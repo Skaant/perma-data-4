@@ -6,11 +6,19 @@ module.exports = key =>
       }
       client.db('prod')
         .collection('plants')
-        .find({
-          $text: {
-            $search: key
+        .aggregate([
+          {
+            $match: {
+              $text: {
+                $search: key
+              }
+            }
+          }, {
+            $group: {
+              _id: '$_id'
+            }
           }
-        })
+        ])
         .toArray((err, plants) => {
           if (err) {
             reject(err)
