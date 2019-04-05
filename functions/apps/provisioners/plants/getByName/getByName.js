@@ -6,12 +6,32 @@ module.exports = (key, lang) =>
       }
       client.db('prod')
         .collection('datas')
-        .find({
-          type: `name.${ lang }`,
-          $text: {
-            $search: key
+        .aggregate([
+          {
+            $match: {
+              type: `name.${ lang }`,
+              $text: {
+                $search: key
+              }
+            }
+          },
+          {
+            $sort: {
+              weight: -1
+            }
+          },
+          {
+            $unwind: '$plants'
+          },
+          {
+            $group: {
+              _id: '$plants',
+              names: {
+                $push: '$value'
+              }
+            }
           }
-        })
+        ])
         .toArray((err, plants) => {
           if (err) {
             reject(err)
