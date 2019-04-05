@@ -15,8 +15,7 @@ module.exports = key =>
           if (err) {
             reject(err)
           }
-          console.log('p', plants)
-          resolve(plants)
+          resolve({ plants })
         })
     })
   })
