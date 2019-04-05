@@ -1,22 +1,15 @@
+const getById = require('../../../../../../../../provisioners/plants/getById/getById')
+
 module.exports = req =>
   new Promise((resolve, reject) => {
     const { key } = req.query
-    global.mongo.connect((err, client) => {
-      if (err) {
-        reject(err)
-      }
-      client.db('prod')
-        .collection('plants')
-        .find({
-          $text: {
-            $search: key
-          }
-        })
-        .toArray((err, plants) => {
-          if (err) {
-            reject(err)
-          }
-          resolve({ plants })
-        })
-    })
+    getById(key)
+      .then(plants => {
+        if (plants.length > 0) {
+          resolve(plants)
+        } else {
+          resolve('next step')
+          // getByName
+        }
+      })
   })
