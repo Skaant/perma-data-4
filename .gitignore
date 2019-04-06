@@ -68,3 +68,6 @@ functions/node_modules/
 # configuration files
 /functions/mongo.config.js
 /functions/firebase.config.js
+
+#builds
+/public/modules
