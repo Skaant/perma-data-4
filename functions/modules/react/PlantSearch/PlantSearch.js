@@ -1,5 +1,6 @@
 import React from 'react'
 import BaseInput from './BaseInput/BaseInput';
+import ImprovementMenu from './ImprovementMenu/ImprovementMenu';
 
 export default class extends React.Component {
   constructor(props) {
@@ -40,6 +41,10 @@ export default class extends React.Component {
     this.setState({
       improvementMenuOpen: !improvementMenuOpen
     })
+  }
+
+  handleImprovementChange(improvement) {
+    this.setState({ improvement })
   }
 
   searchPlant() {
@@ -88,7 +93,11 @@ export default class extends React.Component {
 
   render() {
     const { translations = {} } = this.props
-    const { value, results, message, error, improvementMenuOpen } = this.state
+    const {
+      value,
+      improvementMenuOpen, improvement,
+      results,
+      message, error } = this.state
     return (
       <div className='plant-search container'>
         <BaseInput value={ value }
@@ -100,6 +109,14 @@ export default class extends React.Component {
             handleImprovementButtonClick={ this.handleImprovementButtonClick.bind(this) }
             searchPlant={ this.searchPlant.bind(this) }
             translations={ translations }/>
+        {
+          improvementMenuOpen && (
+            <div className='alert alert-info'>
+              <ImprovementMenu improvement={ improvement }
+                changeImprovement={ this.handleImprovementChange.bind(this) }
+                translations={ translations.improvements }/></div>
+          )
+        }
         {
           message && !error && (
             <div className='row'>
