@@ -148,7 +148,7 @@ export default class extends React.Component {
               <div className='row'>
                 <p className='col-12 mb-0'>
                   { error }
-                  <button type='button' class='close'
+                  <button type='button' className='close'
                       aria-label='Close'
                       onClick={ () => this.handleErrorDismiss() }>
                     <span aria-hidden='true'>&times;</span></button></p></div></div>
@@ -160,7 +160,7 @@ export default class extends React.Component {
               <div className='row'>
                 <p className='col-12 mb-0'>
                   { translations.notFound }
-                  <button type='button' class='close'
+                  <button type='button' className='close'
                       aria-label='Close'
                       onClick={ () => this.handleResultsDismiss() }>
                     <span aria-hidden='true'>&times;</span></button></p></div></div>
