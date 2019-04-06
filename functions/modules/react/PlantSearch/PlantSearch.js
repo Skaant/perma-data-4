@@ -96,6 +96,12 @@ export default class extends React.Component {
   handleDigDeeper() {
     this.searchPlant(true)
   }
+
+  handleErrorDismiss() {
+    this.setState({
+      error: null
+    })
+  }
   
   handleResultsDismiss() {
     this.setState({
@@ -141,7 +147,11 @@ export default class extends React.Component {
             <div className='alert alert-warning'>
               <div className='row'>
                 <p className='col-12 mb-0'>
-                  { error }</p></div></div>
+                  { error }
+                  <button type='button' class='close'
+                      aria-label='Close'
+                      onClick={ () => this.handleErrorDismiss() }>
+                    <span aria-hidden='true'>&times;</span></button></p></div></div>
           )
         }
         {
@@ -149,7 +159,11 @@ export default class extends React.Component {
             <div className='alert alert-secondary'>
               <div className='row'>
                 <p className='col-12 mb-0'>
-                  { translations.notFound }</p></div></div>
+                  { translations.notFound }
+                  <button type='button' class='close'
+                      aria-label='Close'
+                      onClick={ () => this.handleResultsDismiss() }>
+                    <span aria-hidden='true'>&times;</span></button></p></div></div>
           )
         }
         {
