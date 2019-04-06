@@ -1,13 +1,19 @@
 import React from 'react'
+import BaseInput from './BaseInput/BaseInput';
 
 export default class extends React.Component {
   constructor(props) {
     super(props)
+    const html = document.getElementsByTagName('html')[0]
+    const lang = html.lang
     this.state = {
+      lang,
       value: '',
-      load: false,
+      improvementMenuOpen: false,
+      improvement: null,
+      message: null,
       error: null,
-      results: []
+      results: null
     }
   }
 
@@ -17,29 +23,44 @@ export default class extends React.Component {
       error: null
     })
   }
+  
+  handleEnterPress() {
+    const { improvementMenuOpen } = this.state
+    if (!improvementMenuOpen) {
+      this.setState({
+        improvementMenuOpen: true
+      })
+    } else {
+      this.searchPlant()
+    }
+  }
+  
+  handleImprovementButtonClick() {
+    const { improvementMenuOpen } = this.state
+    this.setState({
+      improvementMenuOpen: !improvementMenuOpen
+    })
+  }
 
   searchPlant() {
-    const { ranks } = this.props
-    const { value } = this.state
+    const { translations = {} } = this.props
+    const { lang, improvement, value } = this.state
     if (value.length >= 3) {
       this.setState({
-        load: true,
-        results: []
+        improvementMenuOpen: false,
+        message: translations.loading || 'loading',
+        error: null,
+        results: null
       })
-      fetch(`/api/plants/search?key=${ value }${
-        (ranks && ranks.length > 0) ? 
-          `&ranks=${ encodeURIComponent(ranks) }` : ''
-      }`, {
+      fetch(`/api/plants/search?key=${ value 
+          }&lang=${ lang 
+          }&improvement=${ improvement }`, {
         method: 'GET'
       })
         .then(result => result.json())
-        .then(({ plants }) => {
-          this.setState({
-            load: false,
-            results: plants,
-            error: false
-          })
-        })
+        .then(({ plants }) => this.setState({
+          results: plants
+        }))
         .catch(err => {
           this.setState({
             load: false,
@@ -67,31 +88,23 @@ export default class extends React.Component {
 
   render() {
     const { translations = {} } = this.props
-    const { value, results, load, error } = this.state
+    const { value, results, message, error, improvementMenuOpen } = this.state
     return (
       <div className='plant-search container'>
-        <div className='row'>
-          <div className='input-group mb-4 col-12'>
-            <input type='text'
-                placeholder={ translations.placeholder || 'type plant key here' }
-                className='form-control'
-                value={ value }
-                onChange={ e => this.handleValueChange(e.target.value) }
-                onKeyPress={ e => e.charCode === 13
-                  && value.length >= 3 && this.searchPlant() }/>
-            <div className='input-group-append'>
-              <button className='btn btn-info'
-                  onClick={ () => this.searchPlant() }
-                  disabled={ value.length < 3 }>
-                go</button>
-            </div>
-          </div>
-        </div>
+        <BaseInput value={ value }
+            highlight={ 
+              improvementMenuOpen ? 'search' :
+                !improvementMenuOpen && !message && !results && !error ? 'improvement' : false }
+            handleValueChange={ this.handleValueChange.bind(this) }
+            handleEnterPress={ this.handleEnterPress.bind(this) }
+            handleImprovementButtonClick={ this.handleImprovementButtonClick.bind(this) }
+            searchPlant={ this.searchPlant.bind(this) }
+            translations={ translations }/>
         {
-          load && (
+          message && !error && (
             <div className='row'>
               <div className='col-12 alert alert-info'>
-                .. { translations.loading || 'search results are loading' }
+                .. { message }
               </div>
             </div>
           )
@@ -106,7 +119,7 @@ export default class extends React.Component {
           )
         }
         {
-          results.length === 1 && (
+          results && results.length === 1 && (
             <div className='row alert alert-success'>
               <button type='button' className='close col-12 text-right'
                   data-dismiss='alert' aria-label='Close'
@@ -122,7 +135,7 @@ export default class extends React.Component {
           )
         }
         {
-          results.length > 1 && (
+          results && results.length > 1 && (
             <div className='row'>
               <label className='text-uppercase'>
                 { translations.resultsLabel || 'plant results' }</label>
