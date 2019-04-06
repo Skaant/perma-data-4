@@ -5,7 +5,7 @@ export default ({
   changeImprovement,
   translations
 }) => (
-  <React.Fragment>
+  <div className='alert alert-info'>
     <div className='row'>
       <p className='col-12'>{ translations.title } :</p></div>
     <div className='row'>
@@ -36,5 +36,5 @@ export default ({
             3</span>
           { translations.all }</button></div>
     </div>
-  </React.Fragment>
+  </div>
 )

@@ -1,6 +1,21 @@
 import React from 'react'
 import BaseInput from './BaseInput/BaseInput';
 import ImprovementMenu from './ImprovementMenu/ImprovementMenu';
+import DisplaySingleResult from './DisplaySingleResult/DisplaySingleResult';
+import DisplayMultipleResults from './DisplayMultipleResults/DisplayMultipleResults';
+
+const urlBuilder = (improvement, step) => {
+  switch (improvement) {
+    case 'ids':
+      return '/ids'
+    case 'names':
+      return '/names'
+    case null:
+      return step === 1 ? '' : '/names'
+    default:
+      return ''
+  }
+}
 
 export default class extends React.Component {
   constructor(props) {
@@ -12,9 +27,9 @@ export default class extends React.Component {
       value: '',
       improvementMenuOpen: false,
       improvement: null,
-      message: null,
+      loading: false,
       error: null,
-      results: null
+      result: null
     }
   }
 
@@ -47,63 +62,60 @@ export default class extends React.Component {
     this.setState({ improvement })
   }
 
-  searchPlant() {
-    const { translations = {} } = this.props
+  searchPlant(secondStep) {
     const { lang, improvement, value } = this.state
     if (value.length >= 3) {
       this.setState({
         improvementMenuOpen: false,
-        message: translations.loading || 'loading',
+        loading: true,
         error: null,
-        results: null
+        result: null
       })
-      fetch(`/api/plants/search?key=${ value 
+      fetch(`/api/plants/search${
+            urlBuilder(improvement, !secondStep ? 1 : 2)
+          }?key=${ value 
           }&lang=${ lang 
           }&improvement=${ improvement }`, {
         method: 'GET'
       })
         .then(result => result.json())
-        .then(({ plants }) => this.setState({
-          results: plants
+        .then(result => this.setState({
+          loading: false,
+          result
         }))
         .catch(err => {
           this.setState({
-            load: false,
+            loading: false,
             error: err.message,
-            results: []
+            result: null
           })
         })
     }
   }
 
-  handleResultValidation() {
-    this.props.selectPlant(
-      this.state.results[0]._id)
-  }
-
-  handleResultsSelect(plant) {
-    this.props.selectPlant(plant)
+  handleDigDeeper() {
+    this.searchPlant(true)
   }
   
-  handleResultDismiss() {
-    this.state.setState({
-      results: []
+  handleResultsDismiss() {
+    this.setState({
+      result: null
     })
   }
 
   render() {
-    const { translations = {} } = this.props
+    const { translations = {}, selectPlant } = this.props
     const {
-      value,
+      value, loading,
       improvementMenuOpen, improvement,
-      results,
+      result,
       message, error } = this.state
     return (
       <div className='plant-search container'>
         <BaseInput value={ value } improvement={ improvement }
             highlight={ 
               improvementMenuOpen ? 'search' :
-                !improvementMenuOpen && !message && !results && !error ? 'improvement' : false }
+                !improvementMenuOpen && !message && !result && !error ? 'improvement' : false }
             handleValueChange={ this.handleValueChange.bind(this) }
             handleEnterPress={ this.handleEnterPress.bind(this) }
             handleImprovementButtonClick={ this.handleImprovementButtonClick.bind(this) }
@@ -112,63 +124,53 @@ export default class extends React.Component {
             translations={ translations }/>
         {
           improvementMenuOpen && (
-            <div className='alert alert-info'>
-              <ImprovementMenu improvement={ improvement }
-                changeImprovement={ this.handleImprovementChange.bind(this) }
-                translations={ translations.improvements }/></div>
+            <ImprovementMenu improvement={ improvement }
+              changeImprovement={ this.handleImprovementChange.bind(this) }
+              translations={ translations.improvements }/>
           )
         }
         {
-          message && !error && (
-            <div className='row'>
-              <div className='col-12 alert alert-info'>
-                .. { message }
-              </div>
-            </div>
+          loading && !error && (
+            <div className='alert alert-info'>
+              <div className='row'>
+                <p className='col-12 mb-0'>
+                  { translations.loading }</p></div></div>
           )
         }
         {
           error && (
-            <div className='row'>
-              <div className='col-12 alert alert-warning'>
-                .. { error }
-              </div>
-            </div>
+            <div className='alert alert-warning'>
+              <div className='row'>
+                <p className='col-12 mb-0'>
+                  { error }</p></div></div>
           )
         }
         {
-          results && results.length === 1 && (
-            <div className='row alert alert-success'>
-              <button type='button' className='close col-12 text-right'
-                  data-dismiss='alert' aria-label='Close'
-                  onClick={ () => this.handleResultDismiss() }>
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <p className='col-12'>
-                <b>{ results[0]._id } ?</b></p>
-              <button className='btn btn-success col-md-6 offset-md-6 col-12 my-1'
-                  onClick={ () => this.handleResultValidation() }>
-                yes</button>
-            </div>
+          result && result.plants && result.plants.length === 0 && (
+            <div className='alert alert-secondary'>
+              <div className='row'>
+                <p className='col-12 mb-0'>
+                  { translations.notFound }</p></div></div>
           )
         }
         {
-          results && results.length > 1 && (
-            <div className='row'>
-              <label className='text-uppercase'>
-                { translations.resultsLabel || 'plant results' }</label>
-              <select className='form-control mb-4'
-                  onChange={ e => this.handleResultsSelect(e.target.value) }>
-                <option value={ null }>
-                  { translations.selectPlant ||'choose a plant' }</option>
-                {
-                  results.map(({ _id, name }) => (
-                    <option key={ _id } value={ _id }>
-                      { name || _id }</option>
-                  ))
-                }
-              </select>
-            </div>
+          result && result.plants && result.plants.length === 1 && (
+            <DisplaySingleResult plant={ result.plants[0] }
+                step={ result.step }
+                selectPlant={ selectPlant }
+                digDeeper={ this.handleDigDeeper.bind(this) }
+                dismiss={ this.handleResultsDismiss.bind(this) }
+                translations={ translations.singleResult }/>
+          )
+        }
+        {
+          result && result.plants && result.plants.length > 1 && (
+            <DisplayMultipleResults plants={ result.plants }
+                step={ result.step }
+                selectPlant={ selectPlant }
+                digDeeper={ this.handleDigDeeper.bind(this) }
+                dismiss={ this.handleResultsDismiss.bind(this) }
+                translations={ translations.multipleResults }/>
           )
         }
       </div>

@@ -30,7 +30,7 @@ export default ({
                 improvement !== null && changeImprovement(null)
                 break;
             }
-          } }/>
+          } } autoFocus={ true }/>
       <div className='input-group-append'>
         <button className={ `btn ${ highlight === 'improvement' ? 'btn-warning' : 'btn-info' }` }
             onClick={ () => handleImprovementButtonClick() }>
