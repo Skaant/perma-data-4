@@ -10,9 +10,7 @@ module.exports = (key, lang) =>
           {
             $match: {
               type: `name.${ lang }`,
-              $text: {
-                $search: key
-              }
+              value: new RegExp(key, 'i')
             }
           },
           {

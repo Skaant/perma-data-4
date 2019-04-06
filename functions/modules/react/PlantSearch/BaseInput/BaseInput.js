@@ -22,12 +22,15 @@ export default ({
                 break;
               case 49:
                 improvement !== 'ids' && changeImprovement('ids')
+                e.preventDefault()
                 break;
               case 50:
                 improvement !== 'names' && changeImprovement('names')
+                e.preventDefault()
                 break;
               case 51:
                 improvement !== null && changeImprovement(null)
+                e.preventDefault()
                 break;
             }
           } } autoFocus={ true }/>

@@ -9,9 +9,7 @@ module.exports = key =>
         .aggregate([
           {
             $match: {
-              $text: {
-                $search: key
-              }
+              _id: new RegExp(key, 'i')
             }
           }, {
             $group: {
