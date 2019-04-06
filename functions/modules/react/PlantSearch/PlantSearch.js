@@ -114,8 +114,7 @@ export default class extends React.Component {
       <div className='plant-search container'>
         <BaseInput value={ value } improvement={ improvement }
             highlight={ 
-              improvementMenuOpen ? 'search' :
-                !improvementMenuOpen && !message && !result && !error ? 'improvement' : false }
+              improvementMenuOpen ? 'search' : 'improvement' }
             handleValueChange={ this.handleValueChange.bind(this) }
             handleEnterPress={ this.handleEnterPress.bind(this) }
             handleImprovementButtonClick={ this.handleImprovementButtonClick.bind(this) }
