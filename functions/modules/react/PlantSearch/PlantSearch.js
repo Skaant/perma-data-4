@@ -100,13 +100,14 @@ export default class extends React.Component {
       message, error } = this.state
     return (
       <div className='plant-search container'>
-        <BaseInput value={ value }
+        <BaseInput value={ value } improvement={ improvement }
             highlight={ 
               improvementMenuOpen ? 'search' :
                 !improvementMenuOpen && !message && !results && !error ? 'improvement' : false }
             handleValueChange={ this.handleValueChange.bind(this) }
             handleEnterPress={ this.handleEnterPress.bind(this) }
             handleImprovementButtonClick={ this.handleImprovementButtonClick.bind(this) }
+            changeImprovement={ this.handleImprovementChange.bind(this) }
             searchPlant={ this.searchPlant.bind(this) }
             translations={ translations }/>
         {
