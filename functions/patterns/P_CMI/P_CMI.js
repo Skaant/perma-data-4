@@ -22,22 +22,22 @@ const selectPlant = plant =>
 
 // common module intialization
 
-export default specifics => 
-  new Promise((resolve, reject) => {      
-    firebase.initializeApp(firebaseConfig)
+export default specifics => {
+  firebase.initializeApp(firebaseConfig)
 
-    $('.loading-bundle')
-      .html(loadingTexts.lang)
+  new Promise((resolve, reject) => {
+    commons.bundleStart(specifics && specifics.bundleStart)
 
     P_MPC(id, lang)
       .then(({ translations }) => {
-        firebase.auth().onAuthStateChanged(user =>
-          userChange(user, specifics, translations))
-
-        commons.start(specifics && specifics.start, id,
+        commons.bundleProvisioned(specifics && specifics.start, id,
           selectPlant, userChange, translations)
+
+        firebase.auth().onIdTokenChanged(user =>
+          userChange(user, specifics, translations))
 
         resolve()
       })
       .catch(err => reject(err))
   })
+}

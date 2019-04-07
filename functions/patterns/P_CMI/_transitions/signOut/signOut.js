@@ -3,6 +3,8 @@ export default specific => {
 
   Array.from(document.getElementsByClassName('auth-none'))
     .forEach(element => $(element).removeClass('d-none'))
-  Array.from(document.getElementsByClassName('auth-true'))
+    Array.from(document.getElementsByClassName('data-loading'))
+      .forEach(element => $(element).addClass('d-none'))
+  Array.from(document.getElementsByClassName('auth-data'))
     .forEach(element => $(element).addClass('d-none'))
 }

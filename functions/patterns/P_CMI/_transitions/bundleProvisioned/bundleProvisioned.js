@@ -9,6 +9,11 @@ export default (
   selectPlant, userChange,
   translations
 ) => {
+  Array.from(document.getElementsByClassName('bundle-false'))
+    .forEach(element => $(element).addClass('d-none'))
+  Array.from(document.getElementsByClassName('bundle-true'))
+    .forEach(element => $(element).removeClass('d-none'))
+
   specific && specific(translations)
 
   Array.from(document.getElementsByClassName('anchor-plant-search'))
@@ -28,8 +33,6 @@ export default (
       if (id !== 'home') {
         $('#search-plant-button')
           .click(() => $('#search-plant-modal').modal('toggle'))
-        $('#search-plant-button-container')
-          .removeClass('d-none')
       } else {
         $('#home-login-button')
           .click(() => $('#anchor-login-form').modal('toggle'))

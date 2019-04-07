@@ -1,9 +1,11 @@
-import start from './start/start'
+import bundleProvisioned from './bundleProvisioned/bundleProvisioned'
+import bundleStart from './bundleStart/bundleStart'
 import signIn from './signIn/signIn'
 import signOut from './signOut/signOut'
 
 export default {
-  start,
+  bundleProvisioned,
+  bundleStart,
   signIn,
   signOut
 }
