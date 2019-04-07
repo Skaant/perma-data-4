@@ -1,83 +1,40 @@
-import React from 'react'
-import { render } from 'react-dom'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import firebaseConfig from '../../firebase.config'
-import PlantSearch from '../../modules/react/PlantSearch/PlantSearch'
-import LoginFormModal from '../../modules/react/LoginFormModal/LoginFormModal'
-import UserPanel from '../../modules/react/UserPanel/UserPanel'
+import commons from './_transitions'
 import P_MPC from '../P_MPC/P_MPC'
-import P_UCH from '../P_UCH/P_UCH'
+    
+const html = document.getElementsByTagName('html')[0]
+const lang = html.lang
+const id = html.id
 
-export default (specificsBase, specificsAuth, specificsOut) => 
+const userChange = (user, specifics, translations) => {
+  if (user) {
+    commons.signIn(user, specifics && specifics.signIn, translations)
+  } else {
+    commons.signOut(specifics && specifics.signOut)
+  }
+}
+
+const selectPlant = plant =>
+  document.location.href =
+    `/${ lang }/plant/${ plant}`
+
+// common module intialization
+
+export default specifics => 
   new Promise((resolve, reject) => {
     firebase.initializeApp(firebaseConfig)
-    
-  const html = document.getElementsByTagName('html')[0]
-  const lang = html.lang
-  const id = html.id
-
-  const userChange = (user, translations) => {
-    if (user) {
-      P_UCH(user)
-        .then(provisionedUser => {
-          Array.from(document.getElementsByClassName('auth-none'))
-            .forEach(element => $(element).addClass('d-none'))
-          Array.from(document.getElementsByClassName('auth-true'))
-            .forEach(element => $(element).removeClass('d-none'))
-            
-          specificsAuth && specificsAuth(user, translations)
-
-          render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
-
-          $('#anchor-login-form').modal('hide')
-        })
-    } else {
-      Array.from(document.getElementsByClassName('auth-none'))
-        .forEach(element => $(element).removeClass('d-none'))
-      Array.from(document.getElementsByClassName('auth-true'))
-        .forEach(element => $(element).addClass('d-none'))
-
-      specificsOut && specificsOut(translations)
-    }
-  }
-
-  const selectPlant = plant =>
-    document.location.href =
-      `/${ lang }/plant/${ plant}`
 
   P_MPC(id, lang)
     .then(({ translations }) => {
       firebase.auth().onAuthStateChanged(user =>
-        userChange(user, translations))
-      
-        specificsBase && specificsBase(translations)
+        userChange(user, specifics, translations))
 
-      Array.from(document.getElementsByClassName('anchor-plant-search'))
-        .forEach(element => render(<PlantSearch
-            translations={ translations.plantSearch }
-            selectPlant={ selectPlant }/>,
-          element))
+      commons.start(specifics && specifics.start, id,
+        selectPlant, userChange, translations)
 
-      render(<LoginFormModal updateUser={ userChange }
-          translations={ translations.loginForm }/>,
-        document.getElementById('anchor-login-form'))
-
-      $(document)
-        .ready(() => {
-          $('#login-button')
-            .click(() => $('#anchor-login-form').modal('toggle'))
-          if (id !== 'home') {
-            $('#search-plant-button')
-              .click(() => $('#search-plant-modal').modal('toggle'))
-            $('#search-plant-button-container')
-              .removeClass('d-none')
-          } else {
-            $('#home-login-button')
-              .click(() => $('#anchor-login-form').modal('toggle'))
-          }
-          resolve()
-        })
+      resolve()
     })
     .catch(err => reject(err))
   })

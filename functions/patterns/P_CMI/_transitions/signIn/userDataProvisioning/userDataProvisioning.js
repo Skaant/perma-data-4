@@ -1,3 +1,5 @@
+// user data provisioning
+
 module.exports = ({ uid, email }) =>
   new Promise((resolve, reject) => {
     fetch(`/api/user/data?uid=${ uid }&email=${ email }`)
