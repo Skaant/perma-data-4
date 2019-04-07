@@ -23,18 +23,21 @@ const selectPlant = plant =>
 // common module intialization
 
 export default specifics => 
-  new Promise((resolve, reject) => {
+  new Promise((resolve, reject) => {      
     firebase.initializeApp(firebaseConfig)
 
-  P_MPC(id, lang)
-    .then(({ translations }) => {
-      firebase.auth().onAuthStateChanged(user =>
-        userChange(user, specifics, translations))
+    $('.loading-1')
+      .html(loadingTexts.lang)
 
-      commons.start(specifics && specifics.start, id,
-        selectPlant, userChange, translations)
+    P_MPC(id, lang)
+      .then(({ translations }) => {
+        firebase.auth().onAuthStateChanged(user =>
+          userChange(user, specifics, translations))
 
-      resolve()
-    })
-    .catch(err => reject(err))
+        commons.start(specifics && specifics.start, id,
+          selectPlant, userChange, translations)
+
+        resolve()
+      })
+      .catch(err => reject(err))
   })
