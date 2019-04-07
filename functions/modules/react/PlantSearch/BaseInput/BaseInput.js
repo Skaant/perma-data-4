@@ -36,9 +36,11 @@ export default ({
           } } autoFocus={ true }/>
       <div className='input-group-append'>
         <button className={ `btn ${ highlight === 'improvement' ? 'btn-warning' : 'btn-info' }` }
+            title={ translations.improvements }
             onClick={ () => handleImprovementButtonClick() }>
           🌟</button>
         <button className={ `btn ${ highlight === 'search' ? 'btn-warning' : 'btn-info' }` }
+            title={ translations.search }
             onClick={ () => searchPlant() }
             disabled={ value.length < 3 }>
           ✔️</button>

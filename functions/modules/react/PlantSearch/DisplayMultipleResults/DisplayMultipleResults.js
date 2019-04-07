@@ -2,6 +2,7 @@ import React from 'react'
 
 export default ({
   plants, step,
+  nameFormatter,
   selectPlant, digDeeper, dismiss,
   translations
 }) => (
@@ -14,10 +15,10 @@ export default ({
         <option>
           { plants.length } { translations.results }</option>
         {
-          plants.map(result => (
-            <option key={ result._id }
-                onClick={ () => selectPlant(result._id) }>
-              { result._id }</option>
+          plants.map(plant => (
+            <option key={ plant._id }
+                onClick={ () => selectPlant(plant._id) }>
+              { nameFormatter(plant) }</option>
           ))
         }</select>
       <div className='input-group-append'>

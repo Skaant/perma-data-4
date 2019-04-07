@@ -5,17 +5,33 @@ import DisplaySingleResult from './DisplaySingleResult/DisplaySingleResult';
 import DisplayMultipleResults from './DisplayMultipleResults/DisplayMultipleResults';
 
 const urlBuilder = (improvement, step) => {
-  switch (improvement) {
-    case 'ids':
-      return '/ids'
-    case 'names':
+  if (improvement === 'ids') {
+    return '/ids'
+  } else if (improvement === 'names' || step === 2) {
       return '/names'
-    case null:
-      return step === 1 ? '' : '/names'
-    default:
-      return ''
+  } else {
+    return ''
   }
 }
+
+const nameFormatterFactory = (improvement, step) => 
+  (plant, option) => {
+    if (improvement === 'names' || step === 2) {
+      if (!option) {
+        return (
+          <React.Fragment>
+            { plant.names[0] }
+            <br/>
+            <i>{ plant._id }</i>
+          </React.Fragment>
+        )
+      } else {
+        return `${ plant.names[0] }, ${ plant._id }`
+      }
+    } else {
+      return plant._id
+    }
+  }
 
 export default class extends React.Component {
   constructor(props) {
@@ -115,7 +131,8 @@ export default class extends React.Component {
       value, loading,
       improvementMenuOpen, improvement,
       result,
-      message, error } = this.state
+      error } = this.state
+    const nameFormatter = result && nameFormatterFactory(improvement, result.step)
     return (
       <div className='plant-search container'>
         <BaseInput value={ value } improvement={ improvement }
@@ -126,7 +143,7 @@ export default class extends React.Component {
             handleImprovementButtonClick={ this.handleImprovementButtonClick.bind(this) }
             changeImprovement={ this.handleImprovementChange.bind(this) }
             searchPlant={ this.searchPlant.bind(this) }
-            translations={ translations }/>
+            translations={ translations.baseInput }/>
         {
           improvementMenuOpen && (
             <ImprovementMenu improvement={ improvement }
@@ -170,20 +187,26 @@ export default class extends React.Component {
           result && result.plants && result.plants.length === 1 && (
             <DisplaySingleResult plant={ result.plants[0] }
                 step={ result.step }
+                nameFormatter={ nameFormatter }
                 selectPlant={ selectPlant }
                 digDeeper={ this.handleDigDeeper.bind(this) }
                 dismiss={ this.handleResultsDismiss.bind(this) }
-                translations={ translations.singleResult }/>
+                translations={ Object.assign({},
+                  translations.singleResult,
+                  translations.commonResults) }/>
           )
         }
         {
           result && result.plants && result.plants.length > 1 && (
             <DisplayMultipleResults plants={ result.plants }
                 step={ result.step }
+                nameFormatter={ nameFormatter }
                 selectPlant={ selectPlant }
                 digDeeper={ this.handleDigDeeper.bind(this) }
                 dismiss={ this.handleResultsDismiss.bind(this) }
-                translations={ translations.multipleResults }/>
+                translations={ Object.assign({},
+                  translations.multipleResults,
+                  translations.commonResults) }/>
           )
         }
       </div>
