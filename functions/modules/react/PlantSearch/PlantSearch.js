@@ -134,7 +134,7 @@ export default class extends React.Component {
       error } = this.state
     const nameFormatter = result && nameFormatterFactory(improvement, result.step)
     return (
-      <div className='plant-search container'>
+      <div className='plant-search container px-0'>
         <BaseInput value={ value } improvement={ improvement }
             highlight={ 
               improvementMenuOpen ? 'search' : 'improvement' }
