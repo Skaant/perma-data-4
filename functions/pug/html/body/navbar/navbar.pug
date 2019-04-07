@@ -23,9 +23,8 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-info
       li#login-button-container.auth-none.nav-item.mx-1.my-2.my-md-0.d-none
         button#login-button.btn.btn-warning.text-uppercase.py-2.col-12= `👩🏾‍🌾🥝 ${ translation.authenticate } 👨🏻‍🌾`
       li#anchor-user-panel.auth-data.nav-item.mx-1.alert.alert-info.mb-0.pb-1.pt-2.my-2.my-md-0.d-none
-      if id !== 'home'
-        li#search-plant-button-container.bundle-true.nav-item.mx-1.my-2.my-md-0.d-none
-          button#search-plant-button.btn.btn-light.text-uppercase.py-2.col-12= `${ translation.searchPlant } 🌱📚`
+      li#search-plant-button-container.bundle-true.nav-item.mx-1.my-2.my-md-0.d-none
+        button#search-plant-button.btn.btn-light.text-uppercase.py-2.col-12= `${ translation.searchPlant } 🌱📚`
       li.nav-item.mx-1.my-2.my-md-0
         a.btn.btn-secondary.nav-link.text-uppercase.px-3(
           href=`/${ lang === 'en' ? 'fr' : 'en' }${ url }`

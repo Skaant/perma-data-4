@@ -1,6 +1,8 @@
 import React from 'react'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import ContentForm from './ContentForm/ContentForm'
+import FooterMenu from './FooterMenu/FooterMenu'
 
 const modeToTranslationKey = mode => {
   switch (mode) {
@@ -17,17 +19,22 @@ export default class extends React.Component {
   constructor() {
     super()
     this.state = {
-      email: '',
-      pseudo: '',
-      password: '',
       mode: 'sign-in',
+      form: {
+        email: '',
+        pseudo: '',
+        password: ''
+      },
       info: null
     }
   }
 
   handleFormChange(key, value) {
+    const { form } = this.state
     this.setState({
-      [key]: value,
+      form: Object.assign({}, form, {
+        [key]: value
+      }),
       info: null
     })
   }
@@ -100,13 +107,17 @@ export default class extends React.Component {
 
   render() {
     const { translations } = this.props
-    const { mode, email, pseudo, password, info } = this.state
+    const { mode, form, info } = this.state
+    const options = {
+      signIn: this.signIn.bind(this),
+      signUp: this.signUp.bind(this),
+      resetPassword: this.resetPassword.bind(this)
+    }
     return (
       <div id='login-form' className='modal-dialog' role='document'>
         <div className='modal-content'>
-          <div className='modal-header'>
-            <h5 className='modal-title'>
-              { translations[modeToTranslationKey(mode)] }</h5>
+          <div className='modal-header bg-warning alert-warning'>
+            <h5 className='modal-title text-uppercase'>{ translations.title }</h5>
             <button type='button' className='close'
                 data-dismiss='modal' aria-label='Close'>
               <span aria-hidden='true'>
@@ -114,36 +125,13 @@ export default class extends React.Component {
           </div>
           <div className='modal-body container p-4'>
             <div className='row'>
-            </div>
-            <div className='row'>
-              <input type='email' className='form-control col-8 offset-2 my-2' value={ email }
-                  placeholder='email'
-                  onChange={ e => this.handleFormChange('email', e.target.value) }
-                  onKeyPress={ e => (mode === 'reset' && email
-                    && e.charCode === 13) &&  this.resetPassword() }/>
-            </div>
-            {
-              mode === 'sign-up' && (
-                <div className='row'>  
-                  <input type='text' className='form-control col-8 offset-2 my-2' value={ pseudo }
-                      placeholder='pseudo'
-                      onChange={ e => this.handleFormChange('pseudo', e.target.value) }/>
-                </div>
-              )
-            }
-            { 
-              (mode === 'sign-up' || mode === 'sign-in') && (
-                <div className='row'>
-                  <input type='password' className='form-control col-8 offset-2 my-2' value={ password }
-                      placeholder='password'
-                      onChange={ e => this.handleFormChange('password', e.target.value) }
-                      onKeyPress={ e => e.charCode === 13 && email && password
-                        && (mode === 'sign-in' && this.signIn()
-                          || pseudo && mode === 'sign-up' && this.signUp()) }/>
-                </div>
-              )
-              
-            }
+              <p className='h6 m-4'>
+                { translations[modeToTranslationKey(mode)] } :</p></div>
+            <ContentForm mode={ mode }
+                form={ form }
+                changeValue={ this.handleFormChange.bind(this) }
+                options={ options }
+                translations={ translations } />
             {
               info && (
                 <div className='row alert alert-warning mx-4 mt-4'>
@@ -151,65 +139,10 @@ export default class extends React.Component {
               )
             }
           </div>
-          <div className='modal-footer'>
-            {
-              mode === 'reset' && (
-                <React.Fragment>
-                  <button type='button'
-                      className='btn btn-secondary'
-                      onClick={ () => this.switchMode('sign-up') }>
-                    { translations.signUp }</button>
-                  <button type='button'
-                      className='btn btn-secondary'
-                      onClick={ () => this.switchMode('sign-in') }>
-                    { translations.signIn }</button>
-                  <button type='button'
-                      className='btn btn-info'
-                      onClick={ () => this.resetPassword() }
-                      disabled={ email === '' }>
-                    { translations.send }</button>
-                </React.Fragment>
-              )
-            }
-            { 
-              mode === 'sign-up' && (
-                <React.Fragment>
-                  <button type='button'
-                      className='btn btn-secondary'
-                      onClick={ () => this.switchMode('reset') }>
-                    { translations.resetPassword }</button>
-                  <button type='button'
-                      className='btn btn-secondary'
-                      onClick={ () => this.switchMode('sign-in') }>
-                    { translations.signIn }</button>
-                  <button type='button'
-                      className='btn btn-info'
-                      onClick={ () => this.signUp() }
-                      disabled={ !email || !pseudo || !password }>
-                    { translations.send }</button>
-                </React.Fragment>
-              )
-            } 
-            { 
-              mode === 'sign-in' && (
-                <React.Fragment>
-                  <button type='button'
-                      className='btn btn-secondary'
-                      onClick={ () => this.switchMode('reset') }>
-                    { translations.resetPassword }</button>
-                  <button type='button'
-                      className='btn btn-secondary'
-                      onClick={ () => this.switchMode('sign-up') }>
-                    { translations.signUp }</button>
-                  <button type='button'
-                      className='btn btn-info'
-                      onClick={ () => this.signIn() }
-                      disabled={ !email || !password }>
-                    { translations.send }</button>
-                </React.Fragment>
-              )
-            }
-          </div>
+          <FooterMenu mode={ mode } form={ form }
+              switchMode={ this.switchMode.bind(this) }
+              options={ options }
+              translations={ translations }/>
         </div>
       </div>
     )
