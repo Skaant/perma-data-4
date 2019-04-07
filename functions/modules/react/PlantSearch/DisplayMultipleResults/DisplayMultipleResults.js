@@ -9,9 +9,9 @@ export default ({
   <div className='alert alert-success px-3 pb-3'>
     <div className='row'>
       <p className='col-12 px-4 pt-2'>
-        { translations.title }</p></div>
-    <div className='col-12 input-group px-0 d-flex'>
-      <select className='custom-select flex-grow-1'>
+        { translations.title } :</p></div>
+    <div className='col-12 input-group px-1 d-flex'>
+      <select className='custom-select flex-grow-1 h-auto'>
         <option>
           { plants.length } { translations.results }</option>
         {
@@ -24,13 +24,13 @@ export default ({
       <div className='input-group-append'>
         {
           step === 1 && (
-            <button type='button' className='btn btn-info'
+            <button type='button' className='btn btn-info py-2'
                 title={ translations.digDeeper }
                 onClick={ () => digDeeper() }>
               ➰</button>
           )
         }
-        <button type='button' className='btn btn-danger'
+        <button type='button' className='btn btn-danger py-2'
             title={ translations.dismiss }
             onClick={ () => dismiss() }>
           ️✖️</button>

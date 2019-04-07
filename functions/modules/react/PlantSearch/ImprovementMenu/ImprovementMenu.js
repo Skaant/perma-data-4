@@ -12,7 +12,7 @@ export default ({
       <div className='col-12 btn-group-vertical' role='group'>
         <button type='button' className={ `btn col-12 ${
             improvement === 'ids' ? 'btn-light' : 'btn-success'
-          }` }
+          } py-2` }
             onClick={ () => changeImprovement('ids') }>
           <span className='float-left badge badge-light mt-1'>
             1</span>
@@ -21,7 +21,7 @@ export default ({
             ⭐️✨</span></button>
         <button type='button' className={ `btn col-12 ${
             improvement === 'names' ? 'btn-light' : 'btn-info'
-          }` }
+          } py-2` }
             onClick={ () => changeImprovement('names') }>
           <span className='float-left badge badge-light mt-1'>
             2</span>
@@ -30,7 +30,7 @@ export default ({
             ⭐</span></button>
         <button type='button' className={ `btn col-12 ${
             improvement === null ? 'btn-light' : 'btn-secondary'
-          }` }
+          } py-2` }
             onClick={ () => changeImprovement(null) }>
           <span className='float-left badge badge-light mt-1'>
             3</span>

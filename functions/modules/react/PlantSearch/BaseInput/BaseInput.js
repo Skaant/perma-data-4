@@ -12,10 +12,10 @@ export default ({
     <div className='row'>
       <p className='col-12 px-4 pt-2'>{ translations.label } :</p></div>
     <div className='row'>
-      <div className='input-group mb-4 col-12'>
+      <div className='input-group mb-3 col-12'>
         <input type='text'
             placeholder={ translations.placeholder }
-            className='form-control'
+            className='form-control h-auto'
             value={ value }
             onChange={ e => handleValueChange(e.target.value) }
             onKeyPress={ e => {
@@ -38,11 +38,11 @@ export default ({
               }
             } } autoFocus={ true }/>
         <div className='input-group-append'>
-          <button className={ `btn ${ highlight === 'improvement' ? 'btn-warning' : 'btn-info' }` }
+          <button className={ `btn ${ highlight === 'improvement' ? 'btn-warning' : 'btn-info' } py-2` }
               title={ `${ translations.improvements } !` }
               onClick={ () => handleImprovementButtonClick() }>
             🌟</button>
-          <button className={ `btn ${ highlight === 'search' ? 'btn-warning' : 'btn-info' }` }
+          <button className={ `btn ${ highlight === 'search' ? 'btn-warning' : 'btn-info' } py-2` }
               title={ translations.search }
               onClick={ () => searchPlant() }
               disabled={ value.length < 3 }>
