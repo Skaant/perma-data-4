@@ -1,8 +1,6 @@
 module.exports = req =>
   new Promise((resolve, reject) => {
-    console.log(req.body)
     const { email, pseudo } = JSON.parse(req.body)
-    console.log(email, pseudo, 'kak')
     global.mongo.connect((err, client) => {
       if (err) {
         reject(err)
