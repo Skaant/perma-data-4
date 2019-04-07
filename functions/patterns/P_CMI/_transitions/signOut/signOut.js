@@ -10,6 +10,6 @@ export default specific => {
   Array.from(document.getElementsByClassName('auth-data'))
     .forEach(element => $(element).addClass('d-none'))
   $('#search-plant-button')
-    .addClass('btn-lightwarning')
+    .addClass('btn-outline-light')
     .removeClass('btn-warning')
 }

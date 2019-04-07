@@ -15,7 +15,7 @@ export default (user, specific, translations) => {
     .forEach(element => $(element).addClass('d-none'))
   $('#search-plant-button')
     .addClass('btn-warning')
-    .removeClass('btn-light')
+    .removeClass('btn-outline-light')
 
   userDataProvisioning(user)
     .then(provisionedUser => {
