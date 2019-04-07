@@ -26,7 +26,7 @@ export default specifics =>
   new Promise((resolve, reject) => {      
     firebase.initializeApp(firebaseConfig)
 
-    $('.loading-1')
+    $('.loading-bundle')
       .html(loadingTexts.lang)
 
     P_MPC(id, lang)
