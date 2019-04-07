@@ -1,6 +1,6 @@
 .container.mt-md-4.auth-none
   .row
-    .jumbotron.col-12.mb-0.mb-sm-4.p-4
+    .jumbotron.col-12.bg-white.mb-0.mb-sm-4.p-4
       h1.display-1.text-uppercase.ml-3(
         style='word-break: break-all;'
       ) permadata
@@ -22,7 +22,10 @@
             .row.mb-4.px-4
               blockquote.blockquote.col-12.text-center
                 p= translation.authIntro || 'And improve your learning experience by playing the TRIGHBS game'
-            .row
+            .row.bundle-false
+              .alert.alert-secondary.col-10.col-md-8.offset-1.offset-md-2.mb-0
+                p.mb-0.loading-bundle= translation.loading.files
+            .row.auth-none.d-none
               button#home-login-button.btn.btn-light.text-uppercase.col-10.col-md-8.offset-1.offset-md-2(
                 type='button'
               )= translation.authenticate

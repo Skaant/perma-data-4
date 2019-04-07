@@ -13,6 +13,9 @@ export default (user, specific, translations) => {
     .forEach(element => $(element).removeClass('d-none'))
   Array.from(document.getElementsByClassName('auth-none'))
     .forEach(element => $(element).addClass('d-none'))
+  $('#search-plant-button')
+    .addClass('btn-warning')
+    .removeClass('btn-light')
 
   userDataProvisioning(user)
     .then(provisionedUser => {

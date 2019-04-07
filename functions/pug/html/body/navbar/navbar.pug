@@ -1,4 +1,4 @@
-nav.navbar.navbar-expand-md.navbar-dark.bg-success
+nav.navbar.navbar-expand-md.navbar-dark.bg-info
   a.navbar-brand.text-white(
     href=`/${ lang }`
   ) PERMADATA
@@ -18,12 +18,12 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-success
       li.alert.alert-secondary.bundle-true.auth-true.data-loading.mb-0.py-2.mx-1.d-none
         p.loading-user.mb-0= translation.loading.userAuth
       li#login-button-container.auth-none.nav-item.mx-1.my-2.my-md-0.d-none
-        button#login-button.btn.btn-light.text-uppercase.py-2.col-12= translation.authenticate
+        button#login-button.btn.btn-warning.text-uppercase.py-2.col-12= translation.authenticate
       li#anchor-user-panel.auth-data.nav-item.mx-1.alert.alert-info.mb-0.pb-1.pt-2.my-2.my-md-0.d-none
       if id !== 'home'
         li#search-plant-button-container.bundle-true.nav-item.mx-1.my-2.my-md-0.d-none
           button#search-plant-button.btn.btn-light.text-uppercase.py-2.col-12= translation.searchPlant
       li.nav-item.mx-1.my-2.my-md-0
-        a.btn.btn-outline-light.text-light.nav-link.text-uppercase(
+        a.btn.btn-secondary.nav-link.text-uppercase(
           href=`/${ lang === 'en' ? 'fr' : 'en' }${ url }`
         )= `${ lang === 'en' ? 'fr' : 'en' }`
