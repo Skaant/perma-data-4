@@ -30,12 +30,12 @@ export default (
     .ready(() => {
       $('#login-button')
         .click(() => $('#anchor-login-form').modal('toggle'))
-      if (id !== 'home') {
+      $('#home-login-button')
+        .click(() => $('#anchor-login-form').modal('toggle'))
+
+      if (id === 'home') {
         $('#search-plant-button')
           .click(() => $('#search-plant-modal').modal('toggle'))
-      } else {
-        $('#home-login-button')
-          .click(() => $('#anchor-login-form').modal('toggle'))
       }
     })
 }
