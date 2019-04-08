@@ -47,7 +47,7 @@ export default class extends React.Component {
   }
 
   signIn() {
-    const { email, password } = this.state
+    const { email, password } = this.state.form
     if (!email || !password) {
       this.setState({
         info: 'Missing field'
@@ -60,7 +60,7 @@ export default class extends React.Component {
   }
 
   signUp() {
-    const { email, pseudo, password } = this.state
+    const { email, pseudo, password } = this.state.form
     if (!email || !pseudo || !password) {
       this.setState({
         info: 'Missing field'
@@ -89,7 +89,7 @@ export default class extends React.Component {
   }
 
   resetPassword() {
-    const { email } = this.state
+    const { email } = this.state.form
     if (!email) {
       this.setState({
         info: 'Missing field'
