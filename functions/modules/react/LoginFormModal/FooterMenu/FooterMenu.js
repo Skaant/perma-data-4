@@ -29,35 +29,39 @@ export default ({
   options, // signIn, signUp, resetPassword
   translations
 }) => (
-  <div className='modal-footer flex-column flex-sm-row'>
-    {
-      mode !== 'reset' && (
-        <button type='button mt-2 col-12 col-sm-4 py-2 text-uppercase'
-            className='btn btn-secondary'
-            onClick={ () => switchMode('reset') }>
-          🤷🏼‍🙊 { translations.resetPassword }</button>
-      )
-    }
-    {
-      mode !== 'sign-up' && (
-        <button type='button mt-2 col-12 col-sm-4 py-2 text-uppercase'
-            className='btn btn-info'
-            onClick={ () => switchMode('sign-up') }>
-          🙌🏽 { translations.signUp }</button>
-      )
-    }
-    {
-      mode !== 'sign-in' && (
-        <button type='button mt-2 col-12 col-sm-4 py-2 text-uppercase'
-            className='btn btn-success'
-            onClick={ () => switchMode('sign-in') }>
-          🔥🐲 { translations.signIn }</button>
-      )
-    }
-    <button type='button'
-        className='btn btn-warning col-12 col-sm-4 py-2 text-uppercase'
-        onClick={ () => handleSend(mode, options) }
-        disabled={ checkDisabled(mode, form) }>
-      🌿 { translations.send } 🕊🌛</button>
+  <div className='row flex-row-reverse'>
+    <div className='col-12 col-md-6 py-1'>
+      <button type='button'
+          className='btn btn-warning py-2 w-100 h-100 text-uppercase'
+          onClick={ () => handleSend(mode, options) }
+          disabled={ checkDisabled(mode, form) }>
+        🌿 { translations.send } 🕊🌛</button>
+    </div>
+    <div className='col-12 col-sm-6'>
+      {
+        mode !== 'reset' && (
+          <button type='button'
+              className='btn btn-secondary my-1 py-2 w-100 text-uppercase'
+              onClick={ () => switchMode('reset') }>
+            🤷🏼‍🙊 { translations.resetPassword }</button>
+        )
+      }
+      {
+        mode !== 'sign-up' && (
+          <button type='button'
+              className='btn btn-info my-1 py-2 w-100 text-uppercase'
+              onClick={ () => switchMode('sign-up') }>
+            🙌🏽 { translations.signUp }</button>
+        )
+      }
+      {
+        mode !== 'sign-in' && (
+          <button type='button'
+              className='btn btn-success my-1 py-2 w-100 text-uppercase'
+              onClick={ () => switchMode('sign-in') }>
+            🔥🐲 { translations.signIn }</button>
+        )
+      }
+    </div>
   </div>
 )

@@ -117,7 +117,7 @@ export default class extends React.Component {
       <div id='login-form' className='modal-dialog' role='document'>
         <div className='modal-content'>
           <div className='modal-header bg-warning alert-warning'>
-            <h5 className='modal-title text-uppercase'>{ translations.title }</h5>
+            <h5 className='modal-title text-uppercase'>🐛{ translations.title } 🧘‍🦓🌻</h5>
             <button type='button' className='close'
                 data-dismiss='modal' aria-label='Close'>
               <span aria-hidden='true'>
@@ -125,7 +125,7 @@ export default class extends React.Component {
           </div>
           <div className='modal-body container p-4'>
             <div className='row'>
-              <p className='h6 m-4'>
+              <p className='h6 w-100 text-center m-4'>
                 { translations[modeToTranslationKey(mode)] } :</p></div>
             <ContentForm mode={ mode }
                 form={ form }
@@ -139,10 +139,12 @@ export default class extends React.Component {
               )
             }
           </div>
-          <FooterMenu mode={ mode } form={ form }
-              switchMode={ this.switchMode.bind(this) }
-              options={ options }
-              translations={ translations }/>
+          <div className='modal-footer container px-4 py-3'>
+            <FooterMenu mode={ mode } form={ form }
+                switchMode={ this.switchMode.bind(this) }
+                options={ options }
+                translations={ translations }/>
+          </div>
         </div>
       </div>
     )
