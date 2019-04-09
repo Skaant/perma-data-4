@@ -1,10 +1,13 @@
 .container(style="margin-top: 60px")
   .row
-    h1.display-1.col-12.text-center= plant.name || plant._id
+    .jumbotron.col-12.bg-white.mb-0.mb-sm-4.p-4
+      h1.display-1.col-12.text-center= plant.name || plant._id
+      if (plant.name)
+        p.lead= plant._id
   .row
     .col-md-8.offset-md-2.col-12.container.mt-4
       each data in datas[plant._id]
-        if data.tags && data.value
-          .row.alert.alert-info
-            .col-4.text-right.font-weight-bold= data.tags.join(', ')
+        if data.type && data.value
+          .row.alert.alert-light
+            .col-4.text-right.font-weight-bold= data.type
             .col-8= data.value
