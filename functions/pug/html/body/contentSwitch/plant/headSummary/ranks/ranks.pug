@@ -1,0 +1,14 @@
+.row
+  nav.col-12(aria-label="breadcrumb")
+    ol.breadcrumb.alert-warning
+      if (plant.parents)
+        li.mr-1
+          b= `${ translation.ranks.parents } : `
+        each parent in plant.parents
+          li.breadcrumb-item
+            a(href=`/${ lang }/plant/${ parent }`)= names[parent] && names[parent][0] || parent
+      li.ml-auto.mr-1
+        b= `${ translation.ranks.label } : `
+      li(
+        aria-current='page'
+      )= `${ plant.rank }`

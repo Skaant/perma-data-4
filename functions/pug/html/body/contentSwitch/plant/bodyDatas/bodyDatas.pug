@@ -1,0 +1,7 @@
+.row
+  .col-md-8.offset-md-2.col-12.container.mt-4
+    each data in datas
+      if data.type && data.value
+        .row.alert.alert-light
+          .col-4.text-right.font-weight-bold= data.type
+          .col-8= data.value

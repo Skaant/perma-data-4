@@ -1,0 +1,4 @@
+.row
+  h1.display-1.col-12.text-center= names[plant._id] && names[plant._id][0] || plant._id
+  if (names[plant._id] && names[plant._id][0])
+    p.lead.w-100.text-center= plant._id

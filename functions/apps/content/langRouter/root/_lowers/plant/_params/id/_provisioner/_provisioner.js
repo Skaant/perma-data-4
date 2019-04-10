@@ -10,7 +10,7 @@ module.exports = props =>
         resolve(Object.assign({}, props, result, {
           names: Object.keys(plants)
             .reduce((names, _id) => {
-              names[_id] = orderName(plants[id], result, props.lang)
+              names[_id] = orderName(plants[_id], result, props.lang)
               return names
             }, {})
         }))
