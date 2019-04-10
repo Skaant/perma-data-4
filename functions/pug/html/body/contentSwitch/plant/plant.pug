@@ -1,12 +1,12 @@
 .container(style="margin-top: 60px")
   .row
     .jumbotron.col-12.bg-white.mb-0.mb-sm-4.p-4
-      h1.display-1.col-12.text-center= plant.name || plant._id
-      if (plant.name)
+      h1.display-1.col-12.text-center= names[plant._id] && names[plant._id][0] || plant._id
+      if (names[plant._id] && names[plant._id][0])
         p.lead= plant._id
   .row
     .col-md-8.offset-md-2.col-12.container.mt-4
-      each data in datas[plant._id]
+      each data in datas
         if data.type && data.value
           .row.alert.alert-light
             .col-4.text-right.font-weight-bold= data.type
