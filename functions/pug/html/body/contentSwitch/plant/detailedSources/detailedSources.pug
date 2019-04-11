@@ -1,0 +1,14 @@
+.row
+  h2.text-center.col-12.my-4= translation.sections.sources
+.row
+  .col-12.container
+    each source, key in sources
+      .row(
+        id= key
+      )
+        ol.alert.alert-light.col-12.col-md-10.offset-md-1.breadcrumb
+          each parent in source.parents
+            li.breadcrumb-item= parent.title
+          li.breadcrumb-item
+            b= source.title
+
