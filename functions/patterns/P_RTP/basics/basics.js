@@ -11,7 +11,7 @@ module.exports = (id, req) =>
         resolve(Object.assign({
           id,
           lang,
-          url: req.url
+          url: [''].concat(req.originalUrl.split('/').slice(2)).join('/')
         }, {
           translation
         }, req.params ? {
