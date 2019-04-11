@@ -1,19 +1,17 @@
 const getByIdWithDatas = require('../../../../../../../../provisioners/plant/getByIdWithDatas/getByIdWithDatas')
-const orderName = require('./orderName/orderName')
+const getOrderedNames = require('./getOrderedNames/getOrderedNames')
+const P_CLO = require('../../../../../../../../../patterns/P_CLO/P_CLO')
+const clouds = require('./clouds/index')
 
 module.exports = props =>
   new Promise((resolve, reject) => {
-    const { id } = props.params
+    const { lang, params } = props
+    const { id } = params
     getByIdWithDatas(id)
-      .then(result => {
-        const { plants } = result
+      .then(result =>
         resolve(Object.assign({}, props, result, {
-          names: Object.keys(plants)
-            .reduce((names, _id) => {
-              names[_id] = orderName(plants[_id], result, props.lang)
-              return names
-            }, {})
-        }))
-      })
+          names: getOrderedNames(result, lang),
+          clouds: P_CLO(clouds, result, { lang })
+        })))
       .catch(err => reject(err))
   })

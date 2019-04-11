@@ -1,7 +1,11 @@
 .row
   .col-md-8.offset-md-2.col-12.container.mt-4
-    each data in datas
-      if data.type && data.value
-        .row.alert.alert-light
-          .col-4.text-right.font-weight-bold= data.type
-          .col-8= data.value
+    if (clouds)
+      each cloud in clouds
+        p.h2.mb-4= translation.clouds[cloud.key]
+        each data in cloud.datas
+          if datas[data].type && datas[data].value
+            .row.alert.alert-light
+              .col-4.text-right.font-weight-bold= datas[data].type
+              .col-8= datas[data].value
+      

@@ -1,6 +1,6 @@
 module.exports = (plant, { types, datas }, lang) => {
   const type = `name.${ lang }`
-  return plant.filter(_id => types[type].includes(_id))
+  return plant.filter(_id => datas[_id].plants === plant._id)
     .map(_id => {
       const { value, weight } = datas[_id]
       return {
