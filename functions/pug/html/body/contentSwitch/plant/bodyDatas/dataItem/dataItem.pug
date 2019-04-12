@@ -1,15 +1,15 @@
 if datas[data].type && datas[data].value
   .row.alert.alert-light
-    .col-12.col-md-8.px-0
+    .col-12.col-lg-8.px-0
       p.font-weight-bold.text-center= translation.types[datas[data].type.replace(/#/, '.')] || datas[data].type
       p.mb-2.alert.alert-warning= datas[data].value
-    .col-12.col-md-4.pt-3.pr-0
+    ul.list-group.col-12.col-lg-4.pt-3.pr-0.pl-4
       if (datas[data].sources)
         each source in datas[data].sources
-          p.mb-2.text-right
+          li.list-item.mb-2.ml-3.text-right
             a(
               href= `#${ source }`
             )= `${ sources[source].title } (${ sources[source].parents && sources[source].parents[0].title })`
       else
-        p.alert.alert-secondary.h-100= 'no source !? :/'
+        p.ml-3.alert.alert-secondary.h-100= 'no source !? :/'
       
