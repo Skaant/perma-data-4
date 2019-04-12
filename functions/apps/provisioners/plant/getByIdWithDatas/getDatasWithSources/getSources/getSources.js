@@ -43,7 +43,6 @@ module.exports = (client, datas) =>
         }
       }])
       .toArray((err, sources) => {
-        console.log(sources)
         if (err) {
           reject(err)
         }
