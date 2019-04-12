@@ -28,19 +28,8 @@ module.exports = (client, plant) =>
       if (err) {
         reject(err)
       }
-      getSources(client, datas
-        .reduce((filteredSources, data) => {
-          if (data.sources) {
-            data.sources.forEach(source => {
-              if (!filteredSources.includes(source)) {
-                filteredSources.push(source)
-              }
-            })
-          }
-          return filteredSources
-        }, []))
+      getSources(client, datas)
         .then(sources => {
-          console.log(sources)
           resolve(datas.reduce((result, data) => {
             const { _id } = data
 

@@ -11,9 +11,10 @@
             li.breadcrumb-item
               if (index === 0)
                 b= parent.title
-                span= ` (${ parent.authors })`
+                if (parent.authors)
+                  span= ` (${ parent.authors })`
               else
-                #{ parent.title }
+                span= parent.title
           li.breadcrumb-item.ml-auto
             b= source.title
 

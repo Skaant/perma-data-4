@@ -5,7 +5,13 @@ to start the project from the console :
 1. cd functions
 2. firebase serve
 
-*please check if your IP is allowed on mongodb*
+## data types & formats
+
+* name.{ lang }
+* light
+* moisture
+* hardiness.zone
+* foliage
 
 ## use of patterns
 

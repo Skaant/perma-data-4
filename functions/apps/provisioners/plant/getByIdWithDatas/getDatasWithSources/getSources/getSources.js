@@ -1,11 +1,17 @@
-module.exports = (client, sources) =>
-  new Promise((resolve, reject) =>
+module.exports = (client, datas) =>
+  new Promise((resolve, reject) => {
     client.db('prod')
       .collection('sources')
       .aggregate([{
         $match: {
           _id: {
-            $in: sources
+            $in: datas
+              .reduce((allSources, data) => {
+                if (data.sources) {
+                  return allSources.concat(data.sources)
+                }
+                return allSources
+              }, [])
           }
         }
       }, {
@@ -20,20 +26,36 @@ module.exports = (client, sources) =>
           foreignField: '_id',
           as: 'provisioned_parents'
         }
+      }, {
+        $unwind: {
+          path: '$provisioned_parents',
+          preserveNullAndEmptyArrays: true
+        }
+      }, {
+        $group: {
+          _id: '$_id',
+          title: {
+            $first: '$title'
+          },
+          parents: {
+            $push:  '$provisioned_parents'
+          }
+        }
       }])
       .toArray((err, sources) => {
+        console.log(sources)
         if (err) {
           reject(err)
         }
         resolve(sources.reduce((objectSource, {
           _id,
           title,
-          provisioned_parents
+          parents
         }) => {
           objectSource[_id] = {
             title,
-            parents: provisioned_parents
+            parents
           }
           return objectSource
         }, {}))
-      }))
+      })})
