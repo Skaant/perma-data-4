@@ -3,8 +3,7 @@
 .row
   .col-md-8.offset-md-2.col-12.container
     if (clouds)
-      each cloud in clouds
-        p.h4.my-4= translation.clouds[cloud.key] || cloud.key
-        each data in cloud.datas
-          include ./dataItem/dataItem
+      each cloud, key in clouds
+        p.h4.my-4= translation.clouds[key] || key
+        include ./typesGroup/typesGroup
       

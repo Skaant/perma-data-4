@@ -11,7 +11,7 @@ module.exports = props =>
       .then(result =>
         resolve(Object.assign({}, props, result, {
           names: getOrderedNames(result, lang),
-          clouds: P_CLO(clouds, result, { lang })
+          clouds: P_CLO(clouds, props)
         })))
       .catch(err => reject(err))
   })
