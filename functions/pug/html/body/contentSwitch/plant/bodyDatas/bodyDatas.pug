@@ -1,7 +1,7 @@
 .row
   h2.text-center.col-12.mt-4= `🛎🤩🎒🌼 ${ translation.sections.data } 🌲🌌🐹`
-.row
-  .col-md-8.offset-md-2.col-12.container
+.row.mb-4
+  .col-12.col-md-10.offset-md-1.col-lg-8.offset-lg-2.col-xl-6.offset-xl-3.container
     if (clouds)
       each cloud, key in clouds
         p.h4.my-4= translation.clouds[key] || key
