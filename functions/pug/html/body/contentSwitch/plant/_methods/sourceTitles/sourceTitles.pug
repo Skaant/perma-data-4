@@ -1,0 +1,3 @@
+- const getTitle = source => `${ source.title } ${ source.parents && `(${ source.parents[0].title })` }`
+- const titleShortener = title => title.replace(/\,/g, '').split(/[\ \-\.]/g).map(val => val[0]).filter(char => /[A-Z0-9]+/.test(char)).slice(0, 3).join('')
+- const getShortTitle = source => `${ titleShortener(source.title) } ${ source.parents && `(${ titleShortener(source.parents[0].title) })` }`
