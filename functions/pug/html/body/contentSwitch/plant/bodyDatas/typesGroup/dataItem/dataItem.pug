@@ -3,8 +3,11 @@
     span.float-right
       if (datas[data].sources)
         each source in datas[data].sources
+          - let title = `${ sources[source].title } ${ sources[source].parents && `(${ sources[source].parents[0].title })` }`
           a(
             href= `#${ source }`
-            title= `${ sources[source].title } ${ sources[source].parents && `(${ sources[source].parents[0].title })` }`
+            title= title
           )
-            span.badge.badge-pill.badge-light.mx-1= (sources[source].parents ? sources[source].parents[0] : sources[source]).title.split(/[\ \-\,\.]/g).slice(0, 3).map(val => val[0]).join('').toUpperCase()
+            - let titleShortener = title => title.replace(/\,/g, '').split(/[\ \-\.]/g).map(val => val[0]).filter(char => /[A-Z0-9]+/.test(char)).slice(0, 3).join('')
+            - let shortTitle = `${ titleShortener(sources[source].title) } ${ sources[source].parents && `(${ titleShortener(sources[source].parents[0].title) })` }`
+            span.badge.badge-pill.badge-light.mx-1= shortTitle.toUpperCase()
