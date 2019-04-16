@@ -5,5 +5,6 @@ each dataType in cloud.types
         small
           b= translation.types[dataType] && translation.types[dataType].replace(/#/, '.') || dataType
           span.float-right.mt-1.mr-4.text-secondary= translation.sources
-    each data in types[dataType]
-      include ./dataItem/dataItem
+    if (types[dataType])
+      each data in types[dataType]
+        include ./dataItem/dataItem
