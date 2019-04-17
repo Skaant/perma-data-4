@@ -26,16 +26,13 @@ export default (
       translations={ translations.loginForm }/>,
     document.getElementById('anchor-login-form'))
   
-  $(document)
-    .ready(() => {
-      $('#login-button')
-        .click(() => $('#anchor-login-form').modal('toggle'))
-      $('#home-login-button')
-        .click(() => $('#anchor-login-form').modal('toggle'))
+  $('#login-button')
+    .click(() => $('#anchor-login-form').modal('toggle'))
+  $('#home-login-button')
+    .click(() => $('#anchor-login-form').modal('toggle'))
 
-      if (id === 'home') {
-        $('#search-plant-button')
-          .click(() => $('#search-plant-modal').modal('toggle'))
-      }
-    })
+  if (id === 'home') {
+    $('#search-plant-button')
+      .click(() => $('#search-plant-modal').modal('toggle'))
+  }
 }
