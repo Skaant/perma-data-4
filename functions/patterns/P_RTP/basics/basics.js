@@ -17,5 +17,5 @@ module.exports = (id, req) =>
         }, req.params ? {
           params: req.params
         } : {})))
-      .catch(err => reject(err))
+      .catch(err => reject(Object.assign({}, err, { lang })))
   })

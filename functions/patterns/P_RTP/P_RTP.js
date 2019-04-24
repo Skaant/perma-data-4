@@ -19,6 +19,9 @@ module.exports = ({ id, _provisioner }) =>
         } else {
           res.send(renderer(props))
         }})
-      .catch(err => P_ERR(err, props, res))
+      .catch(err => P_ERR(err, {
+        lang: err.lang,
+        translation: err.translation
+      }, res))
       
       
