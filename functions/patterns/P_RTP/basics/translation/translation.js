@@ -1,11 +1,13 @@
 module.exports = props =>
-  new Promise((resolve, reject) =>
-    Promise.all([
+  new Promise((resolve, reject) => {
+    const promises = [
       global.firestore.collection('translations')
-        .doc(`global-${ props.lang }`).get(),
-      global.firestore.collection('translations')
-        .doc(`${ props.id }-${ props.lang }`).get()
-    ])
+        .doc(`global-${ props.lang }`).get()]
+    if (props.id) {
+      promises.push(global.firestore.collection('translations')
+        .doc(`${ props.id }-${ props.lang }`).get())
+    }
+    Promise.all(promises)
       .then(([global, page]) => {
         if (!global.exists) {
           reject({
@@ -13,7 +15,7 @@ module.exports = props =>
             title: 'no global translation',
             message: `missing translation file for "${ props.lang }" language`
           })
-        } else if (!page.exists) {
+        } else if (props.id && !page.exists) {
           reject({
             status: 404,
             title: 'no page translation',
@@ -23,10 +25,10 @@ module.exports = props =>
         }
         resolve(Object.assign({}, 
           global.exists ? global.data() : {},
-          page.exists ? page.data() : {}
+          (page && page.exists) ? page.data() : {}
         ))
       })
-      .catch(err =>
-        reject(Object.assign({}, err, {
+      .catch(err => reject(Object.assign({}, err, {
           title: 'translation request error'
-        }))))
+        })))
+  })
