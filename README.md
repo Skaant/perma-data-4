@@ -5,13 +5,21 @@ to start the project from the console :
 1. cd functions
 2. firebase serve
 
-## data types & formats
+## object references
+
+### data types & formats
 
 * name.{ lang }
 * light
 * moisture
 * hardiness.zone
 * foliage
+
+### error
+
+* title
+* status (code)
+* message
 
 ## use of patterns
 

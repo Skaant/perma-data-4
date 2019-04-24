@@ -15,12 +15,10 @@ module.exports = ({ id, _provisioner }) =>
               } catch(err) {
                 P_ERR(err, req.lang, res)
               }})
+            .catch(err => P_ERR(err, props, res))
         } else {
           res.send(renderer(props))
         }})
-      .catch(err => {
-        console.log(err)
-        P_ERR(err, req.lang, res)
-      })
+      .catch(err => P_ERR(err, props, res))
       
       

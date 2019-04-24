@@ -13,5 +13,9 @@ module.exports = props =>
           names: getOrderedNames(result, lang),
           clouds: P_CLO(clouds, props)
         })))
-      .catch(err => reject(err))
+      .catch(err => reject({
+        title: err,
+        message: `plant with id "${ id }" couldn't be found`,
+        status: 404
+      }))
   })
