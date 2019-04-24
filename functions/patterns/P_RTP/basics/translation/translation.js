@@ -7,6 +7,7 @@ module.exports = props =>
       promises.push(global.firestore.collection('translations')
         .doc(`${ props.id }-${ props.lang }`).get())
     }
+    console.log(props)
     Promise.all(promises)
       .then(([global, page]) => {
         if (!global.exists) {
