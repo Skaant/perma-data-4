@@ -19,6 +19,14 @@ module.exports = (id, req) =>
             lang,
             translation
           })
+        } else if (!id) {
+          reject({
+            title: 'no page found',
+            message: 'nope, there is nothing here',
+            status: 404,
+            lang,
+            translation
+          })
         }
         resolve(Object.assign({
           id,

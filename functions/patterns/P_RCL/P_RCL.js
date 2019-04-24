@@ -29,6 +29,8 @@ const P_RCL = ({ _current, _params, _methods, _lowers = {} }) => {
   Object.keys(_lowers)
     .map(key => router
       .use(`/${ key }`, P_RCL(_lowers[key])))
+
+  router.use('/*', P_RTP({}))
       
   return router
 }
