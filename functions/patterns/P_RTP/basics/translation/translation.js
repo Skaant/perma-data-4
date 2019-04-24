@@ -17,7 +17,8 @@ module.exports = props =>
           reject({
             status: 404,
             title: 'no page translation',
-            message: `missing translation file "${ props.id }" for "${ props.lang }" language`
+            message: `missing translation file "${ props.id }" for "${ props.lang }" language`,
+            translation: global.exists ? global.data() : {}
           })
         }
         resolve(Object.assign({}, 
