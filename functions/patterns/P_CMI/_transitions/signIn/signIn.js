@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 import UserPanel from '../../../../modules/react/UserPanel/UserPanel'
 
+// TODO updateDialogs
+
 export default (user, specific, translations) => {
   Array.from(document.getElementsByClassName('loading-bundle'))
     .forEach(element => $(element)
@@ -27,6 +29,7 @@ export default (user, specific, translations) => {
       specific && specific(user, translations)
 
       render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
+      // todo DialogModal
 
       $('#anchor-login-form').modal('hide')
     })
