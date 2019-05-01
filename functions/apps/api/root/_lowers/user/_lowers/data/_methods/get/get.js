@@ -51,7 +51,6 @@ module.exports = req =>
             reject(err)
           }
           const user = result[0]
-          console.log(user.dialogs[0])
           if (user) {
             resolve({ 
               user: Object.assign({}, user, {
