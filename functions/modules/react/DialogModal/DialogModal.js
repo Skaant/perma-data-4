@@ -2,10 +2,11 @@ import React from 'react'
 import FooterMenu from './FooterMenu/FooterMenu';
 
 export default class extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      current: 0
+      current: 0,
+      dialog: props.dialog
     }
   }
 
@@ -19,8 +20,7 @@ export default class extends React.Component {
   }
 
   nextScene() {
-    const { dialog } = this.props
-    const { current } = this.state
+    const { dialog, current } = this.state
     if (current + 1 < dialog.scenes.length) {
       this.setState({
         current: current + 1
@@ -28,9 +28,13 @@ export default class extends React.Component {
     }
   }
 
+  goToScene(current) {
+    this.setState({ current })
+  }
+
   render() {
-    const { dialog, translations } = this.props
-    const { current } = this.state
+    const { translations } = this.props
+    const { dialog, current } = this.state
     const scene = dialog.scenes[current]
     return (
       <div id='dialog-modal' className='modal-dialog' role='document'>
@@ -62,6 +66,7 @@ export default class extends React.Component {
           <FooterMenu scene={ scene }
               back={ this.backScene.bind(this) }
               next={ this.nextScene.bind(this) }
+              goTo={ this.goToScene.bind(this) }
               translations={ translations }/>
         </div>
       </div>
