@@ -2,7 +2,7 @@ const validateUser = require('./validateUser/validateUser')
 
 module.exports = req =>
   new Promise((resolve, reject) => {
-    const { uid, email } = req.query
+    const { uid, email, lang } = req.query
     global.mongo.connect((err, client) => {
       if (err) {
         reject(err)
@@ -37,7 +37,11 @@ module.exports = req =>
                 $first: '$roles'
               },
               dialogs: {
-                $push: '$dialogsProvisioned'
+                $push: {
+                  openFirst: '$dialogsProvisioned.openFirst',
+                  scenes: '$dialogsProvisioned.scenes',
+                  [lang]: `$dialogsProvisioned.${ lang }`
+                }
               }
             }
           }
@@ -47,10 +51,15 @@ module.exports = req =>
             reject(err)
           }
           const user = result[0]
+          console.log(user.dialogs[0])
           if (user) {
             resolve({ 
               user: Object.assign({}, user, {
-                dialogs: user.dialogs.map(dialog => dialog[0])
+                dialogs: user.dialogs.map(dialog => ({
+                  openFirst: dialog.openFirst[0],
+                  scenes: dialog.scenes[0].map((scene, index) =>
+                    Object.assign({}, scene, dialog[lang][0][index])) 
+                }))
               })
             })
           }

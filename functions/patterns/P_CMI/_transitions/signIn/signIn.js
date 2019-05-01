@@ -6,7 +6,7 @@ import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
 
 // TODO updateDialogs
 
-export default (user, specific, translations) => {
+export default (user, specific, translations, lang) => {
   Array.from(document.getElementsByClassName('loading-bundle'))
     .forEach(element => $(element)
       .html(loadingTexts.userData))
@@ -20,7 +20,7 @@ export default (user, specific, translations) => {
     .addClass('btn-warning')
     .removeClass('btn-outline-light')
 
-  userDataProvisioning(user)
+  userDataProvisioning(user, lang)
     .then(provisionedUser => {
       Array.from(document.getElementsByClassName('data-loading'))
         .forEach(element => $(element).addClass('d-none'))

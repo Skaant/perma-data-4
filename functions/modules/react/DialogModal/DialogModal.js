@@ -9,7 +9,8 @@ export default class extends React.Component {
     }
   }
 
-  backScene() {const { current } = this.state
+  backScene() {
+    const { current } = this.state
     if (current - 1 >= 0) {
       this.setState({
         current: current - 1
@@ -30,7 +31,9 @@ export default class extends React.Component {
   render() {
     const { dialog, translations } = this.props
     const { current } = this.state
+    console.log(dialog)
     const scene = dialog.scenes[current]
+    console.log(scene)
     return (
       <div id='dialog-modal' className='modal-dialog' role='document'>
         <div className='modal-content'>

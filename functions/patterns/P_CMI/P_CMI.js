@@ -10,7 +10,7 @@ const id = html.id
 
 const userChange = (user, specifics, translations) => {
   if (user) {
-    commons.signIn(user, specifics && specifics.signIn, translations)
+    commons.signIn(user, specifics && specifics.signIn, translations, lang)
   } else {
     commons.signOut(specifics && specifics.signOut)
   }
