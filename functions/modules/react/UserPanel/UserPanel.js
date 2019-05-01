@@ -25,9 +25,9 @@ export default class extends React.Component {
         <b className='mb-0'>
           { pseudo || email }</b>
         <button type='button' className='close ml-4' aria-label='Close'
-          onClick={ () => this.signOut() }>
-        <span aria-hidden='true'>&times;</span>
-      </button>
+            onClick={ () => this.signOut() }>
+          <span aria-hidden='true'>&times;</span>
+        </button>
       </div>
     )
   }

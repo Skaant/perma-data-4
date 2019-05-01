@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 import UserPanel from '../../../../modules/react/UserPanel/UserPanel'
+import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
 
 // TODO updateDialogs
 
@@ -29,7 +30,12 @@ export default (user, specific, translations) => {
       specific && specific(user, translations)
 
       render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
-      // todo DialogModal
+      const firstDialog = provisionedUser.dialogs.find(dialog => dialog.openFirst)
+      if (firstDialog) {
+        render(<DialogModal dialog={ firstDialog }
+            translations={ translations.dialog }/>, document.getElementById('anchor-dialog'))
+        $('#anchor-dialog').modal('toggle')
+      }
 
       $('#anchor-login-form').modal('hide')
     })
