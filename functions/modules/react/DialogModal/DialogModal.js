@@ -2,39 +2,67 @@ import React from 'react'
 import FooterMenu from './FooterMenu/FooterMenu';
 
 export default class extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       current: 0,
-      dialog: props.dialog
+      form: {}
     }
   }
 
-  backScene() {
+  backScene(index) {
     const { current } = this.state
-    if (current - 1 >= 0) {
+    if (index && index >= 0) {
+      this.setState({
+        current: index
+      })
+    } else if (current - 1 >= 0) {
       this.setState({
         current: current - 1
       })
     }
   }
 
-  nextScene() {
-    const { dialog, current } = this.state
-    if (current + 1 < dialog.scenes.length) {
+  nextScene(index) {
+    const { dialog } = this.props
+    const { current } = this.state
+    if (index && index < dialog.scenes.length) {
+      this.setState({
+        current: index
+      })
+    } else if (current + 1 < dialog.scenes.length) {
       this.setState({
         current: current + 1
       })
     }
   }
 
-  goToScene(current) {
-    this.setState({ current })
+  goToScene(index) {
+    const { dialog } = this.props
+    if (index >= 0 && index < dialog.scenes.length) {
+      this.setState({
+        current: index
+      })
+    }
+  }
+
+  setForm(key, value) {
+    const { form } = this.state
+    this.setState({
+      form: { 
+        ...form,
+        [key]: value
+      }
+    })
+  }
+
+  sendForm(key, code) {
+    console.log(key, code)
   }
 
   render() {
-    const { translations } = this.props
-    const { dialog, current } = this.state
+    const { dialog, translations } = this.props
+    const { current, form } = this.state
     const scene = dialog.scenes[current]
     return (
       <div id='dialog-modal' className='modal-dialog' role='document'>
@@ -67,6 +95,9 @@ export default class extends React.Component {
               back={ this.backScene.bind(this) }
               next={ this.nextScene.bind(this) }
               goTo={ this.goToScene.bind(this) }
+              form={ form }
+              setForm={ this.setForm.bind(this) }
+              sendForm={ this.sendForm.bind(this) }
               translations={ translations }/>
         </div>
       </div>

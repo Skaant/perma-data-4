@@ -4,7 +4,12 @@ import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 import UserPanel from '../../../../modules/react/UserPanel/UserPanel'
 import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
 
-// TODO updateDialogs
+const updateDialog = (dialog, translations) => {
+  render(<DialogModal dialog={ dialog }
+      updateDialog={ updateDialog }
+      translations={ translations }/>, document.getElementById('anchor-dialog'))
+  $('#anchor-dialog').modal('toggle')
+}
 
 export default (user, specific, translations, lang) => {
   Array.from(document.getElementsByClassName('loading-bundle'))
@@ -32,9 +37,7 @@ export default (user, specific, translations, lang) => {
       render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
       const firstDialog = provisionedUser.dialogs.find(dialog => dialog.openFirst)
       if (firstDialog) {
-        render(<DialogModal dialog={ firstDialog }
-            translations={ translations.dialog }/>, document.getElementById('anchor-dialog'))
-        $('#anchor-dialog').modal('toggle')
+        updateDialog(firstDialog, translations.dialog)
       }
 
       $('#anchor-login-form').modal('hide')
