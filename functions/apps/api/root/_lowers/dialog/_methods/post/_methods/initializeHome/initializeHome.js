@@ -7,7 +7,6 @@ module.exports = ({ uid, form }) =>
       if (err) {
         reject(err)
       }
-      console.log(uid, form)
       client.db('prod')
         .collection('users')
         .updateOne({ _id: uid },
