@@ -4,8 +4,9 @@ import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 import UserPanel from '../../../../modules/react/UserPanel/UserPanel'
 import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
 
-const updateDialog = (dialog, translations) => {
+const updateDialog = (dialog, uid, translations) => {
   render(<DialogModal dialog={ dialog }
+      uid={ uid }
       updateDialog={ updateDialog }
       translations={ translations }/>, document.getElementById('anchor-dialog'))
   $('#anchor-dialog').modal('toggle')
@@ -37,7 +38,7 @@ export default (user, specific, translations, lang) => {
       render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
       const firstDialog = provisionedUser.dialogs.find(dialog => dialog.openFirst)
       if (firstDialog) {
-        updateDialog(firstDialog, translations.dialog)
+        updateDialog(firstDialog, provisionedUser._id, translations.dialog)
       }
 
       $('#anchor-login-form').modal('hide')

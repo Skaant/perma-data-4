@@ -56,8 +56,22 @@ export default class extends React.Component {
     })
   }
 
-  sendForm(key, code) {
-    console.log(key, code)
+  sendForm(key) {
+    const { uid } = this.props
+    const { form } = this.state
+    fetch('/api/dialog', {
+      method: 'POST',
+      body: JSON.stringify({
+        key,
+        uid,
+        form
+      })
+    })
+      .then(result => result.json())
+      .then(result => this.setState({  }))
+      .catch(err => console.log(err) 
+        // TODO do something with error
+      )
   }
 
   render() {
