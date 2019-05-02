@@ -1,5 +1,6 @@
 import React from 'react'
 import checkDisabledNext from './checkDisabledNext/checkDisabledNext'
+import getValidClass from './getValidClass/getValidClass'
 
 const menuClick = (transition, setForm, sendForm, goTo) => {
   // unused params are meant to be consumed by eval call
@@ -21,7 +22,7 @@ export default ({
             {
               scene.menu.map((item, index) => (
                 <button key={ item.label } type='button'
-                    className='btn btn-warning col-12 col-md-8 mx-2 my-1 txt-white'
+                    className={ `btn btn-${ getValidClass(item.transition.valid, form) } col-12 col-md-8 mx-2 my-1 txt-white` }
                     onClick={ () => menuClick(scene.menu[index].transition, setForm, sendForm, goTo) }>
                   { item.label }
                 </button>
