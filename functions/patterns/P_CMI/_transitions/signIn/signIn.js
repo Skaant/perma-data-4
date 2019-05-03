@@ -36,11 +36,12 @@ export default (user, specific, translations, lang) => {
       specific && specific(user, translations)
 
       render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
+
+      $('#anchor-login-form').modal('hide')
+      
       const firstDialog = provisionedUser.dialogs.find(dialog => dialog.openFirst)
       if (firstDialog) {
         updateDialog(firstDialog, provisionedUser._id, translations.dialog)
       }
-
-      $('#anchor-login-form').modal('hide')
     })
 }
