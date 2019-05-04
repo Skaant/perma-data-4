@@ -1,12 +1,15 @@
 module.exports = form => ({
   doms: {
-    // SPARKERS
-    'PHOTO-FACTORY': true,
-    'PHOTO-CELLS': 5,
-    // 'NOVS'
-    'EXPLORERS': true,
-    'HARVESTERS': true,
-    // 'MIKORIS'
-    'LOOKOUT': true
+    'SPARKERS': {},
+    'PHOTO-FACTORY': {},
+    'PHOTO-CELLS': {
+      quantity: 5
+      
+    },
+    'NOVS': {},
+    'EXPLORERS': {},
+    'HARVESTERS': {},
+    'MIKORIS': {},
+    'LOOKOUT': {}
   }
 })

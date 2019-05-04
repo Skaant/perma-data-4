@@ -1,19 +1,33 @@
 const parseDialogs = require('./parseDialogs/parseDialogs')
 
-module.exports = (db, { doms, dialogs }, lang) => 
+module.exports = (db, user, lang) => 
   new Promise((resolve, reject) => {
-    const domsPromise = new Promise((resolve, reject) =>
+    const { home, dialogs } = user
+    const domsPromise = new Promise((resolve, reject) => {
+      if (!home || !home.doms) {
+        resolve([])
+      }
       db.collection('doms')
-        .find({
-          _id: {
-            $in: Object.keys(doms)
+        .aggregate([
+          {
+            $match: {
+              _id: {
+                $in: Object.keys(home.doms)
+              }
+            }
+          }, {
+            $project: {
+              _id: 1,
+              [lang]: 1
+            }
           }
-        })
+        ])
         .toArray((err, doms) => {
           if (err)
             reject(err)
           resolve(doms)
-        }))
+        })
+    })
     const dialogsPromise = new Promise((resolve, reject) =>
       db.collection('dialogs')
         .aggregate([
@@ -41,10 +55,10 @@ module.exports = (db, { doms, dialogs }, lang) =>
       )
     Promise.all([domsPromise, dialogsPromise])
       .then(([doms, dialogs]) =>
-        resolve({
-          doms,
+        resolve(Object.assign({}, user, {
+          home: Object.assign({}, user.home || {}, { doms }),
           dialogs
-        }))
-      .catch(err => 
+        })))
+      .catch(err =>
         reject(err))
   })

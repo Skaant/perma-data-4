@@ -105,7 +105,31 @@ eval("module.exports = {\n  apiKey: \"AIzaSyBrGtyAbT6XTkYZ-m7tw2C5Nj_NlCwb8bk\",
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../patterns/P_CMI/P_CMI */ \"./patterns/P_CMI/P_CMI.js\");\n\nObject(_patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n//# sourceURL=webpack:///./modules/bundles/home/home.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../patterns/P_CMI/P_CMI */ \"./patterns/P_CMI/P_CMI.js\");\n/* harmony import */ var _specifics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./specifics */ \"./modules/bundles/home/specifics/index.js\");\n\n\nObject(_patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_specifics__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n//# sourceURL=webpack:///./modules/bundles/home/home.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/home/specifics/index.js":
+/*!*************************************************!*\
+  !*** ./modules/bundles/home/specifics/index.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./signIn/signIn */ \"./modules/bundles/home/specifics/signIn/signIn.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  signIn: _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/specifics/index.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/home/specifics/signIn/signIn.js":
+/*!*********************************************************!*\
+  !*** ./modules/bundles/home/specifics/signIn/signIn.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/UserHome/UserHome */ \"./modules/react/UserHome/UserHome.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, lang) => {\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    user: user,\n    lang: lang\n  }), document.getElementById('anchor-user-home'));\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/specifics/signIn/signIn.js?");
 
 /***/ }),
 
@@ -248,6 +272,153 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _BaseInput_BaseInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseInput/BaseInput */ \"./modules/react/PlantSearch/BaseInput/BaseInput.js\");\n/* harmony import */ var _ImprovementMenu_ImprovementMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ImprovementMenu/ImprovementMenu */ \"./modules/react/PlantSearch/ImprovementMenu/ImprovementMenu.js\");\n/* harmony import */ var _DisplaySingleResult_DisplaySingleResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DisplaySingleResult/DisplaySingleResult */ \"./modules/react/PlantSearch/DisplaySingleResult/DisplaySingleResult.js\");\n/* harmony import */ var _DisplayMultipleResults_DisplayMultipleResults__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DisplayMultipleResults/DisplayMultipleResults */ \"./modules/react/PlantSearch/DisplayMultipleResults/DisplayMultipleResults.js\");\n\n\n\n\n\n\nconst urlBuilder = (improvement, step) => {\n  if (improvement === 'ids') {\n    return '/ids';\n  } else if (improvement === 'names' || step === 2) {\n    return '/names';\n  } else {\n    return '';\n  }\n};\n\nconst nameFormatterFactory = (improvement, step) => (plant, option) => {\n  if (improvement === 'names' || step === 2) {\n    if (!option) {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, plant.names[0], react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"br\", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"i\", null, plant._id));\n    } else {\n      return `${plant.names[0]}, ${plant._id}`;\n    }\n  } else {\n    return plant._id;\n  }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (class extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  constructor(props) {\n    super(props);\n    const html = document.getElementsByTagName('html')[0];\n    const lang = html.lang;\n    this.state = {\n      lang,\n      value: '',\n      improvementMenuOpen: false,\n      improvement: null,\n      loading: false,\n      error: null,\n      result: null\n    };\n  }\n\n  handleValueChange(value) {\n    this.setState({\n      value,\n      error: null\n    });\n  }\n\n  handleEnterPress() {\n    const {\n      improvementMenuOpen\n    } = this.state;\n\n    if (!improvementMenuOpen) {\n      this.setState({\n        improvementMenuOpen: true\n      });\n    } else {\n      this.searchPlant();\n    }\n  }\n\n  handleImprovementButtonClick() {\n    const {\n      improvementMenuOpen\n    } = this.state;\n    this.setState({\n      improvementMenuOpen: !improvementMenuOpen\n    });\n  }\n\n  handleImprovementChange(improvement) {\n    this.setState({\n      improvement\n    });\n  }\n\n  searchPlant(secondStep) {\n    const {\n      lang,\n      improvement,\n      value\n    } = this.state;\n\n    if (value.length >= 3) {\n      this.setState({\n        improvementMenuOpen: false,\n        loading: true,\n        error: null,\n        result: null\n      });\n      fetch(`/api/plants/search${urlBuilder(improvement, !secondStep ? 1 : 2)}?key=${value}&lang=${lang}&improvement=${improvement}`, {\n        method: 'GET'\n      }).then(result => result.json()).then(result => this.setState({\n        loading: false,\n        result\n      })).catch(err => {\n        this.setState({\n          loading: false,\n          error: err.message,\n          result: null\n        });\n      });\n    }\n  }\n\n  handleDigDeeper() {\n    this.searchPlant(true);\n  }\n\n  handleErrorDismiss() {\n    this.setState({\n      error: null\n    });\n  }\n\n  handleResultsDismiss() {\n    this.setState({\n      result: null\n    });\n  }\n\n  render() {\n    const {\n      translations = {},\n      selectPlant\n    } = this.props;\n    const {\n      value,\n      loading,\n      improvementMenuOpen,\n      improvement,\n      result,\n      error\n    } = this.state;\n    const nameFormatter = result && nameFormatterFactory(improvement, result.step);\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"plant-search container px-0\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseInput_BaseInput__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n      value: value,\n      improvement: improvement,\n      highlight: improvementMenuOpen ? 'search' : 'improvement',\n      handleValueChange: this.handleValueChange.bind(this),\n      handleEnterPress: this.handleEnterPress.bind(this),\n      handleImprovementButtonClick: this.handleImprovementButtonClick.bind(this),\n      changeImprovement: this.handleImprovementChange.bind(this),\n      searchPlant: this.searchPlant.bind(this),\n      translations: translations.baseInput\n    }), improvementMenuOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImprovementMenu_ImprovementMenu__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n      improvement: improvement,\n      changeImprovement: this.handleImprovementChange.bind(this),\n      translations: translations.improvements\n    }), loading && !error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"alert alert-info\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      className: \"col-12 mb-0\"\n    }, translations.loading))), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"alert alert-warning\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      className: \"col-12 mb-0\"\n    }, error, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      type: \"button\",\n      className: \"close\",\n      \"aria-label\": \"Close\",\n      onClick: () => this.handleErrorDismiss()\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      \"aria-hidden\": \"true\"\n    }, \"\\xD7\"))))), result && result.plants && result.plants.length === 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"alert alert-secondary\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      className: \"col-12 mb-0\"\n    }, translations.notFound, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      type: \"button\",\n      className: \"close\",\n      \"aria-label\": \"Close\",\n      onClick: () => this.handleResultsDismiss()\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      \"aria-hidden\": \"true\"\n    }, \"\\xD7\"))))), result && result.plants && result.plants.length === 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DisplaySingleResult_DisplaySingleResult__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n      plant: result.plants[0],\n      step: result.step,\n      nameFormatter: nameFormatter,\n      selectPlant: selectPlant,\n      digDeeper: this.handleDigDeeper.bind(this),\n      dismiss: this.handleResultsDismiss.bind(this),\n      translations: Object.assign({}, translations.singleResult, translations.commonResults)\n    }), result && result.plants && result.plants.length > 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DisplayMultipleResults_DisplayMultipleResults__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n      plants: result.plants,\n      step: result.step,\n      nameFormatter: nameFormatter,\n      selectPlant: selectPlant,\n      digDeeper: this.handleDigDeeper.bind(this),\n      dismiss: this.handleResultsDismiss.bind(this),\n      translations: Object.assign({}, translations.multipleResults, translations.commonResults)\n    }));\n  }\n\n});\n\n//# sourceURL=webpack:///./modules/react/PlantSearch/PlantSearch.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/DomsList.js":
+/*!*****************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/DomsList.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_data */ \"./modules/react/UserHome/DomsList/_data/index.js\");\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_data__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _TrighbItem_TrighbItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TrighbItem/TrighbItem */ \"./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js\");\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  doms,\n  lang\n}) => {\n  // domsIndex for the doms([key] => index) association\n  const domsIndex = doms.reduce((domsIndex, {\n    _id\n  }, index) => {\n    domsIndex[_id] = index;\n    return domsIndex;\n  }, {});\n  const trighbsSorted = doms.reduce((trighbsSorted, dom) => {\n    const data = _data__WEBPACK_IMPORTED_MODULE_1___default.a[dom._id];\n    const trighb = data.trighb; // skip bolshDoms (named after trighb) to add them auto. at first related dom's appearance\n\n    if (trighb) {\n      const mergedDom = Object.assign({}, data, dom);\n\n      if (!trighbsSorted[trighb]) {\n        trighbsSorted[trighb] = {\n          bolshDom: Object.assign({}, _data__WEBPACK_IMPORTED_MODULE_1___default.a[trighb], doms[domsIndex[trighb]]),\n          doms: []\n        };\n      }\n\n      trighbsSorted[trighb].doms.push(mergedDom);\n    }\n\n    return trighbsSorted;\n  }, {});\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"row\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"col-12 container\"\n  }, Object.keys(trighbsSorted).map(key => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TrighbItem_TrighbItem__WEBPACK_IMPORTED_MODULE_2__[\"default\"], _extends({\n    key: key,\n    lang: lang\n  }, trighbsSorted[key])))));\n});\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/DomsList.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js":
+/*!***********************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  dom,\n  lang\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row alert alert-info \"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h6\", {\n  className: \"text-black mt-3\"\n}, dom._id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"text-secondary\"\n}, dom[lang].description))));\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js":
+/*!******************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DomItem_DomItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DomItem/DomItem */ \"./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  bolshDom,\n  doms,\n  lang\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row alert alert-light\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 mt-4 mb-3\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h5\", {\n  className: \"text-dark\"\n}, bolshDom._id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", null, bolshDom[lang].description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 container\"\n}, doms.map(dom => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DomItem_DomItem__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n  key: dom._id,\n  lang: lang,\n  dom: dom\n})))));\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/explorers/explorers.js":
+/*!**********************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/explorers/explorers.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/explorers/explorers.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js":
+/*!************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/index.js":
+/*!********************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/index.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = {\n  'SPARKERS': __webpack_require__(/*! ./sparkers/sparkers */ \"./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js\"),\n  'PHOTO-FACTORY': __webpack_require__(/*! ./photo-factory/photo-factory */ \"./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js\"),\n  'PHOTO-CELLS': __webpack_require__(/*! ./photo-cells/photo-cells */ \"./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js\"),\n  'NOVS': __webpack_require__(/*! ./novs/novs */ \"./modules/react/UserHome/DomsList/_data/novs/novs.js\"),\n  'EXPLORERS': __webpack_require__(/*! ./explorers/explorers */ \"./modules/react/UserHome/DomsList/_data/explorers/explorers.js\"),\n  'HARVESTERS': __webpack_require__(/*! ./harvesters/harvesters */ \"./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js\"),\n  'MIKORIS': __webpack_require__(/*! ./mikoris/mikoris */ \"./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js\"),\n  'LOOKOUT': __webpack_require__(/*! ./lookout/lookout */ \"./modules/react/UserHome/DomsList/_data/lookout/lookout.js\")\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/index.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/lookout/lookout.js":
+/*!******************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/lookout/lookout.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/lookout/lookout.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js":
+/*!******************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/novs/novs.js":
+/*!************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/novs/novs.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/novs/novs.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js":
+/*!**************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js":
+/*!******************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js":
+/*!********************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/UserHome.js":
+/*!********************************************!*\
+  !*** ./modules/react/UserHome/UserHome.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DomsList_DomsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DomsList/DomsList */ \"./modules/react/UserHome/DomsList/DomsList.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  user,\n  lang\n}) => {\n  const {\n    pseudo,\n    home\n  } = user;\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"row\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h2\", {\n    className: \"col-12 my-4\"\n  }, \"Salut \", pseudo, \" !\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DomsList_DomsList__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    doms: home.doms,\n    lang: lang\n  }));\n});\n\n//# sourceURL=webpack:///./modules/react/UserHome/UserHome.js?");
 
 /***/ }),
 
@@ -1526,7 +1697,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bun
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userDataProvisioning/userDataProvisioning */ \"./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js\");\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _modules_react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../modules/react/UserPanel/UserPanel */ \"./modules/react/UserPanel/UserPanel.js\");\n/* harmony import */ var _modules_react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../modules/react/DialogModal/DialogModal */ \"./modules/react/DialogModal/DialogModal.js\");\n\n\n\n\n\nwindow.user = false;\nwindow.translations = false;\n\nconst closeForm = () => {\n  $('#anchor-dialog').modal('hide');\n};\n\nconst updateUser = (updates, lang) => {\n  const updatedUser = Object.assign({}, window.user, updates);\n  window.user = updatedUser;\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    user: window.user\n  }), document.getElementById('anchor-user-panel'));\n  const firstDialog = updatedUser.dialogs.find(dialog => dialog.openFirst);\n\n  if (firstDialog) {\n    Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n      dialog: firstDialog,\n      uid: window.user._id,\n      updateUser: updateUser,\n      closeForm: closeForm,\n      lang: lang,\n      translations: window.translations.dialog\n    }), document.getElementById('anchor-dialog'));\n    $('#anchor-dialog').modal('show');\n  }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, specific, translations, lang) => {\n  window.translations = translations;\n  Array.from(document.getElementsByClassName('loading-bundle')).forEach(element => $(element).html(loadingTexts.userData));\n  Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-true')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-none')).forEach(element => $(element).addClass('d-none'));\n  $('#search-plant-button').addClass('btn-warning').removeClass('btn-outline-light');\n  _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default()(user, lang).then(provisionedUser => {\n    Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).addClass('d-none'));\n    Array.from(document.getElementsByClassName('auth-data')).forEach(element => $(element).removeClass('d-none'));\n    specific && specific(user, translations);\n    $('#anchor-login-form').modal('hide');\n    updateUser(provisionedUser, lang);\n  });\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/signIn/signIn.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userDataProvisioning/userDataProvisioning */ \"./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js\");\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _modules_react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../modules/react/UserPanel/UserPanel */ \"./modules/react/UserPanel/UserPanel.js\");\n/* harmony import */ var _modules_react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../modules/react/DialogModal/DialogModal */ \"./modules/react/DialogModal/DialogModal.js\");\n\n\n\n\n\nwindow.user = false;\nwindow.translations = false;\nwindow.signInSpecific = false;\n\nconst closeForm = () => {\n  $('#anchor-dialog').modal('hide');\n};\n\nconst updateUser = (updates, lang) => {\n  const updatedUser = Object.assign({}, window.user, updates);\n  window.user = updatedUser;\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    user: window.user\n  }), document.getElementById('anchor-user-panel'));\n  const firstDialog = updatedUser.dialogs.find(dialog => dialog.openFirst);\n\n  if (firstDialog) {\n    Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n      dialog: firstDialog,\n      uid: window.user._id,\n      updateUser: updateUser,\n      closeForm: closeForm,\n      lang: lang,\n      translations: window.translations.dialog\n    }), document.getElementById('anchor-dialog'));\n    $('#anchor-dialog').modal('show');\n  }\n\n  window.signInSpecific && window.signInSpecific(window.user, lang, translations);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, specific, translations, lang) => {\n  window.translations = translations;\n  window.signInSpecific = specific;\n  Array.from(document.getElementsByClassName('loading-bundle')).forEach(element => $(element).html(loadingTexts.userData));\n  Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-true')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-none')).forEach(element => $(element).addClass('d-none'));\n  $('#search-plant-button').addClass('btn-warning').removeClass('btn-outline-light');\n  _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default()(user, lang).then(provisionedUser => {\n    Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).addClass('d-none'));\n    Array.from(document.getElementsByClassName('auth-data')).forEach(element => $(element).removeClass('d-none'));\n    $('#anchor-login-form').modal('hide');\n    updateUser(provisionedUser, lang);\n  });\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/signIn/signIn.js?");
 
 /***/ }),
 
@@ -1537,7 +1708,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, reject) => {\n  fetch(`/api/user/data?uid=${uid}&email=${email}&lang=${lang}`).then(result => result.json()).then(({\n    user\n  }) => resolve(Object.assign({}, {\n    email\n  }, user))).catch(err => reject(err));\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js?");
+eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, reject) => {\n  fetch(`/api/user/data?uid=${uid}&email=${email}&lang=${lang}`).then(result => result.json()).then(user => resolve(Object.assign({}, {\n    email\n  }, user))).catch(err => reject(err));\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js?");
 
 /***/ }),
 

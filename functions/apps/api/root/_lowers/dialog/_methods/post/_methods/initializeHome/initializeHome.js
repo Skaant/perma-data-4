@@ -1,7 +1,7 @@
 const ObjectId = require('mongodb').ObjectId
 
 const conditionalHome = require('./conditionalHome/conditionalHome')
-const provisionRelated = require('./provisionRelated/provisionRelated')
+const userRelated = require('../../../../../../../../provisioners/userRelated/userRelated')
 
 module.exports = ({ uid, form, lang }) => 
   new Promise((resolve, reject) => {
@@ -23,15 +23,18 @@ module.exports = ({ uid, form, lang }) =>
             }
           })
           .then(() => 
-            provisionRelated(db, {
-              doms: home.doms,
+            userRelated(db, {
+              home,
               dialogs: [ObjectId('5ccbd6521c9d440000a85df5')]
             }, lang)
-              .then(result => resolve(Object.assign({}, {
+              .then(result => {
+                resolve(Object.assign({}, {
                 updated: true
-              }, result)))
-              .catch(err => 
-                reject(err)))
+              }, result))})
+              .catch(err => {
+                console.log(err)
+                reject(err)
+              }))
           .catch(err => reject(err))
-    })
+        })
   })

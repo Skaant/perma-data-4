@@ -1,6 +1,5 @@
 const validateUser = require('./validateUser/validateUser')
-const userAggregation = require('./userAggregation/userAggregation')
-const parseDialogs = require('./parseDialogs/parseDialogs')
+const userRelated = require('../../../../../../../../provisioners/userRelated/userRelated')
 
 module.exports = req =>
   new Promise((resolve, reject) => {
@@ -9,20 +8,19 @@ module.exports = req =>
       if (err) {
         reject(err)
       }
-      const dbUsers = client.db('prod')
-        .collection('users')
-      userAggregation(dbUsers, req.query)
-        .toArray((err, result) => {
-          if (err) {
-            reject(err)
-          }
-          const user = result[0]
+      const db = client.db('prod')
+      const dbUsers = db.collection('users')
+      dbUsers
+        .findOne({
+          _id: uid
+        })
+        .then(user => {
           if (user) {
-            resolve({ 
-              user: Object.assign({}, user, {
-                dialogs: parseDialogs(user.dialogs, lang)
-              })
-            })
+            userRelated(db, user, lang)
+              .then(_user =>
+                resolve(_user))
+              .catch(err => 
+                reject(err))
           } else {
             // TODO externalize (generic concat.provisionDialogs) & parseUser pre-resolve
             dbUsers
@@ -37,26 +35,16 @@ module.exports = req =>
                   })
                 }
                 validateUser(dbUsers, user, uid)
-                  .then(uid => userAggregation(dbUsers, { uid, lang })
-                    .toArray((err, result) => {
-                      if (err) {
-                        reject(err)
-                      }
-                      const user = result[0]
-                      if (user) {
-                        resolve({ 
-                          user: Object.assign({}, user, {
-                            dialogs: parseDialogs(user.dialogs, lang)
-                          })
-                        })
-                      } else {
-                        reject(new Error('Error while loading newly created user. Please try updating the page.'))
-                      }
-                    }))
+                  .then(user => 
+                    userRelated(db, user, lang)
+                      .then(user => resolve(user))
+                      .catch(err => reject(err)))
                   .catch(err => reject(err))
               })
               .catch(err => reject(err))
           }
         })
+        .catch(err => 
+          reject(err))
     })
   })

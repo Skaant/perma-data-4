@@ -6,6 +6,7 @@ import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
 
 window.user = false
 window.translations = false
+window.signInSpecific = false
 
 const closeForm = () => {
   $('#anchor-dialog').modal('hide')
@@ -27,10 +28,13 @@ const updateUser = (updates, lang) => {
         translations={ window.translations.dialog }/>, document.getElementById('anchor-dialog'))
     $('#anchor-dialog').modal('show')
   }
+  
+  window.signInSpecific && window.signInSpecific(window.user, lang, translations)
 }
 
 export default (user, specific, translations, lang) => {
   window.translations = translations
+  window.signInSpecific = specific
 
   Array.from(document.getElementsByClassName('loading-bundle'))
     .forEach(element => $(element)
@@ -51,8 +55,6 @@ export default (user, specific, translations, lang) => {
         .forEach(element => $(element).addClass('d-none'))
       Array.from(document.getElementsByClassName('auth-data'))
         .forEach(element => $(element).removeClass('d-none'))
-
-      specific && specific(user, translations)
       
       $('#anchor-login-form').modal('hide')
 
