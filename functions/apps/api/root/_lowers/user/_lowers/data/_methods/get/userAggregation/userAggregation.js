@@ -27,6 +27,7 @@ module.exports = (dbUsers, { uid, lang }) =>
         },
         dialogs: {
           $push: {
+            _id: '$dialogsProvisioned._id',
             openFirst: '$dialogsProvisioned.openFirst',
             scenes: '$dialogsProvisioned.scenes',
             [lang]: `$dialogsProvisioned.${ lang }`,

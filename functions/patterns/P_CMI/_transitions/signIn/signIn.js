@@ -4,15 +4,29 @@ import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 import UserPanel from '../../../../modules/react/UserPanel/UserPanel'
 import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
 
-const updateDialog = (dialog, uid, translations) => {
-  render(<DialogModal dialog={ dialog }
-      uid={ uid }
-      updateDialog={ updateDialog }
-      translations={ translations }/>, document.getElementById('anchor-dialog'))
-  $('#anchor-dialog').modal('toggle')
+window.user = false
+window.translations = false
+
+const updateUser = (updates, lang) => {
+  const updatedUser = Object.assign({}, window.user, updates)
+  window.user = updatedUser
+
+  render(<UserPanel user={ window.user }/>, document.getElementById('anchor-user-panel'))
+
+  const firstDialog = updatedUser.dialogs.find(dialog => dialog.openFirst)
+  if (firstDialog) {
+    render(<DialogModal dialog={ firstDialog }
+        uid={ window.user._id }
+        updateUser={ updateUser }
+        lang={ lang }
+        translations={ window.translations.dialog }/>, document.getElementById('anchor-dialog'))
+    $('#anchor-dialog').modal('show')
+  }
 }
 
 export default (user, specific, translations, lang) => {
+  window.translations = translations
+
   Array.from(document.getElementsByClassName('loading-bundle'))
     .forEach(element => $(element)
       .html(loadingTexts.userData))
@@ -34,14 +48,9 @@ export default (user, specific, translations, lang) => {
         .forEach(element => $(element).removeClass('d-none'))
 
       specific && specific(user, translations)
-
-      render(<UserPanel user={ provisionedUser }/>, document.getElementById('anchor-user-panel'))
-
-      $('#anchor-login-form').modal('hide')
       
-      const firstDialog = provisionedUser.dialogs.find(dialog => dialog.openFirst)
-      if (firstDialog) {
-        updateDialog(firstDialog, provisionedUser._id, translations.dialog)
-      }
+      $('#anchor-login-form').modal('hide')
+
+      updateUser(provisionedUser, lang)
     })
 }

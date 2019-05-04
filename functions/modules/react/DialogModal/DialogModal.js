@@ -1,12 +1,22 @@
 import React from 'react'
-import FooterMenu from './FooterMenu/FooterMenu';
+import FooterMenu from './FooterMenu/FooterMenu'
 
 export default class extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       current: 0,
+      prevDialog: props.dialog._id,
       form: {}
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.dialog._id != prevProps.dialog._id) {
+      this.setState({
+        current: 0,
+        prevDialog: this.props.dialog._id
+      })
     }
   }
 
@@ -57,18 +67,19 @@ export default class extends React.Component {
   }
 
   sendForm(key) {
-    const { uid } = this.props
+    const { uid, lang, updateUser } = this.props
     const { form } = this.state
     fetch('/api/dialog', {
       method: 'POST',
       body: JSON.stringify({
         key,
+        lang,
         uid,
         form
       })
     })
       .then(result => result.json())
-      .then(result => this.setState({  }))
+      .then(result => updateUser(result, lang))
       .catch(err => console.log(err) 
         // TODO do something with error
       )
@@ -76,8 +87,8 @@ export default class extends React.Component {
 
   render() {
     const { dialog, translations } = this.props
-    const { current, form } = this.state
-    const scene = dialog.scenes[current]
+    const { current, prevDialog, form } = this.state
+    const scene = (prevDialog && prevDialog === dialog._id) ? dialog.scenes[current] : dialog.scenes[0]
     return (
       <div id='dialog-modal' className='modal-dialog' role='document'>
         <div className='modal-content'>

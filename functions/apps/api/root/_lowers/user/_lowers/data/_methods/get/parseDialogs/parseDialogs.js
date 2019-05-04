@@ -1,4 +1,5 @@
 module.exports = (dialogs, lang) => dialogs.map(dialog => ({
+    _id: dialog._id[0],
     openFirst: dialog.openFirst[0],
     scenes: dialog.scenes[0].map((scene, index) =>
       Object.assign({}, scene, dialog[lang][0][index], {
