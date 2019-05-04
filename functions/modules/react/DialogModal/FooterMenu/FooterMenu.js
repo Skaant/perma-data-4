@@ -2,7 +2,7 @@ import React from 'react'
 import checkDisabledNext from './checkDisabledNext/checkDisabledNext'
 import getValidClass from './getValidClass/getValidClass'
 
-const menuClick = (transition, setForm, sendForm, goTo) => {
+const menuClick = (transition, setForm, sendForm, closeForm, goTo) => {
   // unused params are meant to be consumed by eval call
   transition.click && eval(transition.click)
   goTo(transition.scene)
@@ -11,7 +11,7 @@ const menuClick = (transition, setForm, sendForm, goTo) => {
 export default ({ 
   scene,
   back, next, goTo,
-  form, setForm, sendForm,
+  form, setForm, sendForm, closeForm,
   translations
 }) => (
   <React.Fragment>
@@ -23,7 +23,7 @@ export default ({
               scene.menu.map((item, index) => (
                 <button key={ item.label } type='button'
                     className={ `btn btn-${ getValidClass(item.transition.valid, form) } col-12 col-md-8 mx-2 my-1 txt-white` }
-                    onClick={ () => menuClick(scene.menu[index].transition, setForm, sendForm, goTo) }>
+                    onClick={ () => menuClick(scene.menu[index].transition, setForm, sendForm, closeForm, goTo) }>
                   { item.label }
                 </button>
               ))

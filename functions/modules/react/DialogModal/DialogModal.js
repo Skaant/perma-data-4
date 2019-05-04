@@ -86,7 +86,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { dialog, translations } = this.props
+    const { dialog, translations, closeForm } = this.props
     const { current, prevDialog, form } = this.state
     const scene = (prevDialog && prevDialog === dialog._id) ? dialog.scenes[current] : dialog.scenes[0]
     return (
@@ -123,6 +123,7 @@ export default class extends React.Component {
               form={ form }
               setForm={ this.setForm.bind(this) }
               sendForm={ this.sendForm.bind(this) }
+              closeForm={ closeForm }
               translations={ translations }/>
         </div>
       </div>

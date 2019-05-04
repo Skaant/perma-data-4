@@ -7,6 +7,10 @@ import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
 window.user = false
 window.translations = false
 
+const closeForm = () => {
+  $('#anchor-dialog').modal('hide')
+}
+
 const updateUser = (updates, lang) => {
   const updatedUser = Object.assign({}, window.user, updates)
   window.user = updatedUser
@@ -18,6 +22,7 @@ const updateUser = (updates, lang) => {
     render(<DialogModal dialog={ firstDialog }
         uid={ window.user._id }
         updateUser={ updateUser }
+        closeForm={ closeForm }
         lang={ lang }
         translations={ window.translations.dialog }/>, document.getElementById('anchor-dialog'))
     $('#anchor-dialog').modal('show')
