@@ -26,7 +26,9 @@ const updateUser = (updates, lang) => {
         closeForm={ closeForm }
         lang={ lang }
         translations={ window.translations.dialog }/>, document.getElementById('anchor-dialog'))
-    $('#anchor-dialog').modal('show')
+    if (firstDialog.openFirst !== 'once') {
+      $('#anchor-dialog').modal('show')
+    }
   }
   
   window.signInSpecific && window.signInSpecific(window.user, lang, translations)
