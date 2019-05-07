@@ -22,7 +22,7 @@ export default ({
             {
               scene.menu.map((item, index) => (
                 <button key={ item.label } type='button'
-                    className={ `btn btn-${ getValidClass(item.transition.valid, form) } col-12 col-md-8 mx-2 my-1 txt-white` }
+                    className={ `btn btn-${ getValidClass(item.valid, form) } col-12 col-md-8 mx-2 my-1 txt-white` }
                     onClick={ () => menuClick(scene.menu[index].transition, setForm, sendForm, closeForm, goTo) }>
                   { item.label }
                 </button>
