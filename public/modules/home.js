@@ -311,6 +311,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 /***/ }),
 
+/***/ "./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js":
+/*!**********************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js":
+/*!**********************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js?");
+
+/***/ }),
+
 /***/ "./modules/react/UserHome/DomsList/_data/explorers/explorers.js":
 /*!**********************************************************************!*\
   !*** ./modules/react/UserHome/DomsList/_data/explorers/explorers.js ***!
@@ -340,7 +362,7 @@ eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = {\n  'SPARKERS': __webpack_require__(/*! ./sparkers/sparkers */ \"./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js\"),\n  'PHOTO-FACTORY': __webpack_require__(/*! ./photo-factory/photo-factory */ \"./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js\"),\n  'PHOTO-CELLS': __webpack_require__(/*! ./photo-cells/photo-cells */ \"./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js\"),\n  'NOVS': __webpack_require__(/*! ./novs/novs */ \"./modules/react/UserHome/DomsList/_data/novs/novs.js\"),\n  'EXPLORERS': __webpack_require__(/*! ./explorers/explorers */ \"./modules/react/UserHome/DomsList/_data/explorers/explorers.js\"),\n  'HARVESTERS': __webpack_require__(/*! ./harvesters/harvesters */ \"./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js\"),\n  'MIKORIS': __webpack_require__(/*! ./mikoris/mikoris */ \"./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js\"),\n  'LOOKOUT': __webpack_require__(/*! ./lookout/lookout */ \"./modules/react/UserHome/DomsList/_data/lookout/lookout.js\")\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/index.js?");
+eval("module.exports = {\n  'SPARKERS': __webpack_require__(/*! ./sparkers/sparkers */ \"./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js\"),\n  'PHOTO-FACTORY': __webpack_require__(/*! ./photo-factory/photo-factory */ \"./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js\"),\n  'PHOTO-CELLS': __webpack_require__(/*! ./photo-cells/photo-cells */ \"./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js\"),\n  'PHOTO-SENSIBLE BUDS': __webpack_require__(/*! ./photo-sensibleBuds/photo-sensibleBuds */ \"./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js\"),\n  'SEV FLUIDIFIER': __webpack_require__(/*! ./sevFluidifier/sevFluidifier */ \"./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js\"),\n  'NOVS': __webpack_require__(/*! ./novs/novs */ \"./modules/react/UserHome/DomsList/_data/novs/novs.js\"),\n  'EXPLORERS': __webpack_require__(/*! ./explorers/explorers */ \"./modules/react/UserHome/DomsList/_data/explorers/explorers.js\"),\n  'HARVESTERS': __webpack_require__(/*! ./harvesters/harvesters */ \"./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js\"),\n  'VAPORIZERS': __webpack_require__(/*! ./vaporizers/vaporizers */ \"./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js\"),\n  'MIKORIS': __webpack_require__(/*! ./mikoris/mikoris */ \"./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js\"),\n  'LOOKOUT': __webpack_require__(/*! ./lookout/lookout */ \"./modules/react/UserHome/DomsList/_data/lookout/lookout.js\"),\n  'DATA-SLICE SPEAR': __webpack_require__(/*! ./data-sliceSpear/data-sliceSpear */ \"./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js\"),\n  'STATIC LOADER': __webpack_require__(/*! ./staticLoader/staticLoader */ \"./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js\"),\n  'DATA INDEX': __webpack_require__(/*! ./dataIndex/dataIndex */ \"./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js\")\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/index.js?");
 
 /***/ }),
 
@@ -399,6 +421,28 @@ eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///.
 
 /***/ }),
 
+/***/ "./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js":
+/*!****************************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js":
+/*!******************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js?");
+
+/***/ }),
+
 /***/ "./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js":
 /*!********************************************************************!*\
   !*** ./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js ***!
@@ -407,6 +451,28 @@ eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///.
 /***/ (function(module, exports) {
 
 eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js":
+/*!****************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js?");
+
+/***/ }),
+
+/***/ "./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js":
+/*!************************************************************************!*\
+  !*** ./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js?");
 
 /***/ }),
 
