@@ -1,0 +1,10 @@
+.col-12.px-0
+  p.font-weight-bold.mb-2.alert.alert-success= datas[data].value
+    span.float-right
+      if (datas[data].sources)
+        each source in datas[data].sources
+          a(
+            href= `#${ source }`
+            title= getTitle(sources[source])
+          )
+            span.badge.badge-pill.badge-light.mx-1= getShortTitle(sources[source]).toUpperCase()

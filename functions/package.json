@@ -6,12 +6,29 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "build-home": "webpack --config ./webpack.config.js --output ../public/modules/home.js ./modules/bundles/home/home.js",
+    "build-plant": "webpack --config ./webpack.config.js --output ../public/modules/plant.js ./modules/bundles/plant/plant.js"
   },
   "dependencies": {
-    "firebase-admin": "~6.0.0",
-    "firebase-functions": "^2.1.0",
+    "express": "^4.16.4",
+    "firebase-admin": "^7.0.0",
+    "firebase-functions": "^2.2.0",
+    "firebase-tools": "^6.5.3",
+    "mongodb": "^3.1.13",
     "pug": "^2.0.3"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "firebase": "^5.8.2",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
 }

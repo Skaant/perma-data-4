@@ -1,0 +1,27 @@
+.row
+  h2.text-center.col-12.my-4= `🏹🍓 ${ translation.sections.sources } 🌺👩🏿‍🔬🐇`
+.row
+  .col-12.col-md-10.offset-md-1.col-lg-8.offset-lg-2.col-xl-6.offset-xl-3.container
+    if (sources)
+      each source, key in sources
+        .row(
+          id= key
+        )
+          .col-12.alert.alert-light.container
+            .row.flex-row-reverse
+              p.col-12.col-sm-2.my-2.mb-0.text-center
+                b.text-dark= getShortTitle(source).toUpperCase()
+              small.col-12.col-sm-10.text-uppercase
+                ol.breadcrumb.alert-warning.mb-0
+                  each parent, index in source.parents
+                    li.breadcrumb-item
+                      if (index === 0)
+                        b= parent.title
+                      else
+                        span= parent.title
+                  li.breadcrumb-item= source.title
+            if (source.parents[0].authors)
+              .row
+                p.col-12.mb-0.mt-4
+                  small.text-uppercase= `${ translation.source.authors } : `
+                    b= source.parents[0].authors

@@ -1,9 +1,9 @@
-const contributor = require('./contributor/contributor')
-const inventory = require('./inventory/inventory')
+const garden = require('./garden/garden')
 const plant = require('./plant/plant')
+const wiki = require('./wiki/wiki')
 
 module.exports = {
-  contributor,
-  inventory,
-  plant
+  garden,
+  plant,
+  wiki
 }

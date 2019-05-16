@@ -1,0 +1,10 @@
+each dataType in cloud.types
+  .row.alert.alert-light
+    .col-12.px-0
+      p.text-center.text-info.font-weight-light.text-uppercase
+        small
+          b= translation.types[dataType] && translation.types[dataType].replace(/#/, '.') || dataType
+          span.float-right.mt-1.mr-4.text-secondary= translation.sources
+    if (types[dataType])
+      each data in types[dataType]
+        include ./dataItem/dataItem
