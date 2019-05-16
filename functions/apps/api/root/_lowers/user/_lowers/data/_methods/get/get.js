@@ -6,6 +6,7 @@ module.exports = req =>
     const { uid, email, lang } = req.query
     global.mongo.connect((err, client) => {
       if (err) {
+        console.log(err)
         reject(err)
       }
       const db = client.db('prod')

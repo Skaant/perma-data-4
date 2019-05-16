@@ -1,4 +1,4 @@
-import P_CMI from '../../../patterns/P_CMI/P_CMI'
-import specifics from './specifics'
+import _common from '../_common/_common'
+import _transitions from './_transitions'
 
-P_CMI(specifics)
+_common(_transitions)

@@ -1,3 +1,3 @@
-import P_CMI from '../../../patterns/P_CMI/P_CMI'
+import _common from '../_common/_common'
 
-P_CMI()
+_common()

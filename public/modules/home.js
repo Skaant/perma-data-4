@@ -97,6 +97,113 @@ eval("module.exports = {\n  apiKey: \"AIzaSyBrGtyAbT6XTkYZ-m7tw2C5Nj_NlCwb8bk\",
 
 /***/ }),
 
+/***/ "./modules/bundles/_common/_common.js":
+/*!********************************************!*\
+  !*** ./modules/bundles/_common/_common.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.cjs.js\");\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ \"./node_modules/firebase/auth/dist/index.esm.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../firebase.config */ \"./firebase.config.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_firebase_config__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_transitions */ \"./modules/bundles/_common/_transitions/index.js\");\n/* harmony import */ var _patterns_P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../patterns/P_MPC/P_MPC */ \"./patterns/P_MPC/P_MPC.js\");\n/* harmony import */ var _patterns_P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_patterns_P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nconst html = document.getElementsByTagName('html')[0];\nconst lang = html.lang;\nconst id = html.id;\n\nconst userChange = (user, specifics, translations) => {\n  if (user) {\n    _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].signIn(user, specifics && specifics.signIn, translations, lang);\n  } else {\n    _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].signOut(specifics && specifics.signOut);\n  }\n};\n\nconst selectPlant = plant => document.location.href = `/${lang}/plant/${plant}`; // common module intialization\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (specifics => {\n  firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp(_firebase_config__WEBPACK_IMPORTED_MODULE_2___default.a);\n  new Promise((resolve, reject) => {\n    _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].bundleStart(specifics && specifics.bundleStart);\n    _patterns_P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4___default()(id, lang).then(({\n      translations\n    }) => {\n      _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].bundleProvisioned(specifics && specifics.start, id, selectPlant, userChange, translations);\n      firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.auth().onIdTokenChanged(user => userChange(user, specifics, translations));\n      resolve();\n    }).catch(err => reject(err));\n  });\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_common.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/bundleProvisioned/bundleProvisioned.js":
+/*!*************************************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/bundleProvisioned/bundleProvisioned.js ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_PlantSearch_PlantSearch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/PlantSearch/PlantSearch */ \"./modules/react/PlantSearch/PlantSearch.js\");\n/* harmony import */ var _react_LoginFormModal_LoginFormModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../react/LoginFormModal/LoginFormModal */ \"./modules/react/LoginFormModal/LoginFormModal.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((specific, id, selectPlant, userChange, translations) => {\n  Array.from(document.getElementsByClassName('bundle-false')).forEach(element => $(element).addClass('d-none'));\n  Array.from(document.getElementsByClassName('bundle-true')).forEach(element => $(element).removeClass('d-none'));\n  specific && specific(translations);\n  Array.from(document.getElementsByClassName('anchor-plant-search')).forEach(element => Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_PlantSearch_PlantSearch__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    translations: translations.plantSearch,\n    selectPlant: selectPlant\n  }), element));\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_LoginFormModal_LoginFormModal__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    updateUser: userChange,\n    translations: translations.loginForm\n  }), document.getElementById('anchor-login-form'));\n  $('#login-button').click(() => $('#anchor-login-form').modal('toggle'));\n  $('#home-login-button').click(() => $('#anchor-login-form').modal('toggle'));\n\n  if (id === 'home') {\n    $('#search-plant-button').click(() => $('#search-plant-modal').modal('toggle'));\n  }\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/bundleProvisioned/bundleProvisioned.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/bundleStart/bundleStart.js":
+/*!*************************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/bundleStart/bundleStart.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  Array.from(document.getElementsByClassName('loading-bundle')).forEach(element => $(element).html(loadingTexts.lang));\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/bundleStart/bundleStart.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/index.js":
+/*!*******************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/index.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bundleProvisioned_bundleProvisioned__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bundleProvisioned/bundleProvisioned */ \"./modules/bundles/_common/_transitions/bundleProvisioned/bundleProvisioned.js\");\n/* harmony import */ var _bundleStart_bundleStart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bundleStart/bundleStart */ \"./modules/bundles/_common/_transitions/bundleStart/bundleStart.js\");\n/* harmony import */ var _signIn_signIn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signIn/signIn */ \"./modules/bundles/_common/_transitions/signIn/signIn.js\");\n/* harmony import */ var _signOut_signOut__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./signOut/signOut */ \"./modules/bundles/_common/_transitions/signOut/signOut.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  bundleProvisioned: _bundleProvisioned_bundleProvisioned__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  bundleStart: _bundleStart_bundleStart__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  signIn: _signIn_signIn__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  signOut: _signOut_signOut__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/index.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/signIn/signIn.js":
+/*!***************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/signIn/signIn.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userDataProvisioning/userDataProvisioning */ \"./modules/bundles/_common/_transitions/signIn/userDataProvisioning/userDataProvisioning.js\");\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../react/UserPanel/UserPanel */ \"./modules/react/UserPanel/UserPanel.js\");\n/* harmony import */ var _react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../react/DialogModal/DialogModal */ \"./modules/react/DialogModal/DialogModal.js\");\n\n\n\n\n\nwindow.user = false;\nwindow.translations = false;\nwindow.signInSpecific = false;\n\nconst closeForm = () => {\n  $('#anchor-dialog').modal('hide');\n};\n\nconst updateUser = (updates, lang) => {\n  const updatedUser = Object.assign({}, window.user, updates);\n  window.user = updatedUser;\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    user: window.user\n  }), document.getElementById('anchor-user-panel'));\n  const firstDialog = updatedUser.dialogs.find(dialog => dialog.openFirst);\n\n  if (firstDialog) {\n    Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n      dialog: firstDialog,\n      uid: window.user._id,\n      updateUser: updateUser,\n      closeForm: closeForm,\n      lang: lang,\n      translations: window.translations.dialog\n    }), document.getElementById('anchor-dialog'));\n\n    if (firstDialog.openFirst !== 'once') {\n      $('#anchor-dialog').modal('show');\n    }\n  }\n\n  window.signInSpecific && window.signInSpecific(window.user, lang, translations);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, specific, translations, lang) => {\n  window.translations = translations;\n  window.signInSpecific = specific;\n  Array.from(document.getElementsByClassName('loading-bundle')).forEach(element => $(element).html(loadingTexts.userData));\n  Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-true')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-none')).forEach(element => $(element).addClass('d-none'));\n  $('#search-plant-button').addClass('btn-warning').removeClass('btn-outline-light');\n  _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default()(user, lang).then(provisionedUser => {\n    Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).addClass('d-none'));\n    Array.from(document.getElementsByClassName('auth-data')).forEach(element => $(element).removeClass('d-none'));\n    $('#anchor-login-form').modal('hide');\n    updateUser(provisionedUser, lang);\n  });\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/signIn/signIn.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/signIn/userDataProvisioning/userDataProvisioning.js":
+/*!**************************************************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/signIn/userDataProvisioning/userDataProvisioning.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, reject) => {\n  fetch(`/api/user/data?uid=${uid}&email=${email}&lang=${lang}`).then(result => result.json()).then(user => resolve(Object.assign({}, {\n    email\n  }, user))).catch(err => reject(err));\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/signIn/userDataProvisioning/userDataProvisioning.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/signOut/signOut.js":
+/*!*****************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/signOut/signOut.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (specific => {\n  specific && specific();\n  Array.from(document.getElementsByClassName('auth-none')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).addClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-true')).forEach(element => $(element).addClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-data')).forEach(element => $(element).addClass('d-none'));\n  $('#search-plant-button').addClass('btn-outline-light').removeClass('btn-warning');\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/signOut/signOut.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/home/_transitions/index.js":
+/*!****************************************************!*\
+  !*** ./modules/bundles/home/_transitions/index.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./signIn/signIn */ \"./modules/bundles/home/_transitions/signIn/signIn.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  signIn: _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/index.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/home/_transitions/signIn/signIn.js":
+/*!************************************************************!*\
+  !*** ./modules/bundles/home/_transitions/signIn/signIn.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/UserHome/UserHome */ \"./modules/react/UserHome/UserHome.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, lang) => {\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    user: user,\n    lang: lang\n  }), document.getElementById('anchor-user-home'));\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/signIn/signIn.js?");
+
+/***/ }),
+
 /***/ "./modules/bundles/home/home.js":
 /*!**************************************!*\
   !*** ./modules/bundles/home/home.js ***!
@@ -105,31 +212,7 @@ eval("module.exports = {\n  apiKey: \"AIzaSyBrGtyAbT6XTkYZ-m7tw2C5Nj_NlCwb8bk\",
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../patterns/P_CMI/P_CMI */ \"./patterns/P_CMI/P_CMI.js\");\n/* harmony import */ var _specifics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./specifics */ \"./modules/bundles/home/specifics/index.js\");\n\n\nObject(_patterns_P_CMI_P_CMI__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_specifics__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n//# sourceURL=webpack:///./modules/bundles/home/home.js?");
-
-/***/ }),
-
-/***/ "./modules/bundles/home/specifics/index.js":
-/*!*************************************************!*\
-  !*** ./modules/bundles/home/specifics/index.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./signIn/signIn */ \"./modules/bundles/home/specifics/signIn/signIn.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  signIn: _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/specifics/index.js?");
-
-/***/ }),
-
-/***/ "./modules/bundles/home/specifics/signIn/signIn.js":
-/*!*********************************************************!*\
-  !*** ./modules/bundles/home/specifics/signIn/signIn.js ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/UserHome/UserHome */ \"./modules/react/UserHome/UserHome.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, lang) => {\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    user: user,\n    lang: lang\n  }), document.getElementById('anchor-user-home'));\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/specifics/signIn/signIn.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_common/_common */ \"./modules/bundles/_common/_common.js\");\n/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_transitions */ \"./modules/bundles/home/_transitions/index.js\");\n\n\n\nObject(_common_common__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_transitions__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n//# sourceURL=webpack:///./modules/bundles/home/home.js?");
 
 /***/ }),
 
@@ -1704,89 +1787,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, exports) {
 
 eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || new Function(\"return this\")();\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n\n\n//# sourceURL=webpack:///(webpack)/buildin/global.js?");
-
-/***/ }),
-
-/***/ "./patterns/P_CMI/P_CMI.js":
-/*!*********************************!*\
-  !*** ./patterns/P_CMI/P_CMI.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.cjs.js\");\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ \"./node_modules/firebase/auth/dist/index.esm.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../firebase.config */ \"./firebase.config.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_firebase_config__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_transitions */ \"./patterns/P_CMI/_transitions/index.js\");\n/* harmony import */ var _P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../P_MPC/P_MPC */ \"./patterns/P_MPC/P_MPC.js\");\n/* harmony import */ var _P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nconst html = document.getElementsByTagName('html')[0];\nconst lang = html.lang;\nconst id = html.id;\n\nconst userChange = (user, specifics, translations) => {\n  if (user) {\n    _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].signIn(user, specifics && specifics.signIn, translations, lang);\n  } else {\n    _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].signOut(specifics && specifics.signOut);\n  }\n};\n\nconst selectPlant = plant => document.location.href = `/${lang}/plant/${plant}`; // common module intialization\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (specifics => {\n  firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp(_firebase_config__WEBPACK_IMPORTED_MODULE_2___default.a);\n  new Promise((resolve, reject) => {\n    _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].bundleStart(specifics && specifics.bundleStart);\n    _P_MPC_P_MPC__WEBPACK_IMPORTED_MODULE_4___default()(id, lang).then(({\n      translations\n    }) => {\n      _transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"].bundleProvisioned(specifics && specifics.start, id, selectPlant, userChange, translations);\n      firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.auth().onIdTokenChanged(user => userChange(user, specifics, translations));\n      resolve();\n    }).catch(err => reject(err));\n  });\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/P_CMI.js?");
-
-/***/ }),
-
-/***/ "./patterns/P_CMI/_transitions/bundleProvisioned/bundleProvisioned.js":
-/*!****************************************************************************!*\
-  !*** ./patterns/P_CMI/_transitions/bundleProvisioned/bundleProvisioned.js ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _modules_react_PlantSearch_PlantSearch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../modules/react/PlantSearch/PlantSearch */ \"./modules/react/PlantSearch/PlantSearch.js\");\n/* harmony import */ var _modules_react_LoginFormModal_LoginFormModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../modules/react/LoginFormModal/LoginFormModal */ \"./modules/react/LoginFormModal/LoginFormModal.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((specific, id, selectPlant, userChange, translations) => {\n  Array.from(document.getElementsByClassName('bundle-false')).forEach(element => $(element).addClass('d-none'));\n  Array.from(document.getElementsByClassName('bundle-true')).forEach(element => $(element).removeClass('d-none'));\n  specific && specific(translations);\n  Array.from(document.getElementsByClassName('anchor-plant-search')).forEach(element => Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_PlantSearch_PlantSearch__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    translations: translations.plantSearch,\n    selectPlant: selectPlant\n  }), element));\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_LoginFormModal_LoginFormModal__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    updateUser: userChange,\n    translations: translations.loginForm\n  }), document.getElementById('anchor-login-form'));\n  $('#login-button').click(() => $('#anchor-login-form').modal('toggle'));\n  $('#home-login-button').click(() => $('#anchor-login-form').modal('toggle'));\n\n  if (id === 'home') {\n    $('#search-plant-button').click(() => $('#search-plant-modal').modal('toggle'));\n  }\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/bundleProvisioned/bundleProvisioned.js?");
-
-/***/ }),
-
-/***/ "./patterns/P_CMI/_transitions/bundleStart/bundleStart.js":
-/*!****************************************************************!*\
-  !*** ./patterns/P_CMI/_transitions/bundleStart/bundleStart.js ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  Array.from(document.getElementsByClassName('loading-bundle')).forEach(element => $(element).html(loadingTexts.lang));\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/bundleStart/bundleStart.js?");
-
-/***/ }),
-
-/***/ "./patterns/P_CMI/_transitions/index.js":
-/*!**********************************************!*\
-  !*** ./patterns/P_CMI/_transitions/index.js ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bundleProvisioned_bundleProvisioned__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bundleProvisioned/bundleProvisioned */ \"./patterns/P_CMI/_transitions/bundleProvisioned/bundleProvisioned.js\");\n/* harmony import */ var _bundleStart_bundleStart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bundleStart/bundleStart */ \"./patterns/P_CMI/_transitions/bundleStart/bundleStart.js\");\n/* harmony import */ var _signIn_signIn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signIn/signIn */ \"./patterns/P_CMI/_transitions/signIn/signIn.js\");\n/* harmony import */ var _signOut_signOut__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./signOut/signOut */ \"./patterns/P_CMI/_transitions/signOut/signOut.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  bundleProvisioned: _bundleProvisioned_bundleProvisioned__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  bundleStart: _bundleStart_bundleStart__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  signIn: _signIn_signIn__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  signOut: _signOut_signOut__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/index.js?");
-
-/***/ }),
-
-/***/ "./patterns/P_CMI/_transitions/signIn/signIn.js":
-/*!******************************************************!*\
-  !*** ./patterns/P_CMI/_transitions/signIn/signIn.js ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userDataProvisioning/userDataProvisioning */ \"./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js\");\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _modules_react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../modules/react/UserPanel/UserPanel */ \"./modules/react/UserPanel/UserPanel.js\");\n/* harmony import */ var _modules_react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../modules/react/DialogModal/DialogModal */ \"./modules/react/DialogModal/DialogModal.js\");\n\n\n\n\n\nwindow.user = false;\nwindow.translations = false;\nwindow.signInSpecific = false;\n\nconst closeForm = () => {\n  $('#anchor-dialog').modal('hide');\n};\n\nconst updateUser = (updates, lang) => {\n  const updatedUser = Object.assign({}, window.user, updates);\n  window.user = updatedUser;\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_UserPanel_UserPanel__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    user: window.user\n  }), document.getElementById('anchor-user-panel'));\n  const firstDialog = updatedUser.dialogs.find(dialog => dialog.openFirst);\n\n  if (firstDialog) {\n    Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modules_react_DialogModal_DialogModal__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n      dialog: firstDialog,\n      uid: window.user._id,\n      updateUser: updateUser,\n      closeForm: closeForm,\n      lang: lang,\n      translations: window.translations.dialog\n    }), document.getElementById('anchor-dialog'));\n\n    if (firstDialog.openFirst !== 'once') {\n      $('#anchor-dialog').modal('show');\n    }\n  }\n\n  window.signInSpecific && window.signInSpecific(window.user, lang, translations);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, specific, translations, lang) => {\n  window.translations = translations;\n  window.signInSpecific = specific;\n  Array.from(document.getElementsByClassName('loading-bundle')).forEach(element => $(element).html(loadingTexts.userData));\n  Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-true')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-none')).forEach(element => $(element).addClass('d-none'));\n  $('#search-plant-button').addClass('btn-warning').removeClass('btn-outline-light');\n  _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_2___default()(user, lang).then(provisionedUser => {\n    Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).addClass('d-none'));\n    Array.from(document.getElementsByClassName('auth-data')).forEach(element => $(element).removeClass('d-none'));\n    $('#anchor-login-form').modal('hide');\n    updateUser(provisionedUser, lang);\n  });\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/signIn/signIn.js?");
-
-/***/ }),
-
-/***/ "./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js":
-/*!*****************************************************************************************!*\
-  !*** ./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js ***!
-  \*****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, reject) => {\n  fetch(`/api/user/data?uid=${uid}&email=${email}&lang=${lang}`).then(result => result.json()).then(user => resolve(Object.assign({}, {\n    email\n  }, user))).catch(err => reject(err));\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/signIn/userDataProvisioning/userDataProvisioning.js?");
-
-/***/ }),
-
-/***/ "./patterns/P_CMI/_transitions/signOut/signOut.js":
-/*!********************************************************!*\
-  !*** ./patterns/P_CMI/_transitions/signOut/signOut.js ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (specific => {\n  specific && specific();\n  Array.from(document.getElementsByClassName('auth-none')).forEach(element => $(element).removeClass('d-none'));\n  Array.from(document.getElementsByClassName('data-loading')).forEach(element => $(element).addClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-true')).forEach(element => $(element).addClass('d-none'));\n  Array.from(document.getElementsByClassName('auth-data')).forEach(element => $(element).addClass('d-none'));\n  $('#search-plant-button').addClass('btn-outline-light').removeClass('btn-warning');\n});\n\n//# sourceURL=webpack:///./patterns/P_CMI/_transitions/signOut/signOut.js?");
 
 /***/ }),
 

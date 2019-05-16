@@ -1,8 +1,8 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import firebaseConfig from '../../firebase.config'
+import firebaseConfig from '../../../firebase.config'
 import commons from './_transitions'
-import P_MPC from '../P_MPC/P_MPC'
+import P_MPC from '../../../patterns/P_MPC/P_MPC'
     
 const html = document.getElementsByTagName('html')[0]
 const lang = html.lang

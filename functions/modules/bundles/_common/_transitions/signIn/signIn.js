@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
-import UserPanel from '../../../../modules/react/UserPanel/UserPanel'
-import DialogModal from '../../../../modules/react/DialogModal/DialogModal'
+import UserPanel from '../../../../react/UserPanel/UserPanel'
+import DialogModal from '../../../../react/DialogModal/DialogModal'
 
 window.user = false
 window.translations = false

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import PlantSearch from '../../../../modules/react/PlantSearch/PlantSearch'
-import LoginFormModal from '../../../../modules/react/LoginFormModal/LoginFormModal'
+import PlantSearch from '../../../../react/PlantSearch/PlantSearch'
+import LoginFormModal from '../../../../react/LoginFormModal/LoginFormModal'
 
 export default (
   specific,
