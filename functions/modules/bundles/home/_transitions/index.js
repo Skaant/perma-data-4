@@ -1,3 +1,7 @@
-import signIn from './signIn/signIn'
+import bundleDataProvisioned from './bundleDataProvisioned/bundleDataProvisioned'
+import unauthApp from './unauthApp/unauthApp'
 
-export default { signIn }
+export default {
+  'bundle data provisioned': bundleDataProvisioned,
+  'unauth app': unauthApp
+}

@@ -8,10 +8,6 @@ import mergeTransitions from './mergeTransitions/mergeTransitions'
 import bundleProvisioning from './bundleProvisioning/bundleProvisioning'
 import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 
-const selectPlant = plant =>
-  document.location.href =
-    `/${ window.__PROPS__.lang }/plant/${ plant}`
-
 // common module intialization
 export default specifics => {
   initWindowProps()
@@ -46,7 +42,7 @@ export default specifics => {
     if (user) {
       window.__STATE__.user = user
       transitions['user data fetch']
-      userDataProvisioning(window.__STATE__.user)
+      userDataProvisioning(window.__STATE__.user, window.__PROPS__.lang)
         .then(data => {
           window.__STATE__.user.data = data
           if (window.__STATE__.bundle) {

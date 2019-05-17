@@ -1,8 +1,8 @@
 import React from 'react'
-import BaseInput from './BaseInput/BaseInput';
-import ImprovementMenu from './ImprovementMenu/ImprovementMenu';
-import DisplaySingleResult from './DisplaySingleResult/DisplaySingleResult';
-import DisplayMultipleResults from './DisplayMultipleResults/DisplayMultipleResults';
+import BaseInput from './BaseInput/BaseInput'
+import ImprovementMenu from './ImprovementMenu/ImprovementMenu'
+import DisplaySingleResult from './DisplaySingleResult/DisplaySingleResult'
+import DisplayMultipleResults from './DisplayMultipleResults/DisplayMultipleResults'
 
 const urlBuilder = (improvement, step) => {
   if (improvement === 'ids') {
@@ -32,6 +32,10 @@ const nameFormatterFactory = (improvement, step) =>
       return plant._id
     }
   }
+
+const selectPlant = plant =>
+  document.location.href =
+    `/${ window.__PROPS__.lang }/plant/${ plant}`
 
 export default class extends React.Component {
   constructor(props) {
@@ -126,7 +130,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { translations = {}, selectPlant } = this.props
+    const { translations = {} } = this.props
     const {
       value, loading,
       improvementMenuOpen, improvement,

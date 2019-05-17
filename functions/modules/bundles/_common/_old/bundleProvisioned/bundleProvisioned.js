@@ -3,19 +3,7 @@ import { render } from 'react-dom'
 import PlantSearch from '../../../../react/PlantSearch/PlantSearch'
 import LoginFormModal from '../../../../react/LoginFormModal/LoginFormModal'
 
-export default (
-  specific,
-  id,
-  selectPlant, userChange,
-  translations
-) => {
-  Array.from(document.getElementsByClassName('bundle-false'))
-    .forEach(element => $(element).addClass('d-none'))
-  Array.from(document.getElementsByClassName('bundle-true'))
-    .forEach(element => $(element).removeClass('d-none'))
-
-  specific && specific(translations)
-
+export default () => {
   Array.from(document.getElementsByClassName('anchor-plant-search'))
     .forEach(element => render(<PlantSearch
         translations={ translations.plantSearch }

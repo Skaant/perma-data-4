@@ -105,7 +105,43 @@ eval("module.exports = {\n  apiKey: \"AIzaSyBrGtyAbT6XTkYZ-m7tw2C5Nj_NlCwb8bk\",
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.cjs.js\");\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ \"./node_modules/firebase/auth/dist/index.esm.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../firebase.config */ \"./firebase.config.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_firebase_config__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_transitions */ \"./modules/bundles/_common/_transitions/index.js\");\n/* harmony import */ var _initWindowProps_initWindowProps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./initWindowProps/initWindowProps */ \"./modules/bundles/_common/initWindowProps/initWindowProps.js\");\n/* harmony import */ var _initWindowState_initWindowState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./initWindowState/initWindowState */ \"./modules/bundles/_common/initWindowState/initWindowState.js\");\n/* harmony import */ var _mergeTransitions_mergeTransitions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mergeTransitions/mergeTransitions */ \"./modules/bundles/_common/mergeTransitions/mergeTransitions.js\");\n/* harmony import */ var _bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./bundleProvisioning/bundleProvisioning */ \"./modules/bundles/_common/bundleProvisioning/bundleProvisioning.js\");\n/* harmony import */ var _bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./userDataProvisioning/userDataProvisioning */ \"./modules/bundles/_common/userDataProvisioning/userDataProvisioning.js\");\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8__);\n\n\n\n\n\n\n\n\n\n\nconst selectPlant = plant => document.location.href = `/${window.__PROPS__.lang}/plant/${plant}`; // common module intialization\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (specifics => {\n  Object(_initWindowProps_initWindowProps__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\n  Object(_initWindowState_initWindowState__WEBPACK_IMPORTED_MODULE_5__[\"default\"])();\n  const transitions = Object(_mergeTransitions_mergeTransitions__WEBPACK_IMPORTED_MODULE_6__[\"default\"])(_transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"], specifics);\n\n  try {\n    firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp(_firebase_config__WEBPACK_IMPORTED_MODULE_2___default.a);\n    transitions['bundle received']();\n  } catch (err) {\n    transitions['bundle init error'](err);\n  }\n\n  transitions['bundle data fetch']();\n  _bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7___default()(window.__PROPS__.id, window.__PROPS__.lang).then(bundle => {\n    window.__STATE__.bundle = bundle;\n    transitions['bundle data provisioned']();\n\n    if (window.__STATE__.user) {\n      if (window.__STATE__.user.data) {\n        transitions['auth app']();\n      }\n    } else {\n      transitions['unauth app']();\n    }\n  }).catch(err => {\n    transitions['unauth app'](err);\n  }); // user authentication listener\n\n  firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.auth().onIdTokenChanged(user => {\n    if (user) {\n      window.__STATE__.user = user;\n      transitions['user data fetch'];\n      _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8___default()(window.__STATE__.user).then(data => {\n        window.__STATE__.user.data = data;\n\n        if (window.__STATE__.bundle) {\n          transitions['app auth']();\n        }\n      }).catch(err => transitions['user data error'](err));\n\n      if (window.__STATE__.bundle) {\n        transitions['user authenticated']();\n      }\n    } else {\n      window.__STATE__.user = false;\n\n      if (window.__STATE__.bundle) {\n        transitions['unauth app'];\n      }\n    }\n  });\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_common.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.cjs.js\");\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ \"./node_modules/firebase/auth/dist/index.esm.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../firebase.config */ \"./firebase.config.js\");\n/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_firebase_config__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_transitions */ \"./modules/bundles/_common/_transitions/index.js\");\n/* harmony import */ var _initWindowProps_initWindowProps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./initWindowProps/initWindowProps */ \"./modules/bundles/_common/initWindowProps/initWindowProps.js\");\n/* harmony import */ var _initWindowState_initWindowState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./initWindowState/initWindowState */ \"./modules/bundles/_common/initWindowState/initWindowState.js\");\n/* harmony import */ var _mergeTransitions_mergeTransitions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mergeTransitions/mergeTransitions */ \"./modules/bundles/_common/mergeTransitions/mergeTransitions.js\");\n/* harmony import */ var _bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./bundleProvisioning/bundleProvisioning */ \"./modules/bundles/_common/bundleProvisioning/bundleProvisioning.js\");\n/* harmony import */ var _bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./userDataProvisioning/userDataProvisioning */ \"./modules/bundles/_common/userDataProvisioning/userDataProvisioning.js\");\n/* harmony import */ var _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8__);\n\n\n\n\n\n\n\n\n // common module intialization\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (specifics => {\n  Object(_initWindowProps_initWindowProps__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\n  Object(_initWindowState_initWindowState__WEBPACK_IMPORTED_MODULE_5__[\"default\"])();\n  const transitions = Object(_mergeTransitions_mergeTransitions__WEBPACK_IMPORTED_MODULE_6__[\"default\"])(_transitions__WEBPACK_IMPORTED_MODULE_3__[\"default\"], specifics);\n\n  try {\n    firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp(_firebase_config__WEBPACK_IMPORTED_MODULE_2___default.a);\n    transitions['bundle received']();\n  } catch (err) {\n    transitions['bundle init error'](err);\n  }\n\n  transitions['bundle data fetch']();\n  _bundleProvisioning_bundleProvisioning__WEBPACK_IMPORTED_MODULE_7___default()(window.__PROPS__.id, window.__PROPS__.lang).then(bundle => {\n    window.__STATE__.bundle = bundle;\n    transitions['bundle data provisioned']();\n\n    if (window.__STATE__.user) {\n      if (window.__STATE__.user.data) {\n        transitions['auth app']();\n      }\n    } else {\n      transitions['unauth app']();\n    }\n  }).catch(err => {\n    transitions['unauth app'](err);\n  }); // user authentication listener\n\n  firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.auth().onIdTokenChanged(user => {\n    if (user) {\n      window.__STATE__.user = user;\n      transitions['user data fetch'];\n      _userDataProvisioning_userDataProvisioning__WEBPACK_IMPORTED_MODULE_8___default()(window.__STATE__.user, window.__PROPS__.lang).then(data => {\n        window.__STATE__.user.data = data;\n\n        if (window.__STATE__.bundle) {\n          transitions['app auth']();\n        }\n      }).catch(err => transitions['user data error'](err));\n\n      if (window.__STATE__.bundle) {\n        transitions['user authenticated']();\n      }\n    } else {\n      window.__STATE__.user = false;\n\n      if (window.__STATE__.bundle) {\n        transitions['unauth app'];\n      }\n    }\n  });\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_common.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/bundleDataFetch/bundleDataFetch.js":
+/*!*********************************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/bundleDataFetch/bundleDataFetch.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  $('#launch-info__status').html(window.__loadingTexts__['bundle data fetch']);\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/bundleDataFetch/bundleDataFetch.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/bundleDataProvisioned/bundleDataProvisioned.js":
+/*!*********************************************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/bundleDataProvisioned/bundleDataProvisioned.js ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_PlantSearch_PlantSearch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/PlantSearch/PlantSearch */ \"./modules/react/PlantSearch/PlantSearch.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  Array.from(document.getElementsByClassName('anchor-plant-search')).forEach(element => Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_PlantSearch_PlantSearch__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    translations: window.__STATE__.bundle.translations.plantSearch\n  }), element));\n  $('#search-plant-button').click(() => $('#search-plant-modal').modal('toggle'));\n  $('#search-plant-button-container').removeClass('d-none');\n\n  if (!window.__STATE__.user) {\n    $('#launch-info').addClass('d-none');\n  }\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/bundleDataProvisioned/bundleDataProvisioned.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/bundleReceived/bundleReceived.js":
+/*!*******************************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/bundleReceived/bundleReceived.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  $('#launch-info__status').html(window.__loadingTexts__['bundle received']);\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/bundleReceived/bundleReceived.js?");
 
 /***/ }),
 
@@ -117,7 +153,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var fire
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bundleReceived_bundleReceived__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bundleReceived/bundleReceived */ \"./modules/bundles/_common/_transitions/bundleReceived/bundleReceived.js\");\n/* harmony import */ var _bundleDataFetch_bundleDataFetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bundleDataFetch/bundleDataFetch */ \"./modules/bundles/_common/_transitions/bundleDataFetch/bundleDataFetch.js\");\n/* harmony import */ var _bundleDataProvisioned_bundleDataProvisioned__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bundleDataProvisioned/bundleDataProvisioned */ \"./modules/bundles/_common/_transitions/bundleDataProvisioned/bundleDataProvisioned.js\");\n/* harmony import */ var _unauthApp_unauthApp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./unauthApp/unauthApp */ \"./modules/bundles/_common/_transitions/unauthApp/unauthApp.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  'bundle received': _bundleReceived_bundleReceived__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  'bundle data fetch': _bundleDataFetch_bundleDataFetch__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  'bundle data provisioned': _bundleDataProvisioned_bundleDataProvisioned__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  'unauth app': _unauthApp_unauthApp__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/index.js?");
+
+/***/ }),
+
+/***/ "./modules/bundles/_common/_transitions/unauthApp/unauthApp.js":
+/*!*********************************************************************!*\
+  !*** ./modules/bundles/_common/_transitions/unauthApp/unauthApp.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_LoginFormModal_LoginFormModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/LoginFormModal/LoginFormModal */ \"./modules/react/LoginFormModal/LoginFormModal.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_LoginFormModal_LoginFormModal__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    updateUser: userChange,\n    translations: translations.loginForm\n  }), document.getElementById('anchor-login-form'));\n  $('#login-button').click(() => $('#anchor-login-form').modal('toggle'));\n  $('#login-button-container').removeClass('d-none');\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/_transitions/unauthApp/unauthApp.js?");
 
 /***/ }),
 
@@ -179,6 +227,18 @@ eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, re
 
 /***/ }),
 
+/***/ "./modules/bundles/home/_transitions/bundleDataProvisioned/bundleDataProvisioned.js":
+/*!******************************************************************************************!*\
+  !*** ./modules/bundles/home/_transitions/bundleDataProvisioned/bundleDataProvisioned.js ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  $('#home-login-button').click(() => $('#anchor-login-form').modal('toggle'));\n  $('#home-login-button__container').removeClass('d-none');\n  $('#home-authentication-loading').addClass('d-none');\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/bundleDataProvisioned/bundleDataProvisioned.js?");
+
+/***/ }),
+
 /***/ "./modules/bundles/home/_transitions/index.js":
 /*!****************************************************!*\
   !*** ./modules/bundles/home/_transitions/index.js ***!
@@ -187,19 +247,19 @@ eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, re
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./signIn/signIn */ \"./modules/bundles/home/_transitions/signIn/signIn.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  signIn: _signIn_signIn__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bundleDataProvisioned_bundleDataProvisioned__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bundleDataProvisioned/bundleDataProvisioned */ \"./modules/bundles/home/_transitions/bundleDataProvisioned/bundleDataProvisioned.js\");\n/* harmony import */ var _unauthApp_unauthApp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./unauthApp/unauthApp */ \"./modules/bundles/home/_transitions/unauthApp/unauthApp.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  'bundle data provisioned': _bundleDataProvisioned_bundleDataProvisioned__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  'unauth app': _unauthApp_unauthApp__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/index.js?");
 
 /***/ }),
 
-/***/ "./modules/bundles/home/_transitions/signIn/signIn.js":
-/*!************************************************************!*\
-  !*** ./modules/bundles/home/_transitions/signIn/signIn.js ***!
-  \************************************************************/
+/***/ "./modules/bundles/home/_transitions/unauthApp/unauthApp.js":
+/*!******************************************************************!*\
+  !*** ./modules/bundles/home/_transitions/unauthApp/unauthApp.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/UserHome/UserHome */ \"./modules/react/UserHome/UserHome.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ((user, lang) => {\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    user: user,\n    lang: lang\n  }), document.getElementById('anchor-user-home'));\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/signIn/signIn.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  $('#home-login-button').click(() => $('#anchor-login-form').modal('toggle'));\n  $('#home-login-button__container').removeClass('d-none');\n  $('#home-authentication-loading').addClass('d-none');\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/unauthApp/unauthApp.js?");
 
 /***/ }),
 
@@ -215,216 +275,99 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _com
 
 /***/ }),
 
-/***/ "./modules/react/UserHome/DomsList/DomsList.js":
-/*!*****************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/DomsList.js ***!
-  \*****************************************************/
+/***/ "./modules/react/LoginFormModal/ContentForm/ContentForm.js":
+/*!*****************************************************************!*\
+  !*** ./modules/react/LoginFormModal/ContentForm/ContentForm.js ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_data */ \"./modules/react/UserHome/DomsList/_data/index.js\");\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_data__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _TrighbItem_TrighbItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TrighbItem/TrighbItem */ \"./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js\");\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  doms,\n  lang\n}) => {\n  // domsIndex for the doms([key] => index) association\n  const domsIndex = doms.reduce((domsIndex, {\n    _id\n  }, index) => {\n    domsIndex[_id] = index;\n    return domsIndex;\n  }, {});\n  const trighbsSorted = doms.reduce((trighbsSorted, dom) => {\n    const data = _data__WEBPACK_IMPORTED_MODULE_1___default.a[dom._id];\n    const trighb = data.trighb; // skip bolshDoms (named after trighb) to add them auto. at first related dom's appearance\n\n    if (trighb) {\n      const mergedDom = Object.assign({}, data, dom);\n\n      if (!trighbsSorted[trighb]) {\n        trighbsSorted[trighb] = {\n          bolshDom: Object.assign({}, _data__WEBPACK_IMPORTED_MODULE_1___default.a[trighb], doms[domsIndex[trighb]]),\n          doms: []\n        };\n      }\n\n      trighbsSorted[trighb].doms.push(mergedDom);\n    }\n\n    return trighbsSorted;\n  }, {});\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"row\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"col-12 container\"\n  }, Object.keys(trighbsSorted).map(key => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TrighbItem_TrighbItem__WEBPACK_IMPORTED_MODULE_2__[\"default\"], _extends({\n    key: key,\n    lang: lang\n  }, trighbsSorted[key])))));\n});\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/DomsList.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  mode,\n  form: {\n    email,\n    pseudo,\n    password\n  },\n  changeValue,\n  options,\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n  type: \"email\",\n  className: \"form-control col-8 offset-2 my-2\",\n  value: email,\n  placeholder: translations.email,\n  onChange: e => changeValue('email', e.target.value),\n  onKeyPress: e => mode === 'reset' && email && e.charCode === 13 && options.resetPassword()\n})), mode === 'sign-up' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n  type: \"text\",\n  className: \"form-control col-8 offset-2 my-2\",\n  value: pseudo,\n  placeholder: translations.pseudo,\n  onChange: e => changeValue('pseudo', e.target.value)\n})), (mode === 'sign-up' || mode === 'sign-in') && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n  type: \"password\",\n  className: \"form-control col-8 offset-2 my-2\",\n  value: password,\n  placeholder: translations.password,\n  onChange: e => changeValue('password', e.target.value),\n  onKeyPress: e => e.charCode === 13 && email && password && (mode === 'sign-in' && options.signIn() || pseudo && mode === 'sign-up' && options.signUp())\n}))));\n\n//# sourceURL=webpack:///./modules/react/LoginFormModal/ContentForm/ContentForm.js?");
 
 /***/ }),
 
-/***/ "./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js":
-/*!***********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js ***!
-  \***********************************************************************/
+/***/ "./modules/react/LoginFormModal/FooterMenu/FooterMenu.js":
+/*!***************************************************************!*\
+  !*** ./modules/react/LoginFormModal/FooterMenu/FooterMenu.js ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  dom,\n  lang\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row alert alert-info \"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h6\", {\n  className: \"text-black mt-3\"\n}, dom._id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"text-secondary\"\n}, dom[lang].description))));\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nconst checkDisabled = (mode, {\n  email,\n  pseudo,\n  password\n}) => {\n  switch (mode) {\n    case 'sign-in':\n      return !email || !password;\n\n    case 'sign-up':\n      return !email || !pseudo || !password;\n\n    case 'reset':\n      return !email;\n  }\n};\n\nconst handleSend = (mode, options) => {\n  switch (mode) {\n    case 'sign-in':\n      options.signIn();\n\n    case 'sign-up':\n      options.signUp();\n\n    case 'reset':\n      options.resetPassword();\n  }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  mode,\n  form,\n  // email, pseudo, password\n  switchMode,\n  options,\n  // signIn, signUp, resetPassword\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row flex-row-reverse\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 col-md-6 py-1\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-warning py-2 w-100 h-100 text-uppercase\",\n  onClick: () => handleSend(mode, options),\n  disabled: checkDisabled(mode, form)\n}, \"\\uD83C\\uDF3F \", translations.send, \" \\uD83D\\uDD4A\\uD83C\\uDF1B\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 col-sm-6\"\n}, mode !== 'reset' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-secondary my-1 py-2 w-100 text-uppercase\",\n  onClick: () => switchMode('reset')\n}, \"\\uD83E\\uDD37\\uD83C\\uDFFC\\u200D\\uD83D\\uDE4A \", translations.resetPassword), mode !== 'sign-up' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-info my-1 py-2 w-100 text-uppercase\",\n  onClick: () => switchMode('sign-up')\n}, \"\\uD83D\\uDE4C\\uD83C\\uDFFD \", translations.signUp), mode !== 'sign-in' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-success my-1 py-2 w-100 text-uppercase\",\n  onClick: () => switchMode('sign-in')\n}, \"\\uD83D\\uDD25\\uD83D\\uDC32 \", translations.signIn))));\n\n//# sourceURL=webpack:///./modules/react/LoginFormModal/FooterMenu/FooterMenu.js?");
 
 /***/ }),
 
-/***/ "./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js":
-/*!******************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DomItem_DomItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DomItem/DomItem */ \"./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  bolshDom,\n  doms,\n  lang\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row alert alert-light\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 mt-4 mb-3\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h5\", {\n  className: \"text-dark\"\n}, bolshDom._id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", null, bolshDom[lang].description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 container\"\n}, doms.map(dom => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DomItem_DomItem__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n  key: dom._id,\n  lang: lang,\n  dom: dom\n})))));\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js":
-/*!**********************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js":
-/*!**********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/explorers/explorers.js":
-/*!**********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/explorers/explorers.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/explorers/explorers.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js":
-/*!************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/index.js":
+/***/ "./modules/react/LoginFormModal/LoginFormModal.js":
 /*!********************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/index.js ***!
+  !*** ./modules/react/LoginFormModal/LoginFormModal.js ***!
   \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = {\n  'SPARKERS': __webpack_require__(/*! ./sparkers/sparkers */ \"./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js\"),\n  'PHOTO-FACTORY': __webpack_require__(/*! ./photo-factory/photo-factory */ \"./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js\"),\n  'PHOTO-CELLS': __webpack_require__(/*! ./photo-cells/photo-cells */ \"./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js\"),\n  'PHOTO-SENSIBLE BUDS': __webpack_require__(/*! ./photo-sensibleBuds/photo-sensibleBuds */ \"./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js\"),\n  'SEV FLUIDIFIER': __webpack_require__(/*! ./sevFluidifier/sevFluidifier */ \"./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js\"),\n  'NOVS': __webpack_require__(/*! ./novs/novs */ \"./modules/react/UserHome/DomsList/_data/novs/novs.js\"),\n  'EXPLORERS': __webpack_require__(/*! ./explorers/explorers */ \"./modules/react/UserHome/DomsList/_data/explorers/explorers.js\"),\n  'HARVESTERS': __webpack_require__(/*! ./harvesters/harvesters */ \"./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js\"),\n  'VAPORIZERS': __webpack_require__(/*! ./vaporizers/vaporizers */ \"./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js\"),\n  'MIKORIS': __webpack_require__(/*! ./mikoris/mikoris */ \"./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js\"),\n  'LOOKOUT': __webpack_require__(/*! ./lookout/lookout */ \"./modules/react/UserHome/DomsList/_data/lookout/lookout.js\"),\n  'DATA-SLICE SPEAR': __webpack_require__(/*! ./data-sliceSpear/data-sliceSpear */ \"./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js\"),\n  'STATIC LOADER': __webpack_require__(/*! ./staticLoader/staticLoader */ \"./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js\"),\n  'DATA INDEX': __webpack_require__(/*! ./dataIndex/dataIndex */ \"./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js\")\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/index.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/lookout/lookout.js":
-/*!******************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/lookout/lookout.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/lookout/lookout.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js":
-/*!******************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/novs/novs.js":
-/*!************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/novs/novs.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/novs/novs.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js":
-/*!**************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js":
-/*!******************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js":
-/*!****************************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js":
-/*!******************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js":
-/*!********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js":
-/*!****************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js":
-/*!************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/UserHome.js":
-/*!********************************************!*\
-  !*** ./modules/react/UserHome/UserHome.js ***!
-  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DomsList_DomsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DomsList/DomsList */ \"./modules/react/UserHome/DomsList/DomsList.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  user,\n  lang\n}) => {\n  const {\n    pseudo,\n    home\n  } = user;\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"row\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h2\", {\n    className: \"col-12 my-4\"\n  }, \"Salut \", pseudo, \" !\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DomsList_DomsList__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    doms: home.doms,\n    lang: lang\n  }));\n});\n\n//# sourceURL=webpack:///./modules/react/UserHome/UserHome.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.cjs.js\");\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ \"./node_modules/firebase/auth/dist/index.esm.js\");\n/* harmony import */ var _ContentForm_ContentForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ContentForm/ContentForm */ \"./modules/react/LoginFormModal/ContentForm/ContentForm.js\");\n/* harmony import */ var _FooterMenu_FooterMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FooterMenu/FooterMenu */ \"./modules/react/LoginFormModal/FooterMenu/FooterMenu.js\");\n\n\n\n\n\n\nconst modeToTranslationKey = mode => {\n  switch (mode) {\n    case 'sign-in':\n      return 'signIn';\n\n    case 'sign-up':\n      return 'signUp';\n\n    case 'reset':\n      return 'resetPassword';\n  }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (class extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  constructor() {\n    super();\n    this.state = {\n      mode: 'sign-in',\n      form: {\n        email: '',\n        pseudo: '',\n        password: ''\n      },\n      info: null\n    };\n  }\n\n  handleFormChange(key, value) {\n    const {\n      form\n    } = this.state;\n    this.setState({\n      form: Object.assign({}, form, {\n        [key]: value\n      }),\n      info: null\n    });\n  }\n\n  switchMode(mode) {\n    this.setState({\n      mode,\n      info: null\n    });\n  }\n\n  signIn() {\n    const {\n      email,\n      password\n    } = this.state.form;\n\n    if (!email || !password) {\n      this.setState({\n        info: 'Missing field'\n      });\n    } else {\n      firebase_app__WEBPACK_IMPORTED_MODULE_1___default.a.auth().signInWithEmailAndPassword(email, password).then(() => this.setState({\n        info: 'Logged in'\n      })).catch(err => this.setState({\n        info: err.message\n      }));\n    }\n  }\n\n  signUp() {\n    const {\n      email,\n      pseudo,\n      password\n    } = this.state.form;\n\n    if (!email || !pseudo || !password) {\n      this.setState({\n        info: 'Missing field'\n      });\n    } else {\n      fetch('/api/user/temp', {\n        method: 'PUT',\n        body: JSON.stringify({\n          email,\n          pseudo\n        })\n      }).then(() => {\n        firebase_app__WEBPACK_IMPORTED_MODULE_1___default.a.auth().createUserWithEmailAndPassword(email, password).then(() => this.setState({\n          info: 'User created'\n        })).catch(err => this.setState({\n          info: err.message\n        }));\n      }).catch(err => this.setState({\n        info: err.message\n      }));\n    }\n  }\n\n  resetPassword() {\n    const {\n      email\n    } = this.state.form;\n\n    if (!email) {\n      this.setState({\n        info: 'Missing field'\n      });\n    } else {\n      firebase_app__WEBPACK_IMPORTED_MODULE_1___default.a.auth().sendPasswordResetEmail(email).then(() => this.setState({\n        info: 'The password recovery mail has been sent'\n      })).catch(err => this.setState({\n        info: err.message\n      }));\n    }\n  }\n\n  render() {\n    const {\n      translations\n    } = this.props;\n    const {\n      mode,\n      form,\n      info\n    } = this.state;\n    const options = {\n      signIn: this.signIn.bind(this),\n      signUp: this.signUp.bind(this),\n      resetPassword: this.resetPassword.bind(this)\n    };\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      id: \"login-form\",\n      className: \"modal-dialog\",\n      role: \"document\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"modal-content\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"modal-header bg-warning alert-warning\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h5\", {\n      className: \"modal-title text-uppercase\"\n    }, \"\\uD83D\\uDC1B\", translations.title, \" \\uD83E\\uDDD8\\u200D\\uD83E\\uDD93\\uD83C\\uDF3B\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      type: \"button\",\n      className: \"close\",\n      \"data-dismiss\": \"modal\",\n      \"aria-label\": \"Close\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      \"aria-hidden\": \"true\"\n    }, \"\\xD7\"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"modal-body container p-4\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      className: \"h6 w-100 text-center m-4\"\n    }, translations[modeToTranslationKey(mode)], \" :\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ContentForm_ContentForm__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n      mode: mode,\n      form: form,\n      changeValue: this.handleFormChange.bind(this),\n      options: options,\n      translations: translations\n    }), info && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row alert alert-warning mx-4 mt-4\"\n    }, info)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"modal-footer container px-4 py-3\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FooterMenu_FooterMenu__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n      mode: mode,\n      form: form,\n      switchMode: this.switchMode.bind(this),\n      options: options,\n      translations: translations\n    }))));\n  }\n\n});\n\n//# sourceURL=webpack:///./modules/react/LoginFormModal/LoginFormModal.js?");
+
+/***/ }),
+
+/***/ "./modules/react/PlantSearch/BaseInput/BaseInput.js":
+/*!**********************************************************!*\
+  !*** ./modules/react/PlantSearch/BaseInput/BaseInput.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  value,\n  improvement,\n  highlight,\n  handleValueChange,\n  handleEnterPress,\n  handleImprovementButtonClick,\n  changeImprovement,\n  searchPlant,\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"alert alert-warning pb-0\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"col-12 px-4 pt-2\"\n}, translations.label, \" :\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"input-group mb-3 col-12\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n  type: \"text\",\n  placeholder: translations.placeholder,\n  className: \"form-control h-auto\",\n  value: value,\n  onChange: e => handleValueChange(e.target.value),\n  onKeyPress: e => {\n    switch (e.charCode) {\n      case 13:\n        !(highlight === 'search' && value.length < 3) && handleEnterPress();\n        break;\n\n      case 49:\n        improvement !== 'ids' && changeImprovement('ids');\n        e.preventDefault();\n        break;\n\n      case 50:\n        improvement !== 'names' && changeImprovement('names');\n        e.preventDefault();\n        break;\n\n      case 51:\n        improvement !== null && changeImprovement(null);\n        e.preventDefault();\n        break;\n    }\n  },\n  autoFocus: true\n}), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"input-group-append\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  className: `btn ${highlight === 'improvement' ? 'btn-warning' : 'btn-info'} py-2`,\n  title: `${translations.improvements} !`,\n  onClick: () => handleImprovementButtonClick()\n}, \"\\uD83C\\uDF1F\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  className: `btn ${highlight === 'search' ? 'btn-warning' : 'btn-info'} py-2`,\n  title: translations.search,\n  onClick: () => searchPlant(),\n  disabled: value.length < 3\n}, \"\\u2714\\uFE0F\"))))));\n\n//# sourceURL=webpack:///./modules/react/PlantSearch/BaseInput/BaseInput.js?");
+
+/***/ }),
+
+/***/ "./modules/react/PlantSearch/DisplayMultipleResults/DisplayMultipleResults.js":
+/*!************************************************************************************!*\
+  !*** ./modules/react/PlantSearch/DisplayMultipleResults/DisplayMultipleResults.js ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  plants,\n  step,\n  nameFormatter,\n  selectPlant,\n  digDeeper,\n  dismiss,\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"alert alert-success px-3 pb-3\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"col-12 px-4 pt-2\"\n}, translations.title, \" :\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 input-group px-1 d-flex\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"select\", {\n  className: \"custom-select flex-grow-1 h-auto\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", null, plants.length, \" \", translations.results), plants.map(plant => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n  key: plant._id,\n  onClick: () => selectPlant(plant._id)\n}, nameFormatter(plant)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"input-group-append\"\n}, step === 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-info py-2\",\n  title: translations.digDeeper,\n  onClick: () => digDeeper()\n}, \"\\u27B0\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-danger py-2\",\n  title: translations.dismiss,\n  onClick: () => dismiss()\n}, \"\\uFE0F\\u2716\\uFE0F\")))));\n\n//# sourceURL=webpack:///./modules/react/PlantSearch/DisplayMultipleResults/DisplayMultipleResults.js?");
+
+/***/ }),
+
+/***/ "./modules/react/PlantSearch/DisplaySingleResult/DisplaySingleResult.js":
+/*!******************************************************************************!*\
+  !*** ./modules/react/PlantSearch/DisplaySingleResult/DisplaySingleResult.js ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  plant,\n  step,\n  nameFormatter,\n  selectPlant,\n  digDeeper,\n  dismiss,\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"alert alert-success px-3 pb-3\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"col-12 px-4 pt-2\"\n}, translations.title, \" :\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 btn-group px-1 d-flex\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-warning flex-grow-1 py-2\",\n  onClick: () => selectPlant(plant._id)\n}, nameFormatter(plant)), step === 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-info py-2\",\n  title: translations.digDeeper,\n  onClick: () => digDeeper()\n}, \"\\u27B0\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: \"btn btn-danger py-2\",\n  title: translations.dismiss,\n  onClick: () => dismiss()\n}, \"\\uFE0F\\u2716\\uFE0F\"))));\n\n//# sourceURL=webpack:///./modules/react/PlantSearch/DisplaySingleResult/DisplaySingleResult.js?");
+
+/***/ }),
+
+/***/ "./modules/react/PlantSearch/ImprovementMenu/ImprovementMenu.js":
+/*!**********************************************************************!*\
+  !*** ./modules/react/PlantSearch/ImprovementMenu/ImprovementMenu.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  improvement,\n  changeImprovement,\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"alert alert-info\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"col-12\"\n}, translations.title, \" :\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 btn-group-vertical\",\n  role: \"group\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: `btn col-12 ${improvement === 'ids' ? 'btn-light' : 'btn-success'} py-2`,\n  onClick: () => changeImprovement('ids')\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n  className: \"float-left badge badge-light mt-1\"\n}, \"1\"), translations.ids, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n  className: \"float-right\"\n}, \"\\u2B50\\uFE0F\\u2728\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: `btn col-12 ${improvement === 'names' ? 'btn-light' : 'btn-info'} py-2`,\n  onClick: () => changeImprovement('names')\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n  className: \"float-left badge badge-light mt-1\"\n}, \"2\"), translations.names, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n  className: \"float-right\"\n}, \"\\u2B50\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n  type: \"button\",\n  className: `btn col-12 ${improvement === null ? 'btn-light' : 'btn-secondary'} py-2`,\n  onClick: () => changeImprovement(null)\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n  className: \"float-left badge badge-light mt-1\"\n}, \"3\"), translations.all)))));\n\n//# sourceURL=webpack:///./modules/react/PlantSearch/ImprovementMenu/ImprovementMenu.js?");
+
+/***/ }),
+
+/***/ "./modules/react/PlantSearch/PlantSearch.js":
+/*!**************************************************!*\
+  !*** ./modules/react/PlantSearch/PlantSearch.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _BaseInput_BaseInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseInput/BaseInput */ \"./modules/react/PlantSearch/BaseInput/BaseInput.js\");\n/* harmony import */ var _ImprovementMenu_ImprovementMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ImprovementMenu/ImprovementMenu */ \"./modules/react/PlantSearch/ImprovementMenu/ImprovementMenu.js\");\n/* harmony import */ var _DisplaySingleResult_DisplaySingleResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DisplaySingleResult/DisplaySingleResult */ \"./modules/react/PlantSearch/DisplaySingleResult/DisplaySingleResult.js\");\n/* harmony import */ var _DisplayMultipleResults_DisplayMultipleResults__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DisplayMultipleResults/DisplayMultipleResults */ \"./modules/react/PlantSearch/DisplayMultipleResults/DisplayMultipleResults.js\");\n\n\n\n\n\n\nconst urlBuilder = (improvement, step) => {\n  if (improvement === 'ids') {\n    return '/ids';\n  } else if (improvement === 'names' || step === 2) {\n    return '/names';\n  } else {\n    return '';\n  }\n};\n\nconst nameFormatterFactory = (improvement, step) => (plant, option) => {\n  if (improvement === 'names' || step === 2) {\n    if (!option) {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, plant.names[0], react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"br\", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"i\", null, plant._id));\n    } else {\n      return `${plant.names[0]}, ${plant._id}`;\n    }\n  } else {\n    return plant._id;\n  }\n};\n\nconst selectPlant = plant => document.location.href = `/${window.__PROPS__.lang}/plant/${plant}`;\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (class extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  constructor(props) {\n    super(props);\n    const html = document.getElementsByTagName('html')[0];\n    const lang = html.lang;\n    this.state = {\n      lang,\n      value: '',\n      improvementMenuOpen: false,\n      improvement: null,\n      loading: false,\n      error: null,\n      result: null\n    };\n  }\n\n  handleValueChange(value) {\n    this.setState({\n      value,\n      error: null\n    });\n  }\n\n  handleEnterPress() {\n    const {\n      improvementMenuOpen\n    } = this.state;\n\n    if (!improvementMenuOpen) {\n      this.setState({\n        improvementMenuOpen: true\n      });\n    } else {\n      this.searchPlant();\n    }\n  }\n\n  handleImprovementButtonClick() {\n    const {\n      improvementMenuOpen\n    } = this.state;\n    this.setState({\n      improvementMenuOpen: !improvementMenuOpen\n    });\n  }\n\n  handleImprovementChange(improvement) {\n    this.setState({\n      improvement\n    });\n  }\n\n  searchPlant(secondStep) {\n    const {\n      lang,\n      improvement,\n      value\n    } = this.state;\n\n    if (value.length >= 3) {\n      this.setState({\n        improvementMenuOpen: false,\n        loading: true,\n        error: null,\n        result: null\n      });\n      fetch(`/api/plants/search${urlBuilder(improvement, !secondStep ? 1 : 2)}?key=${value}&lang=${lang}&improvement=${improvement}`, {\n        method: 'GET'\n      }).then(result => result.json()).then(result => this.setState({\n        loading: false,\n        result\n      })).catch(err => {\n        this.setState({\n          loading: false,\n          error: err.message,\n          result: null\n        });\n      });\n    }\n  }\n\n  handleDigDeeper() {\n    this.searchPlant(true);\n  }\n\n  handleErrorDismiss() {\n    this.setState({\n      error: null\n    });\n  }\n\n  handleResultsDismiss() {\n    this.setState({\n      result: null\n    });\n  }\n\n  render() {\n    const {\n      translations = {}\n    } = this.props;\n    const {\n      value,\n      loading,\n      improvementMenuOpen,\n      improvement,\n      result,\n      error\n    } = this.state;\n    const nameFormatter = result && nameFormatterFactory(improvement, result.step);\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"plant-search container px-0\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseInput_BaseInput__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n      value: value,\n      improvement: improvement,\n      highlight: improvementMenuOpen ? 'search' : 'improvement',\n      handleValueChange: this.handleValueChange.bind(this),\n      handleEnterPress: this.handleEnterPress.bind(this),\n      handleImprovementButtonClick: this.handleImprovementButtonClick.bind(this),\n      changeImprovement: this.handleImprovementChange.bind(this),\n      searchPlant: this.searchPlant.bind(this),\n      translations: translations.baseInput\n    }), improvementMenuOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImprovementMenu_ImprovementMenu__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n      improvement: improvement,\n      changeImprovement: this.handleImprovementChange.bind(this),\n      translations: translations.improvements\n    }), loading && !error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"alert alert-info\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      className: \"col-12 mb-0\"\n    }, translations.loading))), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"alert alert-warning\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      className: \"col-12 mb-0\"\n    }, error, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      type: \"button\",\n      className: \"close\",\n      \"aria-label\": \"Close\",\n      onClick: () => this.handleErrorDismiss()\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      \"aria-hidden\": \"true\"\n    }, \"\\xD7\"))))), result && result.plants && result.plants.length === 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"alert alert-secondary\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"row\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      className: \"col-12 mb-0\"\n    }, translations.notFound, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      type: \"button\",\n      className: \"close\",\n      \"aria-label\": \"Close\",\n      onClick: () => this.handleResultsDismiss()\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      \"aria-hidden\": \"true\"\n    }, \"\\xD7\"))))), result && result.plants && result.plants.length === 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DisplaySingleResult_DisplaySingleResult__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n      plant: result.plants[0],\n      step: result.step,\n      nameFormatter: nameFormatter,\n      selectPlant: selectPlant,\n      digDeeper: this.handleDigDeeper.bind(this),\n      dismiss: this.handleResultsDismiss.bind(this),\n      translations: Object.assign({}, translations.singleResult, translations.commonResults)\n    }), result && result.plants && result.plants.length > 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DisplayMultipleResults_DisplayMultipleResults__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n      plants: result.plants,\n      step: result.step,\n      nameFormatter: nameFormatter,\n      selectPlant: selectPlant,\n      digDeeper: this.handleDigDeeper.bind(this),\n      dismiss: this.handleResultsDismiss.bind(this),\n      translations: Object.assign({}, translations.multipleResults, translations.commonResults)\n    }));\n  }\n\n});\n\n//# sourceURL=webpack:///./modules/react/PlantSearch/PlantSearch.js?");
 
 /***/ }),
 
