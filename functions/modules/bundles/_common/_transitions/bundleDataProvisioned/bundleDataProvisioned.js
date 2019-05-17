@@ -14,5 +14,8 @@ export default () => {
 
   if (!window.__STATE__.user) {
     $('#launch-info').addClass('d-none')
+  } else if (!window.__STATE__.user.data) {
+    $('#launch-info__status')
+      .html(window.__loadingTexts__['user data fetch'])
   }
 }

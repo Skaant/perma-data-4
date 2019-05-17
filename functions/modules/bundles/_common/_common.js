@@ -40,18 +40,18 @@ export default specifics => {
   // user authentication listener
   firebase.auth().onIdTokenChanged(user => {
     if (user) {
+      transitions['user authenticated']()
       window.__STATE__.user = user
       transitions['user data fetch']
       userDataProvisioning(window.__STATE__.user, window.__PROPS__.lang)
         .then(data => {
           window.__STATE__.user.data = data
           if (window.__STATE__.bundle) {
-            transitions['app auth']()
+            transitions['auth app']()
           }
         })
         .catch(err => transitions['user data error'](err))
       if (window.__STATE__.bundle) {
-        transitions['user authenticated']()
       }
     } else {
       window.__STATE__.user = false

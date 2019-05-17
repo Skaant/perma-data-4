@@ -32,8 +32,6 @@ next steps are :
 * *bundle data error*
 
 #### bundle data provisioned
-unique, instantly get to the *unauth app*
-
 [page bundle] data has been sucessfully fetched, and base modules can be rendered
 
 next step is :
@@ -62,8 +60,14 @@ next step is :
 app started fetching user-related data (like dialogs, doms ...)
 
 next steps are :
-* *auth app*
+* *user data provisioned*
 * *user data error*
+
+#### user data provisioned
+user data has been succesfully fetched, and user's module can be rendered
+
+next step is :
+* *auth app*
 
 #### auth app
 user data has been received, and, **if bundle data has also been received**, user-related modules can be rendered
