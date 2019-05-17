@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import UserHome from '../../../../react/UserHome/UserHome'
 
-export default (user, lang) => {
-  render(<UserHome user={ user } lang={ lang }/>, document.getElementById('anchor-user-home'))
+export default () => {
+  render(<UserHome user={ window.__STATE__.user }
+      lang={ window.__PROPS__.lang }/>, document.getElementById('anchor-user-home'))
 }

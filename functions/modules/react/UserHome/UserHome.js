@@ -1,8 +1,13 @@
 import React from 'react'
 import DomsList from './DomsList/DomsList'
 
-export default ({ user, lang }) => {
-  const { pseudo, home } = user
+export default ({
+  user: {
+    data: {
+      pseudo,
+      home
+    }
+  }, lang }) => {
   return (
     <React.Fragment>
       <div className='row'>

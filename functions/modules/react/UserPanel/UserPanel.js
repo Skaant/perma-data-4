@@ -19,7 +19,9 @@ export default class extends React.Component {
     const {
       user : {
         email,
-        pseudo }} = this.props
+        data: {
+          pseudo
+        }}} = this.props
     return (
       <div>
         <b className='mb-0'>
