@@ -3,60 +3,87 @@
 #### starting the project
 1. cd functions
 2. firebase serve
-## client bundle _commons
+## client bundle _common
 > functions/modules/bundles/_common/_common.js
 
 executes the **basic steps** (as shown below) for the [page bundle app] launch
 
-### app states
+### app steps
 app lives on the [page bundle], and cannot be instanciated before bundle reception
 
 #### bundle received
 the [page bundle] has been received, and app started to execute
-next states are :
+next steps are :
 * *bundle data fetch*
 * put a listener for : *user authenticated*
 
+#### bundle init error
+app is broken
+
+possible cause :
+* firebase initialization
+* error in _transitions.bundleReceived
+
 #### bundle data fetch
 app started fetching the [page bundle] data (like translations, base modules inputs ..)
-next states are :
-* *unauth app* (bundle data fetch success)
+
+next steps are :
+* *bundle data provisioned* + *unauth app* (bundle data fetch success)
 * *bundle data error*
 
-#### unauth app
+#### bundle data provisioned
+unique, instantly get to the *unauth app*
+
 [page bundle] data has been sucessfully fetched, and base modules can be rendered
-app is also listening for *user authenticated*, and its changes can now be rendered too
+
+next step is :
+* *unauth app*
+
+#### unauth app
+app is listening for *user authenticated*, and its changes can now be rendered too
+
 ( *[page bundle] data is required in order to render user-related modules* )
-next state is :
+
+next step is :
 * *user authenticated*
 
 #### bundle data error
 fetching encountered an error, and app is broken
+
 dynamics components should be dismissed, static content could remain
 
 #### user authenticated
 authentication provider received a non-null user
-next state is :
+
+next step is :
 * *user data fetch*
 
 #### user data fetch
-app started fetching user-related data (like dialogs, doms ..)
-next states are :
+app started fetching user-related data (like dialogs, doms ...)
+
+next steps are :
 * *auth app*
 * *user data error*
 
 #### auth app
 user data has been received, and, **if bundle data has also been received**, user-related modules can be rendered
+
 user can disconnect
+
 ( *[page bundle] data is required in order to render user-related modules* )
-next state is :
+
+next step is :
 * *unauth app*
 
 #### user data error
 fetching encountered an error, but app is still running
-user-related component should be dismissed, base o
+
+user-related component should be dismissed, base components and static content could remain
+
 user can disonnect
-*this state allows error display and diagnosis*
+
+*this step allows error display and diagnosis*
+
 next step is :
 * *unauth app*
 

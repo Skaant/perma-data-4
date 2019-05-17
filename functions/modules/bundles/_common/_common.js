@@ -2,42 +2,66 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import firebaseConfig from '../../../firebase.config'
 import commons from './_transitions'
-import P_MPC from '../../../patterns/P_MPC/P_MPC'
-    
-const html = document.getElementsByTagName('html')[0]
-const lang = html.lang
-const id = html.id
-
-const userChange = (user, specifics, translations) => {
-  if (user) {
-    commons.signIn(user, specifics && specifics.signIn, translations, lang)
-  } else {
-    commons.signOut(specifics && specifics.signOut)
-  }
-}
+import initWindowProps from './initWindowProps/initWindowProps'
+import initWindowState from './initWindowState/initWindowState'
+import mergeTransitions from './mergeTransitions/mergeTransitions'
+import bundleProvisioning from './bundleProvisioning/bundleProvisioning'
+import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 
 const selectPlant = plant =>
   document.location.href =
-    `/${ lang }/plant/${ plant}`
+    `/${ window.__PROPS__.lang }/plant/${ plant}`
 
 // common module intialization
-
 export default specifics => {
-  firebase.initializeApp(firebaseConfig)
+  initWindowProps()
+  initWindowState()
+  const transitions = mergeTransitions(commons, specifics)
+  try {
+    firebase.initializeApp(firebaseConfig)
+    transitions['bundle received']()
+  } catch (err) {
+    transitions['bundle init error'](err)
+  }
 
-  new Promise((resolve, reject) => {
-    commons.bundleStart(specifics && specifics.bundleStart)
+  transitions['bundle data fetch']()
+  bundleProvisioning(window.__PROPS__.id, window.__PROPS__.lang)
+    .then(bundle => {
+      window.__STATE__.bundle = bundle
+      transitions['bundle data provisioned']()
+      if (window.__STATE__.user) {
+        if (window.__STATE__.user.data) {
+          transitions['auth app']()
+        }
+      } else {
+        transitions['unauth app']()
+      }
+    })
+    .catch(err => {
+      transitions['unauth app'](err)
+    })
 
-    P_MPC(id, lang)
-      .then(({ translations }) => {
-        commons.bundleProvisioned(specifics && specifics.start, id,
-          selectPlant, userChange, translations)
-
-        firebase.auth().onIdTokenChanged(user =>
-          userChange(user, specifics, translations))
-
-        resolve()
-      })
-      .catch(err => reject(err))
+  // user authentication listener
+  firebase.auth().onIdTokenChanged(user => {
+    if (user) {
+      window.__STATE__.user = user
+      transitions['user data fetch']
+      userDataProvisioning(window.__STATE__.user)
+        .then(data => {
+          window.__STATE__.user.data = data
+          if (window.__STATE__.bundle) {
+            transitions['app auth']()
+          }
+        })
+        .catch(err => transitions['user data error'](err))
+      if (window.__STATE__.bundle) {
+        transitions['user authenticated']()
+      }
+    } else {
+      window.__STATE__.user = false
+      if (window.__STATE__.bundle) {
+        transitions['unauth app']
+      }
+    }
   })
 }
