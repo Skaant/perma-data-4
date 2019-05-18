@@ -14,7 +14,7 @@ app lives on the [page bundle], and cannot be instanciated before bundle recepti
 #### "initial"
 [page bundle] hasn't be received
 
-this state is for SSR only, as the application still doesn't exist
+**this state is for SSR only : it cannot be accessed by the application**
 
 #### next step
 * *bundle received*
