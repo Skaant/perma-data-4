@@ -3,6 +3,13 @@ module.exports = (id, lang, queryProps) =>
     fetch(`/api/modules/provision?id=${ id }&lang=${ lang }&${ queryProps }`, {
       method: 'GET'
     })
-    .then(result => result.json())
+    .then(result => {
+      if (result.ok) {
+        return result.json()
+      } else {
+        throw result.json()
+      }
+    })
     .then(props => resolve(props))
-    .catch(err => reject(err)))
+    .catch(errPromise =>
+      errPromise.then(err => reject(err))))

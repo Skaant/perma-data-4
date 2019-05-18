@@ -1,10 +1,10 @@
 const aggregateCommons = (specifics = []) =>
-  ['plantSearch', 'userPanel', 'loginForm'].concat(specifics)
+  ['plantSearch', 'userPanel', 'loginForm', 'dialog'].concat(specifics)
 
 module.exports = id => {
   switch (id) {
     case 'home':
-      return aggregateCommons(['dialog'])
+      return aggregateCommons(['userHome'])
     default:
       return aggregateCommons()
   }

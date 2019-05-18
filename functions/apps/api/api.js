@@ -5,7 +5,7 @@ const root = require('./root/root')
 const app = express()
 
 const targetRouter = express.Router()
-targetRouter.use(P_RCL(root))
+targetRouter.use(P_RCL(root, true))
 app.use('/api', targetRouter)
 
 module.exports = app

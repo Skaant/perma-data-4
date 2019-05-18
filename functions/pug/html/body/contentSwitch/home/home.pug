@@ -1,38 +1,35 @@
-.container.mt-md-4.auth-none
+#unauth-home.container.mt-md-4
   .row
     .jumbotron.col-12.bg-white.mb-0.mb-sm-4.p-4
       h1.display-1.text-uppercase.ml-3(
         style='word-break: break-all;'
       ) permadata
-        span.float-left(
-          title= translation.pageWelcome.title1
-        )= '🍀'
       p.lead.ml-4= translation.subtitle || 'The knowledge growers community'
       hr
       .container.mt-4
         .row
-          .col-12.col-md-6.container.p-4.mb-2
+          .col-12.col-md-6.container.alert.p-4.mb-2
             .row.mb-4.px-4
               blockquote.blockquote.col-12.text-center
                 p= translation.searchIntro || 'Access tremendous amount of well-ordered data about plants ..'
             .row
               .anchor-plant-search.col-12.col-lg-10.offset-lg-1.px-0
-                .alert.alert-secondary
-                  p.mb-0.loading-bundle= translation.loading.files
+                .alert
+                  p.small.text-center.text-uppercase.mb-0.loading-bundle= translation.loading.label
           .col-12.col-md-6.container.alert.alert-info.p-4(
             style='height: min-content'
           )
             .row.mb-4.px-4
               blockquote.blockquote.col-12.text-center
                 p= translation.authIntro || 'And improve your learning experience by playing the TRIGHBS game'
-            .row.bundle-false
-              .alert.alert-light.col-10.col-md-8.offset-1.offset-md-2.mb-0
-                p.mb-0.loading-bundle= translation.loading.files
-            .row.auth-none.d-none
+            #home-authentication-loading.row
+              .alert.col-10.col-md-8.offset-1.offset-md-2.mb-0
+                p.small.text-center.text-uppercase.mb-0.loading-bundle= translation.loading.label
+            #home-login-button__container.row.d-none
               button#home-login-button.btn.btn-warning.text-uppercase.col-10.col-md-8.offset-1.offset-md-2.py-2(
                 type='button'
               )= `👩🏾‍🌾🥝 ${ translation.authenticate } 👨🏻‍🌾`
-#anchor-user-home.container(style='margin-top: 60px').auth-true.d-none
+#anchor-user-home.container(style='margin-top: 60px').d-none
   .row
     .col-12.alert.alert-light
       p.h4.mx-4.mt-2= translation.connected 
