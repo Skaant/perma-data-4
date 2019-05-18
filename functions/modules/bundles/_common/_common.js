@@ -25,17 +25,25 @@ export default specifics => {
     .then(bundle => {
       try {
         window.__STATE__.bundle = bundle
-        transitions['bundle data provisioned']()
-        if (window.__STATE__.user) {
-          if (window.__STATE__.user.data) {
-            transitions['auth app']()
-          }
-        } else {
-          transitions['unauth app']()
-        }
+        transitions['bundle data provisioned']() 
       } catch (err) {
         transitions['bundle error'](err)
       }
+        if (window.__STATE__.user) {
+          try {
+            if (window.__STATE__.user.data) {
+              transitions['auth app']()
+            }
+          } catch (err) {
+            transitions['user authenticated error'](err)
+          }
+        } else {
+          try {
+            transitions['unauth app']() 
+          } catch (err) {
+            transitions['bundle error'](err)
+          }
+        }
     })
     .catch(err =>
       transitions['bundle data error'](err))
