@@ -4,7 +4,7 @@ const aggregateCommons = (specifics = []) =>
 module.exports = id => {
   switch (id) {
     case 'home':
-      return aggregateCommons(['dialog'])
+      return aggregateCommons(['dialog', 'userHome'])
     default:
       return aggregateCommons()
   }
