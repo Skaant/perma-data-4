@@ -14,79 +14,108 @@ app lives on the [page bundle], and cannot be instanciated before bundle recepti
 #### bundle received
 the [page bundle] has been received, and app started to execute
 next steps are :
+* *bundle error*
 * *bundle data fetch*
-* put a listener for : *user authenticated*
+* **put a listener for :** *user authenticated*
 
-#### bundle init error
-app is broken
+#### bundle error
+base bundle execution encountered an error
+
+**it brokes the app** (dynamics components could be dismissed, but static content should remain)
 
 possible cause :
 * firebase initialization
 * error in _transitions.bundleReceived
+* error in _transitions.bundleDataFetch
+* error in _transitions.unauthApp
 
 #### bundle data fetch
 app started fetching the [page bundle] data (like translations, base modules inputs ..)
 
 next steps are :
-* *bundle data provisioned* + *unauth app* (bundle data fetch success)
-* *bundle data error*
+* *bundle error* (client-side error)
+* *bundle data error* (server-side error)
+* *bundle data provisioned* + *unauth app*
+
+#### bundle data error
+fetching encountered an error
+
+**it brokes the app** (dynamics components could be dismissed, but static content should remain)
 
 #### bundle data provisioned
 [page bundle] data has been sucessfully fetched, and base modules can be rendered
 
 next step is :
+* *bundle error*
 * *unauth app*
+* *auth app* (**only if :** user has authenticated and its data has already been fetched)
 
 #### unauth app
 app is listening for *user authenticated*, and its changes can now be rendered too
 
-( *[page bundle] data is required in order to render user-related modules* )
+**user can connect**
 
 next step is :
-* *user authenticated*
-
-#### bundle data error
-fetching encountered an error, and app is broken
-
-dynamics components should be dismissed, static content could remain
+* *bundle error*
+* *user authenticated* (**manual**)
 
 #### user authenticated
 authentication provider received a non-null user
 
 next step is :
+* *user authenticated error*
 * *user data fetch*
+
+#### user authenticated error
+user modules execution encountered an error
+
+* **app keeps runing**, but user features are broken
+* **user can disonnect**
+
+*user-related component could be dismissed, but base components and static content should remain*
+
+possible causes :
+* error in _transitions.userAuthenticated
+* error in _transitions.userDataFetch (client-side)
+* error in _transitions.userDataProvisioned
+* error in _transitions.authApp
+
+next step is :
+* *unauth app* (**manual**)
 
 #### user data fetch
 app started fetching user-related data (like dialogs, doms ...)
 
 next steps are :
+* *user authenticated error* (client-side error)
+* *user data error* (server-side error)
 * *user data provisioned*
-* *user data error*
 
 #### user data provisioned
-user data has been succesfully fetched, and user's module can be rendered
+user data has been succesfully fetched, but **components aren't rendered here, as we need to check both { bundle } and { user } data availabilities before**
 
 next step is :
-* *auth app*
+* *user authenticated error*
+* *auth app* (**only if :** bundle data has already been fetched, else, wait for its resolution)
 
 #### auth app
-user data has been received, and, **if bundle data has also been received**, user-related modules can be rendered
+user data has been received, and user's module can be rendered
 
-user can disconnect
+( **auth app is accessed only if both { bundle } and { user } data has been successfully fetched** )
 
-( *[page bundle] data is required in order to render user-related modules* )
+**user can disconnect**
 
 next step is :
-* *unauth app*
+* *user authenticated error*
+* *unauth app* (**manual**)
 
 #### user data error
-fetching encountered an error, but app is still running
+fetching encountered an error
 
-user-related component should be dismissed, base components and static content could remain
+* **app keeps runing**, but user features are broken
+* **user can disonnect**
 
-user can disonnect
-
-*this step allows error display and diagnosis*
+*user-related component could be dismissed, but base components and static content should remain*
 
 next step is :
 * *unauth app*
