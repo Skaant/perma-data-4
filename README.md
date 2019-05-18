@@ -11,112 +11,115 @@ executes the **basic steps** (as shown below) for the [page bundle app] launch
 ### app steps
 app lives on the [page bundle], and cannot be instanciated before bundle reception
 
-#### bundle received
+#### "bundle received"
 the [page bundle] has been received, and app started to execute
-next steps are :
+
+##### next steps
 * *bundle error*
 * *bundle data fetch*
-* **put a listener for :** *user authenticated*
+* put a **listener on user authentication :** *user authenticated*
 
-#### bundle error
+#### "bundle error"
 base bundle execution encountered an error
 
-**it brokes the app** (dynamics components could be dismissed, but static content should remain)
+##### features
+* **it brokes the app** (think about dismissig dynamic components)
 
-possible cause :
+##### possible causes
 * firebase initialization
 * error in _transitions.bundleReceived
 * error in _transitions.bundleDataFetch
 * error in _transitions.unauthApp
 
-#### bundle data fetch
+#### "bundle data fetch"
 app started fetching the [page bundle] data (like translations, base modules inputs ..)
 
-next steps are :
+##### next steps
 * *bundle error* (client-side error)
 * *bundle data error* (server-side error)
 * *bundle data provisioned* + *unauth app*
 
-#### bundle data error
+#### "bundle data error"
 fetching encountered an error
 
-**it brokes the app** (dynamics components could be dismissed, but static content should remain)
+##### features
+* **it brokes the app** (think about dismissig dynamic components)
 
-#### bundle data provisioned
+#### "bundle data provisioned"
 [page bundle] data has been sucessfully fetched, and base modules can be rendered
 
-next step is :
+##### next steps
 * *bundle error*
 * *unauth app*
 * *auth app* (**only if :** user has authenticated and its data has already been fetched)
 
-#### unauth app
+#### "unauth app"
 app is listening for *user authenticated*, and its changes can now be rendered too
 
-**user can connect**
+##### features
+* **user can connect**
 
-next step is :
+##### next steps
 * *bundle error*
 * *user authenticated* (**manual**)
 
-#### user authenticated
+#### "user authenticated"
 authentication provider received a non-null user
 
-next step is :
+##### next steps
 * *user authenticated error*
 * *user data fetch*
 
-#### user authenticated error
+#### "user authenticated error"
 user modules execution encountered an error
 
-* **app keeps runing**, but user features are broken
+##### features
+* **app keeps runing**, but user features are broken (think about dismissing them)
 * **user can disonnect**
 
-*user-related component could be dismissed, but base components and static content should remain*
-
-possible causes :
+##### possible causes
 * error in _transitions.userAuthenticated
 * error in _transitions.userDataFetch (client-side)
 * error in _transitions.userDataProvisioned
 * error in _transitions.authApp
 
-next step is :
+##### next step
 * *unauth app* (**manual**)
 
-#### user data fetch
+#### "user data fetch"
 app started fetching user-related data (like dialogs, doms ...)
 
-next steps are :
+##### next steps
 * *user authenticated error* (client-side error)
 * *user data error* (server-side error)
 * *user data provisioned*
 
-#### user data error
+#### "user data error"
 fetching encountered an error
 
-* **app keeps runing**, but user features are broken
+##### features
+* **app keeps runing**, but user features are broken (think about dismissing them)
 * **user can disonnect**
 
-*user-related component could be dismissed, but base components and static content should remain*
-
-next step is :
+#### next step is
 * *unauth app*
 
-#### user data provisioned
+#### "user data provisioned"
 user data has been succesfully fetched, but **components aren't rendered here, as we need to check both { bundle } and { user } data availabilities before**
 
-next step is :
+##### next steps
 * *user authenticated error*
 * *auth app* (**only if :** bundle data has already been fetched, else, wait for its resolution)
 
-#### auth app
+#### "auth app"
+**auth app is accessed only if both { bundle } and { user } data has been successfully fetched** 
+
 user data has been received, and user's module can be rendered
 
-( **auth app is accessed only if both { bundle } and { user } data has been successfully fetched** )
-
+##### features
 **user can disconnect**
 
-next step is :
+##### next steps
 * *user authenticated error*
 * *unauth app* (**manual**)
 
