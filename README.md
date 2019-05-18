@@ -16,7 +16,7 @@ app lives on the [page bundle], and cannot be instanciated before bundle recepti
 
 **this state is for SSR only : it cannot be accessed by the application**
 
-#### next step
+##### next step
 * *bundle received*
 
 #### "bundle received"
