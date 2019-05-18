@@ -91,6 +91,17 @@ next steps are :
 * *user data error* (server-side error)
 * *user data provisioned*
 
+#### user data error
+fetching encountered an error
+
+* **app keeps runing**, but user features are broken
+* **user can disonnect**
+
+*user-related component could be dismissed, but base components and static content should remain*
+
+next step is :
+* *unauth app*
+
 #### user data provisioned
 user data has been succesfully fetched, but **components aren't rendered here, as we need to check both { bundle } and { user } data availabilities before**
 
@@ -109,17 +120,6 @@ next step is :
 * *user authenticated error*
 * *unauth app* (**manual**)
 
-#### user data error
-fetching encountered an error
-
-* **app keeps runing**, but user features are broken
-* **user can disonnect**
-
-*user-related component could be dismissed, but base components and static content should remain*
-
-next step is :
-* *unauth app*
-
 ## object references
 
 ### data types & formats
@@ -135,11 +135,6 @@ next step is :
 * title
 * status (code)
 * message
-
-## (__old) use of patterns
-
-### black-boxed code patterns
-### developer structured behavior patterns (guidelines)
 
 ## functions, server [app]s
 two [app]s are imported in the `functions/index.js` file :

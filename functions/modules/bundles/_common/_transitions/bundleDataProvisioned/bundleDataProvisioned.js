@@ -7,6 +7,9 @@ export default () => {
     .forEach(element => render(<PlantSearch
         translations={ window.__STATE__.bundle.translations.plantSearch }/>,
       element))
+  
+    $('#login-button')
+      .click(() => $('#anchor-login-form').modal('show'))
 
   $('#search-plant-button')
     .click(() => $('#search-plant-modal').modal('toggle'))

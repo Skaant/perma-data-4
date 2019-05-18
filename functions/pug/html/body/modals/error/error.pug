@@ -1,0 +1,15 @@
+#error-modal.modal(role='document')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header.alert-danger
+        h5.modal-title.text-uppercase.text-danger= `${ translation.loading['error label'] } : `
+          span#error-modal__label= translation.noError
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body.container
+        .row
+          h2#error-modal__title.col-12.text-center.mt-4
+        .row
+          p#error-modal__description.mt-4.col-12.col-md-10.offset-md-1.alert.alert-danger
+        .row
+          p.text-center.col-12.small.text-uppercase.mt-3.mb-2.text-secondary= translation.errorMore
