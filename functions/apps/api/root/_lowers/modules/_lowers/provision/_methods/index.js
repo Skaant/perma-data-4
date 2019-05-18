@@ -1,3 +1,3 @@
 const get = require('./get/get')
 
-module.exports = {  }
+module.exports = { get }

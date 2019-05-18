@@ -343,7 +343,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, reject) => {\n  fetch(`/api/user/data?uid=${uid}&email=${email}&lang=${lang}`).then(result => result.json()).then(user => resolve(Object.assign({}, {\n    email\n  }, user))).catch(err => reject(err));\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/userDataProvisioning/userDataProvisioning.js?");
+eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, reject) => {\n  fetch(`/api/user/data?uid=${uid}&email=${email}&lang=${lang}`).then(result => {\n    if (result.ok) {\n      return result.json();\n    } else {\n      throw result.json();\n    }\n  }).then(user => resolve(Object.assign({}, {\n    email\n  }, user))).catch(errPromise => errPromise.then(err => reject(err)));\n});\n\n//# sourceURL=webpack:///./modules/bundles/_common/userDataProvisioning/userDataProvisioning.js?");
 
 /***/ }),
 

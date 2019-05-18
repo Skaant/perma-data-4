@@ -50,7 +50,11 @@ module.exports = (db, user, lang) =>
         .toArray((err, dialogs) => {
           if (err)
             reject(err)
-          resolve(parseDialogs(dialogs, lang))
+          try {
+            resolve(parseDialogs(dialogs, lang))
+          } catch (_err) {
+            reject(_err)
+          }
         })
       )
     Promise.all([domsPromise, dialogsPromise])
