@@ -11,6 +11,14 @@ executes the **basic steps** (as shown below) for the [page bundle app] launch
 ### app steps
 app lives on the [page bundle], and cannot be instanciated before bundle reception
 
+#### "initial"
+[page bundle] hasn't be received
+
+this state is for SSR only, as the application still doesn't exist
+
+#### next step
+* *bundle received*
+
 #### "bundle received"
 the [page bundle] has been received, and app started to execute
 
