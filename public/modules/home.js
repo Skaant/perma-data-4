@@ -296,7 +296,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = (id, lang, queryProps) => new Promise((resolve, reject) => fetch(`/api/modules/provision?id=${id}&lang=${lang}&${queryProps}`, {\n  method: 'GET'\n}).then(result => result.json()).then(props => resolve(props)).catch(err => reject(err)));\n\n//# sourceURL=webpack:///./modules/bundles/_common/bundleProvisioning/bundleProvisioning.js?");
+eval("module.exports = (id, lang, queryProps) => new Promise((resolve, reject) => fetch(`/api/modules/provision?id=${id}&lang=${lang}&${queryProps}`, {\n  method: 'GET'\n}).then(result => {\n  if (result.ok) {\n    return result.json();\n  } else {\n    throw result.json();\n  }\n}).then(props => resolve(props)).catch(errPromise => errPromise.then(err => reject(err))));\n\n//# sourceURL=webpack:///./modules/bundles/_common/bundleProvisioning/bundleProvisioning.js?");
 
 /***/ }),
 

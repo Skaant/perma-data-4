@@ -38,8 +38,7 @@ export default specifics => {
           transitions['bundle error'](err)
         }
       })
-      .catch(err =>
-        transitions['bundle data error'](err))
+      .catch(err => transitions['bundle data error'](err))
 
     // user authentication listener
     firebase.auth().onIdTokenChanged(user => {
