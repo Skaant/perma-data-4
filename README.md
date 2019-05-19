@@ -1,8 +1,17 @@
 # perma-data-4
 
-#### starting the project
+## starting the application
 1. cd functions
 2. firebase serve
+
+## WIP (v4.2)
+
+### obsolete directories
+directories to progressively move and delete
+
+* **patterns**, move to their higher level context folder
+* **apps/provisioners**, move to **apps/aggregations**
+
 ## client bundle _common
 > functions/modules/bundles/_common/_common.js
 
@@ -147,10 +156,10 @@ user data has been received, and user's module can be rendered
 * status (code)
 * message
 
-## functions, server [app]s
-two [app]s are imported in the `functions/index.js` file :
-* api (from `./apps/api`), for client-side queries
-* content (from `./apps/content`), for page server-side rendering
+## server apps
+two apps, taking the shape of a **router node** (see below), are imported in the `functions/index.js` file :
+* **api** (from `./apps/api`), for client-side queries
+* **content** (from `./apps/content`), for page server-side rendering
 
 access to these [app]s is set in the `firebase.json` file such as :
 ```javascript
@@ -168,36 +177,73 @@ access to these [app]s is set in the `firebase.json` file such as :
 ]
 ```
 
-## patterns
+## router factory
+*P_RCL is to move outside of the pattern directory*
 
-### P_RCL (router, current, lowers)
-*project, arborescence, structure, route, router*
+### usage
+`routerFactory = ({ _current, _params, _methods, _lowers = {} }, isApi)`
 
-#### concept
-to process the routing map, three objets are used :
-* router (**node**), contains _currents &/or _lowers props
-* _current (**leaf**), [provisioner] function, implement the default *get* page method data requests
-* _lowers (**branches**), object, associate an atomic *path* with a sub-*router*
+to calculate the route tree, the router factory consumes a **router node** as its main param
 
-```javascript
-const router = { current, lowers }
-const current = handler
-const lowers = { *[path]: router }
-```
 
-#### files structure & content
+`isApi`, is used by the *api [server] app** to enable special routing behaviour (like : light-weighted provisioning; or JSON-formated error, instead of HTML error page)
+
+#### route tree
+the router factory returns a route tree, featuring :
+* static url routes (**_lowers**)
+* dynamic parameters url routes (**_params**) [**only last url component can be handled as a parameter in the current version !**]
+
+the **_params**' keys describe a `/:key` url component, which can then be accessed in the endpoint callback with ``
+
+preferably, all routes should implement at least one endoint
+
+#### endpoint
+endpoints return a specific interface depending either the request is handled by the content app or the api one
+
+##### html page answerer (**_current**)
+exposes an object with the following properties :
+* **id**, used to provides specific page provisioning and rendering behaviours
+* **_provisionner**, return a `props => new Promise((resolve, reject) => {})` interface to handle the request
+
+if no endpoint is provided, an 404 html page will be returned
+
+##### specific method answerer (**_methods**)
+exposes a `req => new Promise((resolve, reject) => {})` interface to handle the request
+
+if no endpoint is provided, a JSON error description will be returned with its status code to 404
+
+### implementation
+
+#### router node
+the **router node** can have some of these properties :
+* a leaf (**_current**),
+* a bunch of leaves (**_methods_**),
+* a bunch of branches (with :
+  * **_lowers**
+  * **_params**)
+
+#### files structure
 following file organization is enforced by the pattern
 ```
 { node-folder }
-  +-- { node-file }
   +-- _current
   |   +-- _provisioner
   |   |   +-- _provisioner.js
   |   +-- _current.js
   +-- _lowers
-  |   +-- { node-folder }
-  |   +-- ..*
+  |   +-- 'key': < node-folder >..*
   |   +-- index.js
+  +-- _params
+  |   +-- 'key': ..*
+  |   |   +-- _provisioner
+  |   |   |   +-- _provisioner.js
+  |   |   +-- 'key'.js
+  |   +-- index.js
+  +-- _methods
+  |   +-- 'key':  ..*
+  |   |   +-- 'key'.js
+  |   +-- index.js
+  +-- < node-file > (index)
 ```
 
 ##### { node-file }.js
@@ -267,11 +313,3 @@ module.exports = props => {
   return Object.assign({}, props)
 }
 ```
-
-## lexicon
-
-### app
-an app is server-side. It receives delegation of a route logic part in `functions/index.js`
-
-### provisioner
-a provisioner isolate a page data provisioning logic (required before rendering)
