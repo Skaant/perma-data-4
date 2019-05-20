@@ -92,8 +92,8 @@ export default class extends React.Component {
     return (
       <div id='dialog-modal' className='modal-dialog' role='document'>
         <div className='modal-content'>
-          <div className='modal-header bg-info alert-info'>
-            <h5 className='modal-title text-uppercase text-white'>{ scene.title || 'Dialog' }</h5>
+          <div className='modal-header alert-dark'>
+            <h5 className='modal-title text-uppercase text-dark'>{ scene.title || 'Dialog' }</h5>
             <button type='button' className='close'
                 data-dismiss='modal' aria-label='Close'>
               <span aria-hidden='true'>

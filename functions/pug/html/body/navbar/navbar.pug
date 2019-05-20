@@ -1,8 +1,8 @@
-nav.navbar.navbar-expand-md.bg-info
-  a.navbar-brand.text-white(
+nav.navbar.navbar-expand-md.alert-dark.pl-4
+  a.navbar-brand.text-dark(
     title= translation.welcome.title1
     href=`/${ lang }`
-  )= `🍀 PERMADATA`
+  ) PERMADATA
   button.navbar-toggler(
     type='button'
     data-toggle='collapse'
@@ -18,14 +18,18 @@ nav.navbar.navbar-expand-md.bg-info
         p.mb-0.px-2.text-uppercase= `${ translation.loading.label } : `
           span#launch-info__status= translation.loading.initial
       li#error-info.mx-1.my-2.my-md-0.d-none
-        button#error-button.btn.btn-danger.text-uppercase.py-2.col-12.px-3= `${ translation.loading['error label'] } : `
-          span#error-info__status= translation.noError
+        #error-info__buttons.btn-group(
+          role='group'
+          aria-label='error group'
+        )
+          button#error-button.btn.btn-danger.text-uppercase.py-2.col-12.px-3= `${ translation.loading['error label'] } : `
+            span#error-info__status= translation.noError
       li#login-button-container.nav-item.mx-1.my-2.my-md-0.d-none
         button#login-button.btn.btn-warning.text-uppercase.py-2.col-12= `${ translation.authenticate } 👩🏾‍🌾👨🏻‍🌾`
-      li#anchor-user-panel.nav-item.mx-1.alert.alert-info.mb-0.py-2.pt-2.my-2.my-md-0.d-none
+      li#anchor-user-panel.nav-item.mx-1.alert.alert-success.border.border-success.mb-0.py-2.pt-2.my-2.my-md-0.d-none
       li#search-plant-button-container.bundle-true.nav-item.mx-1.my-2.my-md-0.d-none
-        button#search-plant-button.btn.btn-light.text-dark.text-uppercase.py-2.col-12= `${ translation.searchPlant } 🌱📚`
+        button#search-plant-button.btn.btn-light.text-dark.text-uppercase.py-2.px-4.col-12= `${ translation.searchPlant } 🌱📚`
       li.nav-item.mx-1.my-2.my-md-0
-        a.btn.btn-outline-light.nav-link.text-uppercase.px-3(
+        a.btn.btn-outline-dark.nav-link.text-uppercase.px-3(
           href=`/${ lang === 'en' ? 'fr' : 'en' }${ url }`
         )= `${ lang === 'en' ? 'fr' : 'en' }`
