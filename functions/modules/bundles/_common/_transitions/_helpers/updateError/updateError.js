@@ -11,8 +11,7 @@ export default (err, type, isUser) => {
   $('#error-modal__description')
     .html(err.message)
   
-  // KEEP THIS volountary console.log
-  console.log(err)
+  console.error(err)
   
   $('#error-button')
     .click(() => $('#error-modal').modal('show'))
@@ -20,8 +19,9 @@ export default (err, type, isUser) => {
   if (isUser) {
     $('#error-info__buttons')
       .append(`
-        <button id='user-error-button' type='button' 
-            class='btn btn-danger' aria-label='Close'>
+        <button id='user-error-button' type='button'
+            class='btn btn-danger' aria-label='Close'
+            title='${ window.__STATE__.bundle.translations.userPanel.disconnect }'>
           <span aria-hidden='true'>&times;</span>
         </button>`)
     $('#user-error-button')

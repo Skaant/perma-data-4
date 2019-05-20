@@ -80,7 +80,7 @@ export default class extends React.Component {
     })
       .then(result => result.json())
       .then(result => updateUser(result))
-      .catch(err => console.log(err) 
+        .catch(err => console.log(err) 
         // TODO do something with error
       )
   }

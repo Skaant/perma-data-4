@@ -8,7 +8,7 @@ export default ({
   searchPlant,
   translations
 }) => (
-  <div className='alert alert-warning pb-0'>
+  <div className='alert alert-success pb-0'>
     <div className='row'>
       <p className='col-12 px-4 pt-2'>{ translations.label } :</p></div>
     <div className='row'>

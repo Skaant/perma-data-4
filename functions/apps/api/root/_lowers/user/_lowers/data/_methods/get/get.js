@@ -1,23 +1,21 @@
 const validateUser = require('./validateUser/validateUser')
-const userAndRelated = require('../../../../../../../../_aggregations/userAndRelated/userAndRelated')
+const userRelated = require('../../../../../../../../_aggregations/userRelated/userRelated')
 
 module.exports = req =>
   new Promise((resolve, reject) => {
     const { uid, email, lang } = req.query
     global.mongo.connect((err, client) => {
       if (err) {
-        console.log(err)
         reject(err)
       }
-      const db = client.db('prod')
-      const dbUsers = db.collection('users')
+      const dbUsers = client.db('prod').collection('users')
       dbUsers.findOne({
         _id: uid
       })
       .then(user => {
         if (user) {
           dbUsers
-            .aggregate(userAndRelated(uid, lang))
+            .aggregate(userRelated(uid, lang))
             .toArray((err, _user) => {
               if (err) {
                 reject(err)
@@ -47,7 +45,7 @@ module.exports = req =>
               validateUser(dbUsers, user, uid)
                 .then(user => 
                   dbUsers
-                    .aggregate(userAndRelated(uid, lang))
+                    .aggregate(userRelated(uid, lang))
                     .toArray((err, _user) => {
                       if (err) {
                         reject(err)
