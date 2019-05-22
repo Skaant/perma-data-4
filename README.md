@@ -1,3 +1,8 @@
+en levant un peu la tête,
+sur fond noir,
+il aperçoit les infinies nodosites de la **FRAST**
+![frast's node structure](https://firebasestorage.googleapis.com/v0/b/perma-data-4.appspot.com/o/extracts/nodosit%C3%A9s%20infinies%20de%20la%20frast.jpg?alt=media&token=856ee270-091b-43a1-8a80-ce0496985875)
+
 # perma-data-4
 
 ## starting the application
@@ -350,7 +355,7 @@ each given dialog get its own temporary state variables :
 * **scope**, UI or form validation data,
 * **form**, data to be sent at some point in the dialog
 
-these variables can be accessed through the `menu`, `back` or `next` actions; exposed to the `<FooterMenu>` component
+these variables can be accessed through the `menu`, `back` or `next` actions; exposed to the `<InteractiveBottom>` component
 
 when the dialog changes, both variables are re-initialized
 
@@ -358,6 +363,7 @@ when the dialog changes, both variables are re-initialized
 ```javascript
 const dialog = {
     _id: 'string',
+    extracts: ['<required_extract_id>: ObjectId'],
     scenes: {
         order: ['<scene_id>: string'],
         list: {
@@ -369,24 +375,13 @@ const dialog = {
             title
         },
         scenes: {
-            '<scene_id>: string': {
-                content: '<markdown>: string',
-                menu: {
-                    label: 'evaluable code, for templating'
-                },
-                back: {
-                    label: 'evaluable code ...'
-                },
-                next: {
-                    label: 'evaluable code ...'
-                }
-            }
+            '<scene_id>: string': '<lang_scene>'
         }
     } 
 }
 
 const scene = {
-    extracts: ['<extract_id>: string'],
+    extracts: ['<extract_id>: string'], // extracts has to be required through dialog.extracts property
     menu: {
         order: ['<option_id>: string'],
         list: {
@@ -401,5 +396,19 @@ const menu_item = {
     disabled: false || true || 'evaluable code ...',
     valid: false || true || 'evaluable code ...',
     click: 'evaluable code'
+}
+
+const lang_scene = {
+    content: '<markdown>: string',
+    summary: 'evaluable code , for templating',
+    menu: {
+        label: 'evaluable code ...'
+    },
+    back: {
+        label: 'evaluable code ...'
+    },
+    next: {
+        label: 'evaluable code ...'
+    }
 }
 ```
