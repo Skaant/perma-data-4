@@ -3,10 +3,10 @@ import getValidClass from './getValidClass/getValidClass'
 
 const evalCheck = (code, { scope, form }) => {
   // unused params are meant to be consumed by eval call
-  code && eval(code)
+  return code && eval(code)
 }
 
-const menuClick = (click, { back, next, setScope, setForm, sendForm, closeForm, goToScene }) => {
+const menuClick = (click, { goToScene, setScope, setForm, sendForm, closeForm }) => {
   // unused params are meant to be consumed by eval call
   click && eval(click)
 }
@@ -24,8 +24,8 @@ export default ({
     scope,
     form
   }
-  const hiddenBack = !back || evalCheck(back.hidden, props)
-  const hiddenNext = !next || evalCheck(next.hidden, props)
+  const hiddenBack = !back.click || back.hidden && evalCheck(back.hidden, props)
+  const hiddenNext = !next.click || next.hidden && evalCheck(next.hidden, props)
   return (
     <React.Fragment>
       {
@@ -33,23 +33,22 @@ export default ({
           <div className='modal-footer container pl-0'>
             <div className='row w-100 pr-2 pr-3 d-flex justify-content-center'>
               {
-                menu.order
-                  .filter(key =>
-                    evalCheck(menu.list[key].hidden, props))
-                  .map(key => {
-                    const item = menu.list[key]
-                    return (
+                menu.order.map(key => ({
+                  key,
+                  ...menu.list[key]
+                }))
+                  .filter(item => !!item.click && !item.hidden || !evalCheck(item.hidden, props))
+                  .map(item => (
                       <button type='button'
-                          key={ `${ dialogId }+${ key }` }
+                          key={ `${ dialogId }+${ item.key }` }
                           className={ `btn btn-${
                             getValidClass(item.valid, props)
-                          } col-12 col-md-8 mx-2 my-1 txt-white` }
+                          } col-12 col-lg-8 mx-2 my-1 txt-white` }
                           onClick={ () => menuClick(item.click, menuOptions) }
                           disabled={ evalCheck(item.disabled, props) }>
                         { evalCheck(item.label, props) }
                       </button>
-                    )
-                  })
+                    ))
               }
             </div>
           </div>

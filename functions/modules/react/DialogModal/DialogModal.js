@@ -25,44 +25,10 @@ export default class extends React.Component {
     }
   }
 
-  backScene(index) {
-    const { current } = this.state
-    if (index && index >= 0) {
-      this.setState({
-        current: index
-      })
-    } else if (current - 1 >= 0) {
-      this.setState({
-        current: current - 1
-      })
-    }
-  }
-
-  nextScene(index) {
-    const { dialog } = this.props
-    const { current } = this.state
-    if (index && index < dialog.scenes.length) {
-      this.setState({
-        current: index
-      })
-    } else if (current + 1 < dialog.scenes.length) {
-      this.setState({
-        current: current + 1
-      })
-    }
-  }
-
   goToScene(value) {
-    const { dialog } = this.props
-    const index = (typeof value === 'number') ? value
-      : dialog.scenes.order.indexOf(value)
-    if (index >= 0 && index < dialog.scenes.length) {
-      this.setState({
-        current: index
-      })
-    } else { 
-      // TODO 
-    }
+    this.setState({
+      current: value
+    })
   }
 
   setScope(key, value) {
@@ -111,14 +77,26 @@ export default class extends React.Component {
     if (prevDialog && prevDialog === dialog._id) {
       const baseScene = dialog.scenes.list[current]
       const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
-      const scene = langScene ? Object.assign({}, baseScene, langScene, {
-        menu: Object.assign({}, baseScene.menu, langScene.menu),
-        back: Object.assign({}, baseScene.back, langScene.back),
-        next: Object.assign({}, baseScene.next, langScene.next)
-      }) : baseScene
+      const scene = langScene ?  { ...baseScene, ...langScene, ...{
+        menu: {
+          order: baseScene.menu.order,
+          list: Object.keys(baseScene.menu.list)
+            .map(key => ({
+              key,
+              ...baseScene.menu.list[key],
+              ...langScene.menu[key]
+              }))
+            .reduce((list, { key, ...item }) => {
+              list[key] = item
+              return list
+            }, {})
+        },
+        back: { ...baseScene.back, ...langScene.back },
+        next: { ...baseScene.next, ...langScene.next }
+      }} : baseScene
   
       return (
-        <div id='dialog-modal' className='modal-dialog' role='document'>
+        <div id='dialog-modal' className='modal-dialog modal-lg' role='document'>
           <div className='modal-content'>
             <div className='modal-header alert-dark'>
               <ModalTitle title={ dialog[lang].dialog.title }
@@ -133,8 +111,6 @@ export default class extends React.Component {
             <InteractiveBottom dialogId={ dialog._id }
                 scene={ scene }
                 menuOptions={ {
-                  back: this.backScene.bind(this),
-                  next: this.nextScene.bind(this),
                   goToScene: this.goToScene.bind(this),
                   setScope: this.setScope.bind(this),
                   setForm: this.setForm.bind(this),
