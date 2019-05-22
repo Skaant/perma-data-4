@@ -3,8 +3,35 @@
 ## starting the application
 1. cd functions
 2. firebase serve
+## table of content
+
+### data
+* WIP
+* 
+
+### concepts
+* mongo aggregations
+* client bundle & [_common](#client-bundle-_common)
+* [server apps](#server-apps) (**content** and **api**)
+* routing [router factory](# router-factory)
+* dialog [API](#dialog-API)
+
 
 ## WIP (v4.2)
+
+### goals & done
+*see the treelo**
+
+#### done
+* client bundle rework with :
+  * window variables `__PROPS__: { (page) id, lang }` and `__STATE__: { bundle, user: { .., data }}`
+  * [execution steps](#execution-steps),
+  * steps' common and page-specific _transitions agregation
+
+#### goals
+* dialog rework
+* city component (& dom cards)
+* trighbs gameplay mechanisms
 
 ### obsolete directories
 directories to progressively move and delete
@@ -15,9 +42,9 @@ directories to progressively move and delete
 ## client bundle _common
 > functions/modules/bundles/_common/_common.js
 
-executes the **basic steps** (as shown below) for the [page bundle app] launch
+run through the **application lifecycle** for the [page bundle app] launch
 
-### app steps
+### execution steps
 app lives on the [page bundle], and cannot be instanciated before bundle reception
 
 #### "initial"
@@ -246,6 +273,8 @@ following file organization is enforced by the pattern
   +-- < node-file > (index)
 ```
 
+**information shown below can be OBSOLETE**
+
 ##### { node-file }.js
 group the current provider
 ```javascript
@@ -311,5 +340,66 @@ see `P_RCL` *_current* folder structure for context
 module.exports = props => {
   const { id, lang, url } = props
   return Object.assign({}, props)
+}
+```
+
+## dialog API
+
+### logic
+each given dialog get its own temporary state variables :
+* **scope**, UI or form validation data,
+* **form**, data to be sent at some point in the dialog
+
+these variables can be accessed through the `menu`, `back` or `next` actions; exposed to the `<FooterMenu>` component
+
+when the dialog changes, both variables are re-initialized
+
+### format
+```javascript
+const dialog = {
+    _id: 'string',
+    scenes: {
+        order: ['<scene_id>: string'],
+        list: {
+            '<scene_id>: string': '<scene>'
+        }
+    },
+    '<lang>': {
+        dialog: {
+            title
+        },
+        scenes: {
+            '<scene_id>: string': {
+                content: '<markdown>: string',
+                menu: {
+                    label: 'evaluable code, for templating'
+                },
+                back: {
+                    label: 'evaluable code ...'
+                },
+                next: {
+                    label: 'evaluable code ...'
+                }
+            }
+        }
+    } 
+}
+
+const scene = {
+    extracts: ['<extract_id>: string'],
+    menu: {
+        order: ['<option_id>: string'],
+        list: {
+            '<option_id>: string': '<menu_item>'
+        },
+    back: '<menu_item>',
+    next: '<menu_item>'
+}
+
+const menu_item = {
+    hidden: false || true || 'evaluable code for exposed dialog API',
+    disabled: false || true || 'evaluable code ...',
+    valid: false || true || 'evaluable code ...',
+    click: 'evaluable code'
 }
 ```
