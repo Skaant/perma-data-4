@@ -11,15 +11,15 @@ il aperçoit les infinies nodosites de la **FRAST**
 ## table of content
 
 ### data
-* WIP
-* 
+* [WIP](WIP-(v4.2))
+* [object references](object-references)
 
 ### concepts
 * mongo aggregations
 * client bundle & [_common](#client-bundle-_common)
 * [server apps](#server-apps) (**content** and **api**)
 * routing [router factory](# router-factory)
-* dialog [API](#dialog-API)
+* dialog ([API](#dialog-API))
 
 
 ## WIP (v4.2)
