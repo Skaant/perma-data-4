@@ -165,7 +165,7 @@ export default class extends React.Component {
         }
         {
           error && (
-            <div className='alert alert-warning'>
+            <div className='alert alert-danger'>
               <div className='row'>
                 <p className='col-12 mb-0'>
                   { error }

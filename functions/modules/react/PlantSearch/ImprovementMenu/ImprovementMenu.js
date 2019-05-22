@@ -5,7 +5,7 @@ export default ({
   changeImprovement,
   translations
 }) => (
-  <div className='alert alert-info'>
+  <div className='alert alert-warning'>
     <div className='row'>
       <p className='col-12'>{ translations.title } :</p></div>
     <div className='row'>

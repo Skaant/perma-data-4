@@ -11,4 +11,7 @@ export default () => {
   $('#search-plant-button')
     .addClass('btn-light')
     .removeClass('btn-warning')
+  $('#search-plant-header')
+    .addClass('bg-light')
+    .removeClass('bg-warning')
 }
