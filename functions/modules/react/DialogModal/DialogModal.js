@@ -1,21 +1,26 @@
 import React from 'react'
-import FooterMenu from './FooterMenu/FooterMenu'
+import InteractiveBottom from './InteractiveBottom/InteractiveBottom'
+import ModalTitle from './ModalTitle/ModalTitle';
+import ModalBody from './ModalBody/ModalBody';
 
 export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      current: 0,
+      current: props.dialog.scenes.first,
       prevDialog: props.dialog._id,
-      form: {}
+      form: {},
+      scope: {}
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.dialog._id != prevProps.dialog._id) {
       this.setState({
-        current: 0,
-        prevDialog: this.props.dialog._id
+        current: this.props.dialog.scenes.first,
+        prevDialog: this.props.dialog._id,
+        form: {},
+        scope: {}
       })
     }
   }
@@ -47,13 +52,27 @@ export default class extends React.Component {
     }
   }
 
-  goToScene(index) {
+  goToScene(value) {
     const { dialog } = this.props
+    const index = (typeof value === 'number') ? value
+      : dialog.scenes.order.indexOf(value)
     if (index >= 0 && index < dialog.scenes.length) {
       this.setState({
         current: index
       })
+    } else { 
+      // TODO 
     }
+  }
+
+  setScope(key, value) {
+    const { scope } = this.state
+    this.setState({
+      scope: { 
+        ...scope,
+        [key]: value
+      }
+    })
   }
 
   setForm(key, value) {
@@ -86,47 +105,53 @@ export default class extends React.Component {
   }
 
   render() {
-    const { dialog, translations, closeForm } = this.props
-    const { current, prevDialog, form } = this.state
-    const scene = (prevDialog && prevDialog === dialog._id) ? dialog.scenes[current] : dialog.scenes[0]
-    return (
-      <div id='dialog-modal' className='modal-dialog' role='document'>
-        <div className='modal-content'>
-          <div className='modal-header alert-dark'>
-            <h5 className='modal-title text-uppercase text-dark'>{ scene.title || 'Dialog' }</h5>
-            <button type='button' className='close'
-                data-dismiss='modal' aria-label='Close'>
-              <span aria-hidden='true'>
-                &times;</span></button>
-          </div>
-          <div className='modal-body container py-0'>
-            <div className='row'>
-              {
-                scene.img && (
-                  <img src={ scene.img }/>
-                )
-              }
+    const { dialog, translations, closeForm, lang } = this.props
+    const { current, prevDialog, scope, form } = this.state
+
+    if (prevDialog && prevDialog === dialog._id) {
+      const baseScene = dialog.scenes.list[current]
+      const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
+      const scene = langScene ? Object.assign({}, baseScene, langScene, {
+        menu: Object.assign({}, baseScene.menu, langScene.menu),
+        back: Object.assign({}, baseScene.back, langScene.back),
+        next: Object.assign({}, baseScene.next, langScene.next)
+      }) : baseScene
+  
+      return (
+        <div id='dialog-modal' className='modal-dialog' role='document'>
+          <div className='modal-content'>
+            <div className='modal-header alert-dark'>
+              <ModalTitle title={ dialog[lang].dialog.title }
+                  current={ current }
+                  pages={ dialog.scenes.pages } />
+              <button type='button' className='close'
+                  data-dismiss='modal' aria-label='Close'>
+                <span aria-hidden='true'>
+                  &times;</span></button>
             </div>
-            <div className='row p-4'>
-              {
-                scene.content.map((p, index) => (
-                  <p key={ `${ current }x${ index }` }>
-                    { p }</p>
-                ))
-              }
-            </div>
+            <ModalBody scene={ scene } extracts={ dialog.extracts } />
+            <InteractiveBottom dialogId={ dialog._id }
+                scene={ scene }
+                menuOptions={ {
+                  back: this.backScene.bind(this),
+                  next: this.nextScene.bind(this),
+                  goToScene: this.goToScene.bind(this),
+                  setScope: this.setScope.bind(this),
+                  setForm: this.setForm.bind(this),
+                  sendForm: this.sendForm.bind(this),
+                  closeForm: closeForm
+                } }
+                scope={ scope }
+                form={ form }
+                translations={ translations }/>
           </div>
-          <FooterMenu scene={ scene }
-              back={ this.backScene.bind(this) }
-              next={ this.nextScene.bind(this) }
-              goTo={ this.goToScene.bind(this) }
-              form={ form }
-              setForm={ this.setForm.bind(this) }
-              sendForm={ this.sendForm.bind(this) }
-              closeForm={ closeForm }
-              translations={ translations }/>
         </div>
-      </div>
-    )
+      )
+    } else {
+      // invisible
+      return (
+        <h3>Dialog has changed. Please, wait.</h3>
+      )
+    }
   }
 }

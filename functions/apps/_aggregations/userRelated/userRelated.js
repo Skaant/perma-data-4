@@ -1,7 +1,7 @@
 module.exports = (uid, lang) => ([
   {
     '$match': {
-      '_id': '6cCpcBIxoUR90qGtV3LwuuRX6jP2'
+      '_id': uid
     }
   }, {
     '$facet': {
@@ -11,16 +11,43 @@ module.exports = (uid, lang) => ([
             'from': 'dialogs', 
             'localField': 'dialogs', 
             'foreignField': '_id', 
-            'as': 'provisionedDialogs'
+            'as': '_dialogs'
           }
         }, {
-          '$unwind': '$provisionedDialogs'
+          '$unwind': '$_dialogs'
+        }, {
+          '$lookup': {
+            'from': 'extracts', 
+            'localField': '_dialogs.extracts', 
+            'foreignField': '_id', 
+            'as': '_extracts'
+          }
         }, {
           '$project': {
-            '_id': '$provisionedDialogs._id', 
-            [lang]: `$provisionedDialogs.${ lang }`,
-            'scenes': '$provisionedDialogs.scenes', 
-            'openFirst': '$provisionedDialogs.openFirst'
+            '_id': '$_dialogs._id', 
+            [lang]: `$_dialogs.${ lang }`, 
+            'extracts': {
+              '$arrayToObject': {
+                '$map': {
+                  'input': '$_extracts', 
+                  'as': 'extract', 
+                  'in': {
+                    'k': {
+                      '$convert': {
+                        'input': '$$extract._id', 
+                        'to': 'string'
+                      }
+                    }, 
+                    'v': {
+                      [lang]: `$$extract.${ lang }`, 
+                      'tags': '$$extract.tags'
+                    }
+                  }
+                }
+              }
+            }, 
+            'scenes': '$_dialogs.scenes', 
+            'openFirst': '$_dialogs.openFirst'
           }
         }
       ], 

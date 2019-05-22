@@ -4,8 +4,7 @@ import DomsList from './DomsList/DomsList'
 export default ({
   user: {
     data: {
-      pseudo,
-      home
+      doms
     }
   },
   lang,
@@ -17,7 +16,7 @@ export default ({
         <h2 className='col-12 my-4'>
           { translations.welcome } !</h2>
       </div>
-      <DomsList doms={ home.doms } lang={ lang }/>
+      <DomsList doms={ doms } lang={ lang }/>
     </React.Fragment>
   )
 }
