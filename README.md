@@ -1,8 +1,3 @@
-en levant un peu la tête,
-sur fond noir,
-il aperçoit les infinies nodosites de la **FRAST**
-![frast's node structure](https://firebasestorage.googleapis.com/v0/b/perma-data-4.appspot.com/o/extracts/nodosit%C3%A9s%20infinies%20de%20la%20frast.jpg?alt=media&token=856ee270-091b-43a1-8a80-ce0496985875)
-
 # perma-data-4
 
 ## starting the application
@@ -365,7 +360,9 @@ const dialog = {
     _id: 'string',
     extracts: ['<required_extract_id>: ObjectId'],
     scenes: {
-        order: ['<scene_id>: string'],
+        first: '<scene_id>: string',
+        pages: [ // index gives the current page displayed in the dialog title
+            ['<scene_id>: string'] ], // matching scene ids
         list: {
             '<scene_id>: string': '<scene>'
         }
@@ -377,7 +374,8 @@ const dialog = {
         scenes: {
             '<scene_id>: string': '<lang_scene>'
         }
-    } 
+    },
+    openFirst: false || true // if true, dialog will be opened when the user auth
 }
 
 const scene = {
