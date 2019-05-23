@@ -30,7 +30,7 @@ export default ({
     <React.Fragment>
       {
         menu && (
-          <div className='modal-footer container pl-0'>
+          <div className='modal-footer container pl-0 py-4'>
             <div className='row w-100 pr-2 pr-3 d-flex justify-content-center'>
               {
                 menu.order.map(key => ({
@@ -56,7 +56,7 @@ export default ({
       }
       {
         (!hiddenBack || !hiddenNext) && (
-          <div className='modal-footer container pl-0'>
+          <div className='modal-footer container pl-0 py-4'>
             <div className='row w-100 pr-3'>
               <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
                 {
@@ -65,6 +65,7 @@ export default ({
                         className={ `btn btn-${
                           getValidClass(back.valid, props)
                         } w-100 my-1` }
+                        title={ translations.back }
                         onClick={ () => menuClick(back.click, menuOptions) }
                         disabled={ evalCheck(back.disabled, props) }>
                       <span className='float-left'>
@@ -81,6 +82,7 @@ export default ({
                         className={ `btn btn-${
                           getValidClass(next.valid, props)
                         } w-100 my-1` }
+                        title={ translations.next }
                         onClick={ () => menuClick(next.click, menuOptions) }
                         disabled={ evalCheck(next.disabled, props) }>
                       { evalCheck(next.label, props) }

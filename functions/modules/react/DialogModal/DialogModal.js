@@ -107,7 +107,8 @@ export default class extends React.Component {
                 <span aria-hidden='true'>
                   &times;</span></button>
             </div>
-            <ModalBody scene={ scene } extracts={ dialog.extracts } />
+            <ModalBody scene={ scene } extracts={ dialog.extracts }
+                translations={ translations }/>
             <InteractiveBottom dialogId={ dialog._id }
                 scene={ scene }
                 menuOptions={ {
