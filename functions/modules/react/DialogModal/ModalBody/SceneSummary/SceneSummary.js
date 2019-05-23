@@ -4,7 +4,7 @@ import _staticStyle from './_staticStyle/_staticStyle'
 
 export default ({ summary, translations }) => (
   <div className='modal-body container p-4 border-top'>
-    <div id='scene-summary' className='alert alert-warning container px-4 pt-4 mt-3 mb-0'>
+    <div id='scene-summary' className='alert alert-warning container px-4 pt-4 mb-0'>
       <style>{
         _staticStyle }</style>
       <div className='row'>

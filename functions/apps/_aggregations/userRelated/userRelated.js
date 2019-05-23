@@ -40,7 +40,8 @@ module.exports = (uid, lang) => ([
                     }, 
                     'v': {
                       [lang]: `$$extract.${ lang }`, 
-                      'tags': '$$extract.tags'
+                      'tags': '$$extract.tags',
+                      'pictures': '$$extract.pictures'
                     }
                   }
                 }

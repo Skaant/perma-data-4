@@ -1,7 +1,8 @@
 import React from 'react'
 import InteractiveBottom from './InteractiveBottom/InteractiveBottom'
-import ModalTitle from './ModalTitle/ModalTitle';
-import ModalBody from './ModalBody/ModalBody';
+import ModalTitle from './ModalTitle/ModalTitle'
+import ModalBody from './ModalBody/ModalBody'
+import _staticStyle from './_staticStyle/_staticStyle'
 
 export default class extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ export default class extends React.Component {
       const baseScene = dialog.scenes.list[current]
       const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
       const scene = langScene ?  { ...baseScene, ...langScene, ...{
-        menu: {
+        menu: baseScene.menu && ({
           order: baseScene.menu.order,
           list: Object.keys(baseScene.menu.list)
             .map(key => ({
@@ -90,7 +91,7 @@ export default class extends React.Component {
               list[key] = item
               return list
             }, {})
-        },
+        }),
         back: { ...baseScene.back, ...langScene.back },
         next: { ...baseScene.next, ...langScene.next }
       }} : baseScene
@@ -98,8 +99,11 @@ export default class extends React.Component {
       return (
         <div id='dialog-modal' className='modal-dialog modal-lg' role='document'>
           <div className='modal-content'>
+            <style>
+              { _staticStyle }</style>
             <div className='modal-header alert-dark'>
-              <ModalTitle title={ dialog[lang].dialog.title }
+              <ModalTitle scene={ scene }
+                  title={ dialog[lang].dialog.title }
                   current={ current }
                   pages={ dialog.scenes.pages } />
               <button type='button' className='close'
@@ -107,7 +111,9 @@ export default class extends React.Component {
                 <span aria-hidden='true'>
                   &times;</span></button>
             </div>
-            <ModalBody scene={ scene } extracts={ dialog.extracts }
+            <ModalBody scene={ scene }
+                extracts={ dialog.extracts }
+                lang={ lang }
                 translations={ translations }/>
             <InteractiveBottom dialogId={ dialog._id }
                 scene={ scene }

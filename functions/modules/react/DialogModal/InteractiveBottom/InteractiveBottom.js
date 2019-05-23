@@ -24,8 +24,10 @@ export default ({
     scope,
     form
   }
-  const hiddenBack = !back.click || back.hidden && evalCheck(back.hidden, props)
-  const hiddenNext = !next.click || next.hidden && evalCheck(next.hidden, props)
+  const hiddenBack = !back || !back.click
+    || back.hidden && evalCheck(back.hidden, props)
+  const hiddenNext = !next || !next.click
+    || next.hidden && evalCheck(next.hidden, props)
   return (
     <React.Fragment>
       {
@@ -67,7 +69,7 @@ export default ({
                             onClick={ e => {
                               menuClick(back.click, menuOptions)
                               e.stopPropagation()
-                            } }>>
+                            } }>
                           <span className='mr-2'>
                             ⯇</span>
                           { evalCheck(back.label, props) }</a></p>

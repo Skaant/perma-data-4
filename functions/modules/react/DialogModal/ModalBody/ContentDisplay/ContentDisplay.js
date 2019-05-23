@@ -1,11 +1,8 @@
 import React from 'react'
 import marked from 'marked'
-import _staticStyle from './_staticStyle/_staticStyle'
 
 export default ({ content, pictures }) => (
-  <div id='scene-content' className='pb-4'>
-    <style>
-      { _staticStyle }</style>
+  <div className='content-display pb-4 w-100'>
     {
       content.map((line, index) => (
         <React.Fragment key={ line.slice(0, 10) }>
