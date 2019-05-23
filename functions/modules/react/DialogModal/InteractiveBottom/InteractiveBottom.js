@@ -43,7 +43,7 @@ export default ({
                           key={ `${ dialogId }+${ item.key }` }
                           className={ `btn btn-${
                             getValidClass(item.valid, props)
-                          } col-12 col-lg-8 mx-2 my-1 txt-white` }
+                          } col-12 col-lg-8 mx-2 my-1 txt-white py-2 text-uppercase` }
                           onClick={ () => menuClick(item.click, menuOptions) }
                           disabled={ evalCheck(item.disabled, props) }>
                         { evalCheck(item.label, props) }
@@ -61,34 +61,50 @@ export default ({
               <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
                 {
                   !hiddenBack && (
-                    <button type='button'
-                        className={ `btn btn-${
-                          getValidClass(back.valid, props)
-                        } w-100 my-1` }
-                        title={ translations.back }
-                        onClick={ () => menuClick(back.click, menuOptions) }
-                        disabled={ evalCheck(back.disabled, props) }>
-                      <span className='float-left'>
-                        ⯇</span>
-                      { evalCheck(back.label, props) }
-                    </button>
+                    <React.Fragment>
+                      <p className='small text-secondary w-100 text-left mb-2 pl-4'>
+                        <a href='#' className='text-secondary'
+                            onClick={ e => {
+                              menuClick(back.click, menuOptions)
+                              e.stopPropagation()
+                            } }>>
+                          <span className='mr-2'>
+                            ⯇</span>
+                          { evalCheck(back.label, props) }</a></p>
+                      <button type='button'
+                          className={ `btn btn-${
+                            getValidClass(back.valid, props)
+                          } w-100 my-1 text-uppercase` }
+                          onClick={ () => menuClick(back.click, menuOptions) }
+                          disabled={ evalCheck(back.disabled, props) }>
+                        { translations.back }
+                      </button>
+                    </React.Fragment>
                   )
                 }
               </div>
               <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
                 {
                   !hiddenNext && (
-                    <button type='button'
-                        className={ `btn btn-${
-                          getValidClass(next.valid, props)
-                        } w-100 my-1` }
-                        title={ translations.next }
-                        onClick={ () => menuClick(next.click, menuOptions) }
-                        disabled={ evalCheck(next.disabled, props) }>
-                      { evalCheck(next.label, props) }
-                      <span className='float-right'>
-                        ⯈</span>
-                    </button>
+                    <React.Fragment>
+                      <p className='small w-100 mb-2 text-right pr-4'>
+                        <a href='#' className='text-secondary'
+                            onClick={ e => {
+                              menuClick(next.click, menuOptions)
+                              e.stopPropagation()
+                            } }>
+                          { evalCheck(next.label, props) }
+                          <span className='mr-2'>
+                            ⯈</span></a></p>
+                      <button type='button'
+                          className={ `btn btn-${
+                            getValidClass(next.valid, props)
+                          } w-100 my-1 text-uppercase` }
+                          onClick={ () => menuClick(next.click, menuOptions) }
+                          disabled={ evalCheck(next.disabled, props) }>
+                        { translations.next }
+                      </button>
+                    </React.Fragment>
                   )
                 }
               </div>

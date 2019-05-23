@@ -5,7 +5,7 @@ import SceneSummary from './SceneSummary/SceneSummary'
 
 export default ({ scene, extracts, translations }) => (
   <React.Fragment>
-    <div className='modal-body container py-0'>
+    <div className='modal-body container p-4'>
       {
         scene.content && (
           <SceneContent content={ scene.content }
@@ -18,12 +18,12 @@ export default ({ scene, extracts, translations }) => (
               extracts={ extracts }/>
         )
       }
-      {
-        scene.summary && (
-          <SceneSummary summary={ scene.summary }
-              translations={ translations }/>
-        )
-      }
     </div>
+    {
+      scene.summary && (
+        <SceneSummary summary={ scene.summary }
+            translations={ translations }/>
+      )
+    }
   </React.Fragment>
 )
