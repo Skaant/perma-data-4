@@ -57,31 +57,39 @@ export default ({
       {
         (!hiddenBack || !hiddenNext) && (
           <div className='modal-footer container pl-0'>
-            <div className='row w-100 pr-2 pr-3'>
-              {
-                !hiddenBack && (
-                  <button type='button'
-                      className={ `btn btn-${
-                        getValidClass(back.valid, props)
-                      } col-12 col-sm-5 col-md-3 offset-sm-2 offset-md-6 my-1` }
-                      onClick={ () => menuClick(back.click, menuOptions) }
-                      disabled={ evalCheck(back.disabled, props) }>
-                    { evalCheck(back.label, props) }
-                  </button>
-                )
-              }
-              {
-                !hiddenNext && (
-                  <button type='button'
-                      className={ `btn btn-${
-                        getValidClass(next.valid, props)
-                      } col-12 col-sm-5 col-md-3 offset-sm-2 offset-md-6 my-1` }
-                      onClick={ () => menuClick(next.click, menuOptions) }
-                      disabled={ evalCheck(next.disabled, props) }>
-                    { evalCheck(next.label, props) }
-                  </button>
-                )
-              }
+            <div className='row w-100 pr-3'>
+              <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
+                {
+                  !hiddenBack && (
+                    <button type='button'
+                        className={ `btn btn-${
+                          getValidClass(back.valid, props)
+                        } w-100 my-1` }
+                        onClick={ () => menuClick(back.click, menuOptions) }
+                        disabled={ evalCheck(back.disabled, props) }>
+                      <span className='float-left'>
+                        ⯇</span>
+                      { evalCheck(back.label, props) }
+                    </button>
+                  )
+                }
+              </div>
+              <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
+                {
+                  !hiddenNext && (
+                    <button type='button'
+                        className={ `btn btn-${
+                          getValidClass(next.valid, props)
+                        } w-100 my-1` }
+                        onClick={ () => menuClick(next.click, menuOptions) }
+                        disabled={ evalCheck(next.disabled, props) }>
+                      { evalCheck(next.label, props) }
+                      <span className='float-right'>
+                        ⯈</span>
+                    </button>
+                  )
+                }
+              </div>
             </div>
           </div>
         )
