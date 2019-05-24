@@ -7,7 +7,7 @@ module.exports = (dbUsers, { _id, pseudo }, uid) =>
       _id: uid,
       pseudo,
       roles: [],
-      dialogs: [ObjectId('5cc83f241c9d4400004754bf')]
+      dialogs: ['introduction']
     }
     dbUsers
       .insertOne(user)

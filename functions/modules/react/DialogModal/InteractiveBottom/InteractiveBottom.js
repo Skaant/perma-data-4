@@ -58,38 +58,13 @@ export default ({
       }
       {
         (!hiddenBack || !hiddenNext) && (
-          <div className='modal-footer container pl-0 py-4 flex-column-reverse'>
-            <div className='row w-100 pr-3'>
-              <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
-                {
-                  !hiddenBack && (
-                    <React.Fragment>
-                      <p className='small text-secondary w-100 text-left mb-2 pl-4'>
-                        <a href='#' className='text-secondary'
-                            onClick={ e => {
-                              menuClick(back.click, menuOptions)
-                              e.stopPropagation()
-                            } }>
-                          <span className='mr-2'>
-                            ⯇</span>
-                          { evalCheck(back.label, props) }</a></p>
-                      <button type='button'
-                          className={ `btn btn-${
-                            getValidClass(back.valid, props)
-                          } w-100 my-1 text-uppercase` }
-                          onClick={ () => menuClick(back.click, menuOptions) }
-                          disabled={ evalCheck(back.disabled, props) }>
-                        { translations.back }
-                      </button>
-                    </React.Fragment>
-                  )
-                }
-              </div>
+          <div className='modal-footer container pl-0 pb-4 pt-3'>
+            <div className='row w-100 pr-3 flex-lg-row-reverse'>
               <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
                 {
                   !hiddenNext && (
                     <React.Fragment>
-                      <p className='small w-100 mb-2 text-right pr-4'>
+                      <p className='small w-100 my-2 text-right pr-4'>
                         <a href='#' className='text-secondary'
                             onClick={ e => {
                               menuClick(next.click, menuOptions)
@@ -105,6 +80,31 @@ export default ({
                           onClick={ () => menuClick(next.click, menuOptions) }
                           disabled={ evalCheck(next.disabled, props) }>
                         { translations.next }
+                      </button>
+                    </React.Fragment>
+                  )
+                }
+              </div>
+              <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
+                {
+                  !hiddenBack && (
+                    <React.Fragment>
+                      <p className='small text-secondary w-100 text-left my-2 pl-4'>
+                        <a href='#' className='text-secondary'
+                            onClick={ e => {
+                              menuClick(back.click, menuOptions)
+                              e.stopPropagation()
+                            } }>
+                          <span className='mr-2'>
+                            ⯇</span>
+                          { evalCheck(back.label, props) }</a></p>
+                      <button type='button'
+                          className={ `btn btn-${
+                            getValidClass(back.valid, props)
+                          } w-100 my-1 text-uppercase` }
+                          onClick={ () => menuClick(back.click, menuOptions) }
+                          disabled={ evalCheck(back.disabled, props) }>
+                        { translations.back }
                       </button>
                     </React.Fragment>
                   )
