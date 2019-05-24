@@ -58,7 +58,7 @@ export default ({
       }
       {
         (!hiddenBack || !hiddenNext) && (
-          <div className='modal-footer container pl-0 py-4'>
+          <div className='modal-footer container pl-0 py-4 flex-column-reverse'>
             <div className='row w-100 pr-3'>
               <div className='col-12 col-sm-10 offset-sm-1 col-lg-6 offset-lg-0'>
                 {

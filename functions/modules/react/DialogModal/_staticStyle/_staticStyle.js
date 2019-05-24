@@ -1,7 +1,8 @@
 export default `
   .content-display p,
   .content-display h1,
-  .content-display h3 {
+  .content-display h3,
+  .content-display h5 {
     width: 100%;
     max-width: 600px;
     text-align: center;
