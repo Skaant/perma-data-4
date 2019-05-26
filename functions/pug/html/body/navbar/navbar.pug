@@ -3,14 +3,14 @@ nav.navbar.navbar-expand-md.bg-success.pl-4
     title= translation.welcome.title1
     href=`/${ lang }`
   ) PERMADATA
-  button.navbar-toggler(
+  button.navbar-toggler.border.border-light(
     type='button'
     data-toggle='collapse'
     data-target='#navbar-content'
     aria-controls='navbar-content'
     aria-expanded='false'
     aria-label='toggle navigation')
-    span(class='navbar-toggler-icon')
+    span.navbar-toggler-icon.pt-1.text-light +
   #navbar-content.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
     ul.navbar-nav.mt-4.mt-sm-0
