@@ -20,10 +20,11 @@ const updateUser = (updates = {}) => {
         updateUser={ updateUser }
         closeForm={ closeForm }
         lang={ window.__PROPS__.lang }
-        translations={ window.__STATE__.bundle.translations.dialog }/>, document.getElementById('anchor-dialog'))
-    if (firstDialog.openFirst !== 'once') {
-      $('#anchor-dialog').modal('show')
-    }
+        translations={ window.__STATE__.bundle.translations.dialog }/>,
+      document.getElementById('anchor-dialog'))
+    $('#anchor-dialog').modal('show')
+  } else {
+    $('#anchor-dialog').modal('hide')
   }
 }
 
