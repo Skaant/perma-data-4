@@ -9,20 +9,26 @@ export default class extends React.Component {
   constructor(props) {
     super(props)
     const { _id, scenes } = props.dialog
+    window.__STATE__.dialogs = [{
+      id: _id,
+      current: scenes.first
+    }]
     this.state = {
       current: scenes.first,
-      prevDialog: _id,
       form: {},
       scope: initScopeEval(props)
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     const { _id, scenes } = this.props.dialog
-    if (_id != prevProps.dialog._id) {
+    if (_id != window.__STATE__.dialogs[0].id) {
+      window.__STATE__.dialogs.unshift({
+        id: _id,
+        current: scenes.first
+      })
       this.setState({
         current: scenes.first,
-        prevDialog: _id,
         form: {},
         scope: initScopeEval(this.props)
       })
@@ -30,6 +36,7 @@ export default class extends React.Component {
   }
 
   goToScene(value) {
+    window.__STATE__.dialogs[0].current = value
     this.setState({
       current: value
     })
@@ -56,7 +63,7 @@ export default class extends React.Component {
   }
 
   sendForm(key) {
-    if(confirm(this.props.translations.confirmSend)) {
+    if (confirm(this.props.translations.confirmSend)) {
       const { uid, lang, updateUser } = this.props
       const { form } = this.state
       fetch('/api/dialog', {
@@ -78,9 +85,9 @@ export default class extends React.Component {
 
   render() {
     const { dialog, translations, closeForm, lang } = this.props
-    const { current, prevDialog, scope, form } = this.state
+    const { current, scope, form } = this.state
 
-    if (prevDialog && prevDialog === dialog._id) {
+    if (window.__STATE__.dialogs[0].id === dialog._id) {
       const baseScene = dialog.scenes.list[current]
       const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
       const scene = langScene ?  { ...baseScene, ...langScene, ...{
