@@ -8,22 +8,23 @@ import initScopeEval from './initScopeEval/initScopeEval';
 export default class extends React.Component {
   constructor(props) {
     super(props)
+    const { _id, scenes } = props.dialog
     this.state = {
-      current: props.dialog.scenes.first,
-      prevDialog: props.dialog._id,
+      current: scenes.first,
+      prevDialog: _id,
       form: {},
-      scope: {}
+      scope: initScopeEval(props)
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { _id, scenes, initScope } = this.props.dialog
+    const { _id, scenes } = this.props.dialog
     if (_id != prevProps.dialog._id) {
       this.setState({
         current: scenes.first,
         prevDialog: _id,
         form: {},
-        scope: initScopeEval(initScope)
+        scope: initScopeEval(this.props)
       })
     }
   }

@@ -20,6 +20,7 @@ const updateUser = (updates = {}) => {
   const firstDialog = updatedData.dialogs && updatedData.dialogs.find(dialog => dialog.openFirst)
   if (firstDialog) {
     render(<DialogModal dialog={ firstDialog }
+        extracts={ updatedData.extracts }
         uid={ window.__STATE__.user.uid }
         updateUser={ updateUser }
         closeForm={ closeForm }

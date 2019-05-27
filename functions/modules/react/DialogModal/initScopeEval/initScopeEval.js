@@ -3,12 +3,17 @@ import getExtractPropsFactory from './getExtractPropsFactory/getExtractPropsFact
 const evalLine = (line, {
   getExtractProps
 }) => {
-  let scope
+  let scope = {}
   eval(line)
   return scope
 }
 
-export default (props, initScope) => {
+export default (props) => {
+  const initScope = props.dialog.initScope
+
+  if (!initScope) {
+    return {}
+  }
   const options = {
     getExtractProps: getExtractPropsFactory(props)
   }
