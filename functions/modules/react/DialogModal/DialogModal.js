@@ -3,34 +3,36 @@ import InteractiveBottom from './InteractiveBottom/InteractiveBottom'
 import ModalTitle from './ModalTitle/ModalTitle'
 import ModalBody from './ModalBody/ModalBody'
 import _staticStyle from './_staticStyle/_staticStyle'
-import initScopeEval from './initScopeEval/initScopeEval';
+import initScopeEval from './initScopeEval/initScopeEval'
 
 export default class extends React.Component {
   constructor(props) {
     super(props)
-    const { _id, scenes } = props.dialog
+    const { _id, scenes, initScope } = props.dialog
     window.__STATE__.dialogs = [{
-      id: _id,
+      _id,
       current: scenes.first
     }]
     this.state = {
       current: scenes.first,
       form: {},
-      scope: initScopeEval(props)
+      scope: initScopeEval(initScope)
     }
   }
 
   componentDidUpdate() {
-    const { _id, scenes } = this.props.dialog
-    if (_id != window.__STATE__.dialogs[0].id) {
+    const { dialog, current } = this.props
+    const { _id, scenes, initScope } = dialog
+    if (_id != window.__STATE__.dialogs[0]._id) {
+
       window.__STATE__.dialogs.unshift({
-        id: _id,
-        current: scenes.first
+        _id,
+        current: current || scenes.first
       })
       this.setState({
-        current: scenes.first,
+        current: current || scenes.first,
         form: {},
-        scope: initScopeEval(this.props)
+        scope: initScopeEval(initScope)
       })
     }
   }
@@ -84,13 +86,18 @@ export default class extends React.Component {
   }
 
   render() {
-    const { dialog, translations, closeForm, lang } = this.props
+    const {
+      dialog,
+      openExtract,
+      openDialog, closeDialog,
+      lang, translations
+    } = this.props
     const { current, scope, form } = this.state
 
-    if (window.__STATE__.dialogs[0].id === dialog._id) {
+    if (window.__STATE__.dialogs[0]._id === dialog._id) {
       const baseScene = dialog.scenes.list[current]
       const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
-      const scene = langScene ?  { ...baseScene, ...langScene, ...{
+      const scene = langScene ? { ...baseScene, ...langScene, ...{
         menu: baseScene.menu && ({
           order: baseScene.menu.order,
           list: Object.keys(baseScene.menu.list)
@@ -124,7 +131,6 @@ export default class extends React.Component {
                   &times;</span></button>
             </div>
             <ModalBody scene={ scene }
-                extracts={ dialog.extracts }
                 lang={ lang }
                 translations={ translations }/>
             <InteractiveBottom dialogId={ dialog._id }
@@ -134,7 +140,9 @@ export default class extends React.Component {
                   setScope: this.setScope.bind(this),
                   setForm: this.setForm.bind(this),
                   sendForm: this.sendForm.bind(this),
-                  closeForm: closeForm
+                  openExtract: openExtract,
+                  openDialog: openDialog,
+                  closeDialog: closeDialog
                 } }
                 scope={ scope }
                 form={ form }

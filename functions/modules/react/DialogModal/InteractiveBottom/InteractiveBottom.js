@@ -1,12 +1,18 @@
 import React from 'react'
 import getValidClass from './getValidClass/getValidClass'
+import getMainDialogProps from './getMainDialogProps/getMainDialogProps'
 
-const evalCheck = (code, { scope, form }) => {
+const evalCheck = (code, { scope, form, getMainDialogProps }) => {
   // unused params are meant to be consumed by eval call
   return code && eval(code)
 }
 
-const menuClick = (click, { goToScene, setScope, setForm, sendForm, closeForm }) => {
+const menuClick = (click, {
+    goToScene,
+    scope, setScope,
+    form, setForm, sendForm,
+    openExtract,
+    openDialog, closeDialog }) => {
   // unused params are meant to be consumed by eval call
   click && eval(click)
 }
@@ -22,7 +28,12 @@ export default ({
   const { back, next, menu } = scene
   const props = {
     scope,
-    form
+    form,
+    getMainDialogProps
+  }
+  const fullProps = { 
+    ...menuOptions,
+    ...props
   }
   const hiddenBack = !back || !back.click
     || back.hidden && evalCheck(back.hidden, props)
@@ -46,7 +57,7 @@ export default ({
                           className={ `btn btn-${
                             getValidClass(item.valid, props)
                           } col-12 col-lg-8 mx-2 my-1 txt-white py-2 text-uppercase` }
-                          onClick={ () => menuClick(item.click, menuOptions) }
+                          onClick={ () => menuClick(item.click, fullProps) }
                           disabled={ evalCheck(item.disabled, props) }>
                         { evalCheck(item.label, props) }
                       </button>
@@ -67,7 +78,7 @@ export default ({
                       <p className='small w-100 my-2 text-right pr-4'>
                         <a href='#' className='text-secondary'
                             onClick={ e => {
-                              menuClick(next.click, menuOptions)
+                              menuClick(next.click, { ...menuOptions, ...props })
                               e.stopPropagation()
                             } }>
                           { evalCheck(next.label, props) }
@@ -77,7 +88,7 @@ export default ({
                           className={ `btn btn-${
                             getValidClass(next.valid, props)
                           } w-100 my-1 text-uppercase` }
-                          onClick={ () => menuClick(next.click, menuOptions) }
+                          onClick={ () => menuClick(next.click, fullProps) }
                           disabled={ evalCheck(next.disabled, props) }>
                         { translations.next }
                       </button>
@@ -92,7 +103,7 @@ export default ({
                       <p className='small text-secondary w-100 text-left my-2 pl-4'>
                         <a href='#' className='text-secondary'
                             onClick={ e => {
-                              menuClick(back.click, menuOptions)
+                              menuClick(back.click, { ...menuOptions, ...props })
                               e.stopPropagation()
                             } }>
                           <span className='mr-2'>
@@ -102,7 +113,7 @@ export default ({
                           className={ `btn btn-${
                             getValidClass(back.valid, props)
                           } w-100 my-1 text-uppercase` }
-                          onClick={ () => menuClick(back.click, menuOptions) }
+                          onClick={ () => menuClick(back.click, { ...menuOptions, ...props }) }
                           disabled={ evalCheck(back.disabled, props) }>
                         { translations.back }
                       </button>

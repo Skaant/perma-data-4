@@ -1,4 +1,4 @@
-import getExtractPropsFactory from './getExtractPropsFactory/getExtractPropsFactory'
+import getExtractProps from './getExtractProps/getExtractProps'
 
 const evalLine = (line, {
   getExtractProps
@@ -8,14 +8,12 @@ const evalLine = (line, {
   return scope
 }
 
-export default (props) => {
-  const initScope = props.dialog.initScope
-
+export default initScope => {
   if (!initScope) {
     return {}
   }
   const options = {
-    getExtractProps: getExtractPropsFactory(props)
+    getExtractProps
   }
   return initScope.reduce((scope, line) => {
     return Object.assign({}, scope, evalLine(line, options))

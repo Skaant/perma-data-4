@@ -2,18 +2,18 @@ import React from 'react'
 import { render } from 'react-dom'
 import DialogModal from '../../../../../react/DialogModal/DialogModal'
 import updateUser from '../updateUser/updateUser'
-import openExtract from '../openExtract/openExtract'
+import openDialog from '../openDialog/openDialog'
 import closeDialog from '../closeDialog/closeDialog'
+import dialogContainerFactory from './dialogContainerFactory/dialogContainerFactory';
 
-const openDialog = () => {
-  const lastDialogProps = window.__STATE__.dialogs[window.__STATE__.dialogs.length - 1]
-  if (window.__STATE__.dialogs[0]._id !== lastDialogProps._id) {
+const openExtract = _id => {
+  const data = window.__STATE__.user.data
+  const extract = data && data.extracts
+    && data.extracts.find(extract => extract._id === _id)
+  if (extract) {
     const user = window.__STATE__.user
-    const lastDialog = user.data.dialogs
-      .find(dialog => dialog._id === lastDialogProps._id)
-    render(<DialogModal dialog={ lastDialog }
-        current={ lastDialogProps.current }
-        extracts={ user.data.extracts }
+    const dialog = dialogContainerFactory(extract)
+    render(<DialogModal dialog={ dialog }
         uid={ user.uid }
         updateUser={ updateUser }
         openExtract={ openExtract }
@@ -26,4 +26,4 @@ const openDialog = () => {
   $('#anchor-dialog').modal('show')
 }
 
-export default openDialog
+export default openExtract

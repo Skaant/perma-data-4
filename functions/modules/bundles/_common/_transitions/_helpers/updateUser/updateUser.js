@@ -2,11 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import UserPanel from '../../../../../react/UserPanel/UserPanel'
 import DialogModal from '../../../../../react/DialogModal/DialogModal'
+import openExtract from '../openExtract/openExtract'
 import openDialog from '../openDialog/openDialog'
-
-const closeForm = () => {
-  $('#anchor-dialog').modal('hide')
-}
+import closeDialog from '../closeDialog/closeDialog'
 
 const updateUser = (updates = {}) => {
   const updatedData = Object.assign({}, window.__STATE__.user.data, updates)
@@ -19,11 +17,13 @@ const updateUser = (updates = {}) => {
 
   const firstDialog = updatedData.dialogs && updatedData.dialogs.find(dialog => dialog.openFirst)
   if (firstDialog) {
+    const user = window.__STATE__.user
     render(<DialogModal dialog={ firstDialog }
-        extracts={ updatedData.extracts }
-        uid={ window.__STATE__.user.uid }
+        uid={ user.uid }
         updateUser={ updateUser }
-        closeForm={ closeForm }
+        openExtract={ openExtract }
+        openDialog={ openDialog }
+        closeDialog={ closeDialog }
         lang={ window.__PROPS__.lang }
         translations={ window.__STATE__.bundle.translations.dialog }/>,
       document.getElementById('anchor-dialog'))
