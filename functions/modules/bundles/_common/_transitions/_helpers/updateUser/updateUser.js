@@ -17,7 +17,7 @@ const updateUser = (updates = {}) => {
       translations={ window.__STATE__.bundle.translations.userPanel }/>,
     document.getElementById('anchor-user-panel'))
 
-  const firstDialog = updatedData.dialogs.find(dialog => dialog.openFirst)
+  const firstDialog = updatedData.dialogs && updatedData.dialogs.find(dialog => dialog.openFirst)
   if (firstDialog) {
     render(<DialogModal dialog={ firstDialog }
         uid={ window.__STATE__.user.uid }

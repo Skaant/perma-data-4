@@ -1,47 +1,79 @@
 module.exports = lang => ([
   {
+    '$project': {
+      'dialogs': {
+        '$objectToArray': '$dialogs'
+      }
+    }
+  }, {
+    '$project': {
+      'dialogs': '$dialogs', 
+      '_dialogs': {
+        '$map': {
+          'input': '$dialogs', 
+          'as': 'dialog', 
+          'in': {
+            '$mergeObjects': [
+              {
+                '_id': '$$dialog.k'
+              }, '$$dialog.v'
+            ]
+          }
+        }
+      }, 
+      '_dialogsIds': '$dialogs.k'
+    }
+  }, {
     '$lookup': {
       'from': 'dialogs', 
-      'localField': 'dialogs', 
+      'localField': '_dialogsIds', 
       'foreignField': '_id', 
       'as': '_dialogs'
     }
   }, {
-    '$unwind': '$_dialogs'
-  }, {
-    '$lookup': {
-      'from': 'extracts', 
-      'localField': '_dialogs.extracts', 
-      'foreignField': '_id', 
-      'as': '_extracts'
-    }
-  }, {
     '$project': {
-      '_id': '$_dialogs._id', 
-      [lang]: `$_dialogs.${ lang }`, 
-      'extracts': {
-        '$arrayToObject': {
+      'dialogs': {
+        '$concatArrays': [{
           '$map': {
-            'input': '$_extracts', 
-            'as': 'extract', 
+            'input': '$dialogs', 
+            'as': 'dialog', 
             'in': {
-              'k': {
-                '$convert': {
-                  'input': '$$extract._id', 
-                  'to': 'string'
-                }
-              }, 
+              'k': '$$dialog.k', 
               'v': {
-                [lang]: `$$extract.${ lang }`, 
-                'tags': '$$extract.tags',
-                'pictures': '$$extract.pictures'
+                'initScope': '$$dialog.v.initScope'
               }
             }
           }
-        }
-      }, 
-      'scenes': '$_dialogs.scenes', 
-      'openFirst': '$_dialogs.openFirst'
+        }, {
+            '$map': {
+              'input': '$_dialogs', 
+              'as': 'dialog', 
+              'in': {
+                'k': '$$dialog._id', 
+                'v': {
+                  '_id': '$$dialog._id',
+                  [lang]: `$$dialog.${ lang }`,
+                  'scenes': '$$dialog.scenes', 
+                  'openFirst': '$$dialog.openFirst'
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }, {
+    '$unwind': '$dialogs'
+  }, {
+    '$group': {
+      '_id': '$dialogs.k', 
+      'data': {
+        '$mergeObjects': '$dialogs.v'
+      }
+    }
+  }, {
+    '$replaceRoot': {
+      'newRoot': '$data'
     }
   }
 ])

@@ -3,6 +3,7 @@ import InteractiveBottom from './InteractiveBottom/InteractiveBottom'
 import ModalTitle from './ModalTitle/ModalTitle'
 import ModalBody from './ModalBody/ModalBody'
 import _staticStyle from './_staticStyle/_staticStyle'
+import initScopeEval from './initScopeEval/initScopeEval';
 
 export default class extends React.Component {
   constructor(props) {
@@ -16,12 +17,13 @@ export default class extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.dialog._id != prevProps.dialog._id) {
+    const { _id, scenes, initScope } = this.props.dialog
+    if (_id != prevProps.dialog._id) {
       this.setState({
-        current: this.props.dialog.scenes.first,
-        prevDialog: this.props.dialog._id,
+        current: scenes.first,
+        prevDialog: _id,
         form: {},
-        scope: {}
+        scope: initScopeEval(initScope)
       })
     }
   }
