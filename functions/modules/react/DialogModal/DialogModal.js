@@ -3,7 +3,6 @@ import InteractiveBottom from './InteractiveBottom/InteractiveBottom'
 import ModalTitle from './ModalTitle/ModalTitle'
 import ModalBody from './ModalBody/ModalBody'
 import _staticStyle from './_staticStyle/_staticStyle'
-import initScopeEval from './initScopeEval/initScopeEval'
 
 export default class extends React.Component {
   constructor(props) {
@@ -16,7 +15,7 @@ export default class extends React.Component {
     this.state = {
       current: scenes.first,
       form: {},
-      scope: initScopeEval(initScope)
+      scope: initScope || {}
     }
   }
 
@@ -32,7 +31,7 @@ export default class extends React.Component {
       this.setState({
         current: current || scenes.first,
         form: {},
-        scope: initScopeEval(initScope)
+        scope: initScope || {}
       })
     }
   }

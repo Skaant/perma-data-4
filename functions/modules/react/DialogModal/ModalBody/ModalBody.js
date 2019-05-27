@@ -1,5 +1,4 @@
 import React from 'react'
-import ExtractList from './ExtractList/ExtractList'
 import ContentDisplay from './ContentDisplay/ContentDisplay'
 import SceneSummary from './SceneSummary/SceneSummary'
 

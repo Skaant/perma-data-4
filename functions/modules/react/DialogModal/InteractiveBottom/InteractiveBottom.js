@@ -1,8 +1,13 @@
 import React from 'react'
 import getValidClass from './getValidClass/getValidClass'
 import getMainDialogProps from './getMainDialogProps/getMainDialogProps'
+import getExtractProps from './getExtractProps/getExtractProps'
 
-const evalCheck = (code, { scope, form, getMainDialogProps }) => {
+const evalCheck = (code, {
+  scope, form,
+  getMainDialogProps,
+  getExtractProps
+}) => {
   // unused params are meant to be consumed by eval call
   return code && eval(code)
 }
@@ -29,7 +34,8 @@ export default ({
   const props = {
     scope,
     form,
-    getMainDialogProps
+    getMainDialogProps,
+    getExtractProps
   }
   const fullProps = { 
     ...menuOptions,
