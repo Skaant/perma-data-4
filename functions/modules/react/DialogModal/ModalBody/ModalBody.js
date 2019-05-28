@@ -15,7 +15,9 @@ export default ({ scene, translations }) => (
       {
         scene.content && (
           <ContentDisplay content={ scene.content }
-              pictures={ scene.pictures }/>
+              pictures={ scene.pictures }
+              source={ scene.source }
+              translations={ translations }/>
         )
       }
     </div>

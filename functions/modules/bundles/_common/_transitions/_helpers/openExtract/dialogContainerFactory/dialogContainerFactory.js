@@ -1,6 +1,6 @@
 export default extract => {
   const lang = window.__PROPS__.lang
-  const { title, content, comments } = extract[lang]
+  const { title, content, comments, source } = extract[lang]
   return {
     _id: extract._id,
     [lang]: {
@@ -9,6 +9,7 @@ export default extract => {
         extract: {
           content,
           comments,
+          source,
           back: {
             label: '`${ getMainDialogProps().title }`'
           }

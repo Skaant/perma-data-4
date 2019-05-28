@@ -8,7 +8,7 @@ export default `
     font-size: 1.2rem;
   }
 
-  .content-display p,
+  .content-display p:not(.text-init),
   .content-display h1,
   .content-display h3,
   .content-display h5 {
@@ -20,18 +20,18 @@ export default `
     margin-right: auto;
   }
 
-  .content-display > div > p {
+  .content-display > .row > p {
     margin-top: 0.5rem;
   }
 
-  .content-display > div > blockquote {
+  .content-display> .row > blockquote {
     width: 100%;
     margin-top: 1.5rem;
     margin-bottom: 0;
     color: grey;
   }
 
-  .content-display > :first-child:not(.img) > p {
+  .content-display > div:first-of-type:not(.img) > p {
     margin-top: 3.5rem;
   }
 
@@ -45,10 +45,10 @@ export default `
     margin: auto;
   }
   
-  .content-display .img:not(.first) {
+  .content-display .img {
     margin-top: 1rem;
   }
   
-  .content-display .img:not(.last) {
+  .content-display .img {
     margin-bottom: 1.5rem;
   }`

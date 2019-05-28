@@ -117,7 +117,7 @@ export default class extends React.Component {
       <div id='login-form' className='modal-dialog' role='document'>
         <div className='modal-content'>
           <div className='modal-header bg-warning'>
-            <h5 className='modal-title text-uppercase text-dark'>
+            <h5 className='modal-title text-uppercase text-dark pl-2'>
               🐛  { translations.title }  🧘‍ 🦓🌻</h5>
             <button type='button' className='close'
                 data-dismiss='modal' aria-label='Close'>
