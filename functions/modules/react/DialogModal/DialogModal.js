@@ -3,6 +3,7 @@ import InteractiveBottom from './InteractiveBottom/InteractiveBottom'
 import ModalTitle from './ModalTitle/ModalTitle'
 import ModalBody from './ModalBody/ModalBody'
 import _staticStyle from './_staticStyle/_staticStyle'
+import mergeSceneSource from './mergeSceneSource/mergeSceneSource'
 
 export default class extends React.Component {
   constructor(props) {
@@ -96,23 +97,7 @@ export default class extends React.Component {
     if (window.__STATE__.dialogs[0]._id === dialog._id) {
       const baseScene = dialog.scenes.list[current]
       const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
-      const scene = langScene ? { ...baseScene, ...langScene, ...{
-        menu: baseScene.menu && ({
-          order: baseScene.menu.order,
-          list: Object.keys(baseScene.menu.list)
-            .map(key => ({
-              key,
-              ...baseScene.menu.list[key],
-              ...langScene.menu[key]
-              }))
-            .reduce((list, { key, ...item }) => {
-              list[key] = item
-              return list
-            }, {})
-        }),
-        back: { ...baseScene.back, ...langScene.back },
-        next: { ...baseScene.next, ...langScene.next }
-      }} : baseScene
+      const scene = mergeSceneSource(baseScene, langScene)
   
       return (
         <div id='dialog-modal' className='modal-dialog modal-lg' role='document'>

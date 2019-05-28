@@ -20,8 +20,15 @@ export default `
     margin-right: auto;
   }
 
-  .content-display p {
+  .content-display > div > p {
     margin-top: 0.5rem;
+  }
+
+  .content-display > div > blockquote {
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    color: grey;
   }
 
   .content-display > :first-child:not(.img) > p {
