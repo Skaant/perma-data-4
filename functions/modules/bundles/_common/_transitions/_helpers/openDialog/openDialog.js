@@ -6,7 +6,8 @@ import openExtract from '../openExtract/openExtract'
 import closeDialog from '../closeDialog/closeDialog'
 
 const openDialog = () => {
-  const lastDialogProps = window.__STATE__.dialogs[1]
+  const lastDialogProps = window.__STATE__.dialogs
+    .find(({ current }) => current !== 'extract')
   if (window.__STATE__.dialogs[0]._id !== lastDialogProps._id) {
     const user = window.__STATE__.user
     const lastDialog = user.data.dialogs
