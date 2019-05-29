@@ -1,20 +1,21 @@
-const ObjectId = require('mongodb').ObjectId
-// validate user is to switch first PUT id:email to id:uid
+const getNewUser = require('./getNewUser/getNewUser')
 
-module.exports = (dbUsers, { _id, pseudo }, uid) =>
+// validate user is to switch first PUT id:email to id:uid
+module.exports = (dbUsers, user, client) =>
   new Promise((resolve, reject) => {
-    const user = {
-      _id: uid,
-      pseudo,
-      roles: [],
-      dialogs: ['introduction']
-    }
-    dbUsers
-      .insertOne(user)
-        .then(() => 
-          dbUsers.deleteOne({ _id })
-            .then(() => resolve(user))
-            .catch(err => reject(err)))
-        .catch(err => reject(err))
+    const { uid, pseudo, email } = user
+    getNewUser(uid, pseudo, client)
+      .then(_user =>{
+        console.log(_user)
+        dbUsers
+          .insertOne(_user)
+            .then(() => 
+              dbUsers.deleteOne({
+                _id: email
+              })
+                .then(() => resolve(user))
+                .catch(err => reject(err)))
+            .catch(err => reject(err))})
+      .catch(err => reject(err))
   })
     

@@ -4,8 +4,26 @@ export default `
     src: url('/font--day_roman/DAYROM__.ttf')
   }
 
-  .content-display {
+  .content-display p:not(.text-init) {
     font-size: 1.2rem;
+  }
+
+  .content-display h5 {
+    font-size: 1.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .content-display h3 {
+    font-size: 2.1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .content-display h1 {
+    font-size: 2.8rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .content-display p:not(.text-init),
@@ -24,6 +42,10 @@ export default `
     margin-top: 0.5rem;
   }
 
+  .content-display > .row:first-of-type > h1 {
+    margin-top: 4rem;
+  }
+
   .content-display> .row > blockquote {
     width: 100%;
     margin-top: 1.5rem;
@@ -31,17 +53,11 @@ export default `
     color: grey;
   }
 
-  .content-display > div:first-of-type:not(.img) > p {
+  .content-display > .row:not(.img) + .row.img {
     margin-top: 3.5rem;
   }
 
-  .content-display h1 {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
   .content-display .img > img {
-    max-height: 50vh;
     margin: auto;
   }
   
