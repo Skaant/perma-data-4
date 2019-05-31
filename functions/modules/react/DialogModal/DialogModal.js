@@ -42,6 +42,7 @@ export default class extends React.Component {
     this.setState({
       current: value
     })
+    setTimeout(() => $('#anchor-dialog').modal().scrollTop(0), 15);
   }
 
   setScope(key, value) {
@@ -99,11 +100,12 @@ export default class extends React.Component {
       const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
       const scene = mergeSceneSource(baseScene, langScene)
   
+      // _staticStyle  - used here for the multiple ContentDisplay instanciation occuring inside
+      //    (increases re-render level and reduces its frequency)
       return (
         <div id='dialog-modal' className='modal-dialog modal-lg' role='document'>
           <div className='modal-content'>
-            <style>
-              { _staticStyle }</style>
+            <style>{ _staticStyle }</style>
             <div className='modal-header alert-dark'>
               <ModalTitle scene={ scene }
                   title={ dialog[lang].dialog.title }

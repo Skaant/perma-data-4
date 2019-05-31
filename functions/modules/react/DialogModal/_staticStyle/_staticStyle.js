@@ -4,7 +4,8 @@ export default `
     src: url('/font--day_roman/DAYROM__.ttf')
   }
 
-  .content-display p:not(.text-init) {
+  .content-display p:not(.text-init),
+  .content-display ol {
     font-size: 1.2rem;
   }
 
@@ -27,6 +28,7 @@ export default `
   }
 
   .content-display p:not(.text-init),
+  .content-display ol,
   .content-display h1,
   .content-display h3,
   .content-display h5 {
