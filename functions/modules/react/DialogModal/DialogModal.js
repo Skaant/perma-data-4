@@ -8,6 +8,10 @@ import mergeSceneSource from './mergeSceneSource/mergeSceneSource'
 export default class extends React.Component {
   constructor(props) {
     super(props)
+    this.initDialog(props)
+  }
+
+  initDialog(props) {
     const { _id, scenes, initScope } = props.dialog
     window.__STATE__.dialogs = [{
       _id,
@@ -23,8 +27,12 @@ export default class extends React.Component {
   componentDidUpdate() {
     const { dialog, current } = this.props
     const { _id, scenes, initScope } = dialog
+    // user changed
+    if (!window.__STATE__.dialogs) {
+      this.initDialog(this.props)
+    }
+    // dialog changed
     if (_id != window.__STATE__.dialogs[0]._id) {
-
       window.__STATE__.dialogs.unshift({
         _id,
         current: current || scenes.first
@@ -95,7 +103,8 @@ export default class extends React.Component {
     } = this.props
     const { current, scope, form } = this.state
 
-    if (window.__STATE__.dialogs[0]._id === dialog._id) {
+    if (window.__STATE__.dialogs 
+        && window.__STATE__.dialogs[0]._id === dialog._id) {
       const baseScene = dialog.scenes.list[current]
       const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
       const scene = mergeSceneSource(baseScene, langScene)

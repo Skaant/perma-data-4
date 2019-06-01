@@ -42,6 +42,7 @@ export default specifics => {
 
     // user authentication listener
     firebase.auth().onIdTokenChanged(user => {
+      delete window.__STATE__.dialogs
       if (user) {
         try {
           transitions['user authenticated']()
