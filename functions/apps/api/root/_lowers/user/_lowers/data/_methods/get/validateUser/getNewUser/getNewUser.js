@@ -18,6 +18,9 @@ module.exports = (uid, pseudo, client) =>
                 initScope: { extracts }
               }
             },
+            home: {
+              context: 'frast'
+            },
             extracts: Object.keys(extracts)
               .reduce((extractsArray, key) =>
                 extractsArray.concat(extracts[key]), [])

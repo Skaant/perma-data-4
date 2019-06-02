@@ -403,7 +403,7 @@ eval("module.exports = ({\n  uid,\n  email\n}, lang) => new Promise((resolve, re
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/UserHome/UserHome */ \"./modules/react/UserHome/UserHome.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    user: window.__STATE__.user,\n    lang: window.__PROPS__.lang,\n    translations: window.__STATE__.bundle.translations.userHome\n  }), document.getElementById('anchor-user-home'));\n  $('#unauth-home').addClass('d-none');\n  $('#anchor-user-home').removeClass('d-none');\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/authApp/authApp.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../react/UserHome/UserHome */ \"./modules/react/UserHome/UserHome.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  Object(react_dom__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_UserHome_UserHome__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    user: window.__STATE__.user,\n    translations: window.__STATE__.bundle.translations.userHome\n  }), document.getElementById('anchor-user-home'));\n  $('#unauth-home').addClass('d-none');\n  $('#anchor-user-home').removeClass('d-none');\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/authApp/authApp.js?");
 
 /***/ }),
 
@@ -415,7 +415,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  $('#home-login-button').click(() => $('#anchor-login-form').modal('show'));\n  $('#home-authentication-loading').addClass('d-none');\n  $('#home-login-button__container, #anchor-user-home').removeClass('d-none');\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/bundleDataProvisioned/bundleDataProvisioned.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => {\n  $('#home-login-button').click(() => $('#anchor-login-form').modal('show'));\n  $('#home-authentication-loading').addClass('d-none');\n  $('#home-login-button__container').removeClass('d-none');\n});\n\n//# sourceURL=webpack:///./modules/bundles/home/_transitions/bundleDataProvisioned/bundleDataProvisioned.js?");
 
 /***/ }),
 
@@ -452,6 +452,54 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_common/_common */ \"./modules/bundles/_common/_common.js\");\n/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_transitions */ \"./modules/bundles/home/_transitions/index.js\");\n\n\n\nObject(_common_common__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_transitions__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n//# sourceURL=webpack:///./modules/bundles/home/home.js?");
+
+/***/ }),
+
+/***/ "./modules/react/CiteZum/CiteZum.js":
+/*!******************************************!*\
+  !*** ./modules/react/CiteZum/CiteZum.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Context_Context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Context/Context */ \"./modules/react/CiteZum/Context/Context.js\");\n/* harmony import */ var _EventsList_EventsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EventsList/EventsList */ \"./modules/react/CiteZum/EventsList/EventsList.js\");\n/* harmony import */ var _DomsList_DomsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DomsList/DomsList */ \"./modules/react/CiteZum/DomsList/DomsList.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  context,\n  doms,\n  events,\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Context_Context__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n  context: context,\n  translations: translations\n}), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EventsList_EventsList__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n  events: events\n}), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DomsList_DomsList__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n  doms: doms\n})));\n\n//# sourceURL=webpack:///./modules/react/CiteZum/CiteZum.js?");
+
+/***/ }),
+
+/***/ "./modules/react/CiteZum/Context/Context.js":
+/*!**************************************************!*\
+  !*** ./modules/react/CiteZum/Context/Context.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  context,\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"container\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"jumbotrong col-12\"\n}, translations.welcome[context]))));\n\n//# sourceURL=webpack:///./modules/react/CiteZum/Context/Context.js?");
+
+/***/ }),
+
+/***/ "./modules/react/CiteZum/DomsList/DomsList.js":
+/*!****************************************************!*\
+  !*** ./modules/react/CiteZum/DomsList/DomsList.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null));\n\n//# sourceURL=webpack:///./modules/react/CiteZum/DomsList/DomsList.js?");
+
+/***/ }),
+
+/***/ "./modules/react/CiteZum/EventsList/EventsList.js":
+/*!********************************************************!*\
+  !*** ./modules/react/CiteZum/EventsList/EventsList.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null));\n\n//# sourceURL=webpack:///./modules/react/CiteZum/EventsList/EventsList.js?");
 
 /***/ }),
 
@@ -742,204 +790,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 /***/ }),
 
-/***/ "./modules/react/UserHome/DomsList/DomsList.js":
-/*!*****************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/DomsList.js ***!
-  \*****************************************************/
+/***/ "./modules/react/UserHome/Frast/Frast.js":
+/*!***********************************************!*\
+  !*** ./modules/react/UserHome/Frast/Frast.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_data */ \"./modules/react/UserHome/DomsList/_data/index.js\");\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_data__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _TrighbItem_TrighbItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TrighbItem/TrighbItem */ \"./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js\");\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  doms,\n  lang\n}) => {\n  // domsIndex for the doms([key] => index) association\n  const domsIndex = doms.reduce((domsIndex, {\n    _id\n  }, index) => {\n    domsIndex[_id] = index;\n    return domsIndex;\n  }, {});\n  const trighbsSorted = doms.reduce((trighbsSorted, dom) => {\n    const data = _data__WEBPACK_IMPORTED_MODULE_1___default.a[dom._id];\n    const trighb = data.trighb; // skip bolshDoms (named after trighb) to add them auto. at first related dom's appearance\n\n    if (trighb) {\n      const mergedDom = Object.assign({}, data, dom);\n\n      if (!trighbsSorted[trighb]) {\n        trighbsSorted[trighb] = {\n          bolshDom: Object.assign({}, _data__WEBPACK_IMPORTED_MODULE_1___default.a[trighb], doms[domsIndex[trighb]]),\n          doms: []\n        };\n      }\n\n      trighbsSorted[trighb].doms.push(mergedDom);\n    }\n\n    return trighbsSorted;\n  }, {});\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"row\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"col-12 container\"\n  }, Object.keys(trighbsSorted).map(key => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TrighbItem_TrighbItem__WEBPACK_IMPORTED_MODULE_2__[\"default\"], _extends({\n    key: key,\n    lang: lang\n  }, trighbsSorted[key])))));\n});\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/DomsList.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js":
-/*!***********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js ***!
-  \***********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  dom,\n  lang\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row alert alert-info \"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h6\", {\n  className: \"text-black mt-3\"\n}, dom._id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"text-secondary\"\n}, dom[lang].description))));\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js":
-/*!******************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DomItem_DomItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DomItem/DomItem */ \"./modules/react/UserHome/DomsList/TrighbItem/DomItem/DomItem.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  bolshDom,\n  doms,\n  lang\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row alert alert-light\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 mt-4 mb-3\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h5\", {\n  className: \"text-dark\"\n}, bolshDom._id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", null, bolshDom[lang].description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"col-12 container\"\n}, doms.map(dom => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DomItem_DomItem__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n  key: dom._id,\n  lang: lang,\n  dom: dom\n})))));\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/TrighbItem/TrighbItem.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js":
-/*!**********************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js":
-/*!**********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/explorers/explorers.js":
-/*!**********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/explorers/explorers.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/explorers/explorers.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js":
-/*!************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/index.js":
-/*!********************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/index.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = {\n  'SPARKERS': __webpack_require__(/*! ./sparkers/sparkers */ \"./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js\"),\n  'PHOTO-FACTORY': __webpack_require__(/*! ./photo-factory/photo-factory */ \"./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js\"),\n  'PHOTO-CELLS': __webpack_require__(/*! ./photo-cells/photo-cells */ \"./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js\"),\n  'PHOTO-SENSIBLE BUDS': __webpack_require__(/*! ./photo-sensibleBuds/photo-sensibleBuds */ \"./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js\"),\n  'SEV FLUIDIFIER': __webpack_require__(/*! ./sevFluidifier/sevFluidifier */ \"./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js\"),\n  'NOVS': __webpack_require__(/*! ./novs/novs */ \"./modules/react/UserHome/DomsList/_data/novs/novs.js\"),\n  'EXPLORERS': __webpack_require__(/*! ./explorers/explorers */ \"./modules/react/UserHome/DomsList/_data/explorers/explorers.js\"),\n  'HARVESTERS': __webpack_require__(/*! ./harvesters/harvesters */ \"./modules/react/UserHome/DomsList/_data/harvesters/harvesters.js\"),\n  'VAPORIZERS': __webpack_require__(/*! ./vaporizers/vaporizers */ \"./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js\"),\n  'MIKORIS': __webpack_require__(/*! ./mikoris/mikoris */ \"./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js\"),\n  'LOOKOUT': __webpack_require__(/*! ./lookout/lookout */ \"./modules/react/UserHome/DomsList/_data/lookout/lookout.js\"),\n  'DATA-SLICE SPEAR': __webpack_require__(/*! ./data-sliceSpear/data-sliceSpear */ \"./modules/react/UserHome/DomsList/_data/data-sliceSpear/data-sliceSpear.js\"),\n  'STATIC LOADER': __webpack_require__(/*! ./staticLoader/staticLoader */ \"./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js\"),\n  'DATA INDEX': __webpack_require__(/*! ./dataIndex/dataIndex */ \"./modules/react/UserHome/DomsList/_data/dataIndex/dataIndex.js\")\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/index.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/lookout/lookout.js":
-/*!******************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/lookout/lookout.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/lookout/lookout.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js":
-/*!******************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/mikoris/mikoris.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/novs/novs.js":
-/*!************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/novs/novs.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/novs/novs.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js":
-/*!**************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-cells/photo-cells.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js":
-/*!******************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-factory/photo-factory.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js":
-/*!****************************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/photo-sensibleBuds/photo-sensibleBuds.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js":
-/*!******************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'SPARKERS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/sevFluidifier/sevFluidifier.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js":
-/*!********************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/sparkers/sparkers.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js":
-/*!****************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'MIKORIS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/staticLoader/staticLoader.js?");
-
-/***/ }),
-
-/***/ "./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js":
-/*!************************************************************************!*\
-  !*** ./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./modules/react/UserHome/DomsList/_data/vaporizers/vaporizers.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  translations\n}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"container\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row p-4 text-center\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h1\", {\n  className: \"col-12\",\n  style: {\n    fontFamily: 'dayRoman'\n  }\n}, translations.welcome['frast'])), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"img\", {\n  className: \"col-12\",\n  src: \"https://firebasestorage.googleapis.com/v0/b/perma-data-4.appspot.com/o/pages%2Fhome%2Ffrast%20overlook.png?alt=media&token=e0acbd08-1ac4-4c45-a26a-b351e73c25c3\"\n})), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n  className: \"row p-4 text-center\"\n}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n  className: \"col-12\",\n  style: {\n    fontFamily: 'dayRoman'\n  }\n}, translations.introduction))));\n\n//# sourceURL=webpack:///./modules/react/UserHome/Frast/Frast.js?");
 
 /***/ }),
 
@@ -951,7 +810,7 @@ eval("module.exports = {\n  trighb: 'NOVS'\n};\n\n//# sourceURL=webpack:///./mod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DomsList_DomsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DomsList/DomsList */ \"./modules/react/UserHome/DomsList/DomsList.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  user: {\n    data: {\n      doms\n    }\n  },\n  lang,\n  translations\n}) => {\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"row\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h2\", {\n    className: \"col-12 my-4\"\n  }, translations.welcome, \" !\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DomsList_DomsList__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    doms: doms,\n    lang: lang\n  }));\n});\n\n//# sourceURL=webpack:///./modules/react/UserHome/UserHome.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Frast_Frast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Frast/Frast */ \"./modules/react/UserHome/Frast/Frast.js\");\n/* harmony import */ var _CiteZum_CiteZum__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CiteZum/CiteZum */ \"./modules/react/CiteZum/CiteZum.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  user: {\n    data: {\n      home: {\n        context\n      },\n      doms,\n      events\n    }\n  },\n  translations\n}) => {\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, // 'frast' is introduction\n  context === 'frast' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Frast_Frast__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    translations: translations\n  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CiteZum_CiteZum__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    context: context,\n    doms: doms,\n    events: events,\n    translations: Object.assign({}, translations, window.__STATE__.bundle.translations.citeZum)\n  }));\n});\n\n//# sourceURL=webpack:///./modules/react/UserHome/UserHome.js?");
 
 /***/ }),
 

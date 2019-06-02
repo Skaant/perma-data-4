@@ -13,15 +13,18 @@ module.exports = ({ uid, lang }) =>
         .updateOne({ _id: uid },
           {
             $set: {
-              doms,
               dialogs: ['maturing kolo-seed'],
-              events
+              home: {
+                context: 'kolo-seed-maturing',
+                doms,
+                events
+              }
             }
           })
           .then(() => 
             dbUsers
               .aggregate(userRelated(uid, lang, [
-                'dialogs', 'doms', 'events']))            
+                'context', 'dialogs', 'doms', 'events']))            
               .toArray((err, user) => {
                 if (err) {
                   reject(err)
