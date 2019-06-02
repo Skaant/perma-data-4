@@ -1,7 +1,7 @@
 module.exports = lang => ([ {
   $lookup: {
-    from: '$home.events',
-    localField: 'events',
+    from: 'events',
+    localField: 'home.events',
     foreignField: '_id',
     as: '_events'
   }

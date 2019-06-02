@@ -1,9 +1,4 @@
 export default `
-  @font-face {
-    font-family: dayRoman;
-    src: url('/font--day_roman/DAYROM__.ttf')
-  }
-
   .content-display p:not(.text-init),
   .content-display ol {
     font-size: 1.2rem;
