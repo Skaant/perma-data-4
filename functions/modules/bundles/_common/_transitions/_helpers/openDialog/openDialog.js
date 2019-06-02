@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import DialogModal from '../../../../../react/DialogModal/DialogModal'
-import updateUser from '../updateUser/updateUser'
 import openExtract from '../openExtract/openExtract'
 import closeDialog from '../closeDialog/closeDialog'
 
@@ -16,7 +15,6 @@ const openDialog = () => {
         current={ lastDialogProps.current }
         extracts={ user.data.extracts }
         uid={ user.uid }
-        updateUser={ updateUser }
         openExtract={ openExtract }
         openDialog={ openDialog }
         closeDialog={ closeDialog }

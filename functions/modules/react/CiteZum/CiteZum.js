@@ -10,8 +10,9 @@ export default ({
 }) => (
   <React.Fragment>
     <Context context={ context }
-      translations={ translations }/>
-    <EventsList events={ events }/>
+        translations={ translations }/>
+    <EventsList events={ events }
+        translations={ translations }/>
     <DomsList doms={ doms }/>
   </React.Fragment>
 )

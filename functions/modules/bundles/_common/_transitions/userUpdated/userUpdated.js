@@ -1,26 +1,24 @@
 import React from 'react'
 import { render } from 'react-dom'
-import UserPanel from '../../../../../react/UserPanel/UserPanel'
-import DialogModal from '../../../../../react/DialogModal/DialogModal'
-import openExtract from '../openExtract/openExtract'
-import openDialog from '../openDialog/openDialog'
-import closeDialog from '../closeDialog/closeDialog'
+import UserPanel from '../../../../react/UserPanel/UserPanel'
+import DialogModal from '../../../../react/DialogModal/DialogModal'
+import openExtract from '../_helpers/openExtract/openExtract'
+import openDialog from '../_helpers/openDialog/openDialog'
+import closeDialog from '../_helpers/closeDialog/closeDialog'
 
-const updateUser = (updates = {}) => {
-  const updatedData = Object.assign({}, window.__STATE__.user.data, updates)
-  window.__STATE__.user.data = updatedData
-
-  render(<UserPanel user={ window.__STATE__.user }
+export default updates => {
+  const user = window.__STATE__.user
+  render(<UserPanel user={ user }
       openDialog={ openDialog }
       translations={ window.__STATE__.bundle.translations.userPanel }/>,
     document.getElementById('anchor-user-panel'))
 
-  const firstDialog = updatedData.dialogs && updatedData.dialogs.find(dialog => dialog.openFirst)
+  const dialogs = user.data.dialogs
+  const firstDialog = dialogs && dialogs.find(dialog => dialog.openFirst)
   if (firstDialog) {
     const user = window.__STATE__.user
     render(<DialogModal dialog={ firstDialog }
         uid={ user.uid }
-        updateUser={ updateUser }
         openExtract={ openExtract }
         openDialog={ openDialog }
         closeDialog={ closeDialog }
@@ -32,5 +30,3 @@ const updateUser = (updates = {}) => {
     $('#anchor-dialog').modal('hide')
   }
 }
-
-export default updateUser

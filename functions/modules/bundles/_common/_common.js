@@ -7,11 +7,13 @@ import initWindowState from './initWindowState/initWindowState'
 import mergeTransitions from './mergeTransitions/mergeTransitions'
 import bundleProvisioning from './bundleProvisioning/bundleProvisioning'
 import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
+import updateUserFactory from './_transitions/_helpers/updateUserFactory/updateUserFactory'
 
 // common module intialization
 export default specifics => {
   initWindowProps()
   initWindowState()
+  window.__METHODS__ = {}
   const transitions = mergeTransitions(commons, specifics)
   try {
     transitions['bundle received']()
@@ -52,6 +54,7 @@ export default specifics => {
           userDataProvisioning(window.__STATE__.user, window.__PROPS__.lang)
             .then(data => {
               try {
+                window.__METHODS__.updateUser = updateUserFactory(transitions['user updated'])
                 window.__STATE__.user.data = data
                 transitions['user data provisioned']()
                 if (window.__STATE__.bundle) {

@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import DialogModal from '../../../../../react/DialogModal/DialogModal'
-import updateUser from '../updateUser/updateUser'
 import openDialog from '../openDialog/openDialog'
 import closeDialog from '../closeDialog/closeDialog'
 import dialogContainerFactory from './dialogContainerFactory/dialogContainerFactory';
@@ -15,7 +14,6 @@ const openExtract = _id => {
     const dialog = dialogContainerFactory(extract)
     render(<DialogModal dialog={ dialog }
         uid={ user.uid }
-        updateUser={ updateUser }
         openExtract={ openExtract }
         openDialog={ openDialog }
         closeDialog={ closeDialog }

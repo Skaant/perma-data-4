@@ -8,10 +8,11 @@ import mergeSceneSource from './mergeSceneSource/mergeSceneSource'
 export default class extends React.Component {
   constructor(props) {
     super(props)
+    this.initDialog = this._initDialog.bind(this)
     this.initDialog(props, true)
   }
 
-  initDialog(props, first) {
+  _initDialog(props, first) {
     const { _id, scenes, initScope } = props.dialog
     window.__STATE__.dialogs = [{
       _id,
@@ -37,7 +38,7 @@ export default class extends React.Component {
     const { _id, scenes, initScope } = dialog
     // user changed
     if (!window.__STATE__.dialogs) {
-      this.initDialog(this.props).bind(this)
+      this.initDialog(this.props)
     }
     // dialog changed
     if (_id != window.__STATE__.dialogs[0]._id) {
@@ -95,7 +96,7 @@ export default class extends React.Component {
         })
       })
         .then(result => result.json())
-        .then(result => updateUser(result))
+        .then(result => window.__METHODS__.updateUser(result))
         .catch(err => console.log(err) 
           // TODO do something with error
         )
