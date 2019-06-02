@@ -2,7 +2,7 @@ module.exports = lang => ([
   {
     '$project': {
       'doms': {
-        '$objectToArray': '$doms'
+        '$objectToArray': '$home.doms'
       }
     }
   }, {

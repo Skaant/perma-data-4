@@ -1,6 +1,5 @@
+const getIntroductionUser = require('./getIntroductionUser/getIntroductionUser')
 const userRelated = require('../../../../../../../../_aggregations/userRelated/userRelated')
-const doms = require('./doms/doms')
-const events = require('./events/events')
 
 module.exports = ({ uid, lang }) => 
   new Promise((resolve, reject) => {
@@ -8,23 +7,17 @@ module.exports = ({ uid, lang }) =>
       if (err) {
         reject(err)
       }
+      const baseUser = getIntroductionUser()
       const dbUsers = client.db('prod').collection('users')
       dbUsers
         .updateOne({ _id: uid },
           {
-            $set: {
-              dialogs: ['maturing kolo-seed'],
-              home: {
-                context: 'kolo-seed-maturing',
-                doms,
-                events
-              }
-            }
+            $set: baseUser
           })
           .then(() => 
             dbUsers
               .aggregate(userRelated(uid, lang, [
-                'context', 'dialogs', 'doms', 'events']))            
+                'dialogs', 'doms', 'events']))            
               .toArray((err, user) => {
                 if (err) {
                   reject(err)
@@ -35,11 +28,13 @@ module.exports = ({ uid, lang }) =>
                     message: 'no user data at the end of the pipeline'
                   })
                 }
+                const { home } = baseUser
                 const { dialogs, doms, events } = user[0]
                 resolve({
                   dialogs,
                   doms,
-                  events
+                  events,
+                  home
                 })
               }))
           .catch(err => reject(err))

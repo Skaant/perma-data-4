@@ -5,17 +5,16 @@ module.exports = (dbUsers, user, client) =>
   new Promise((resolve, reject) => {
     const { uid, pseudo, email } = user
     getNewUser(uid, pseudo, client)
-      .then(_user =>{
-        console.log(_user)
+      .then(_user =>
         dbUsers
           .insertOne(_user)
             .then(() => 
               dbUsers.deleteOne({
                 _id: email
               })
-                .then(() => resolve(user))
+                .then(() => resolve(_user))
                 .catch(err => reject(err)))
-            .catch(err => reject(err))})
+            .catch(err => reject(err)))
       .catch(err => reject(err))
   })
     
