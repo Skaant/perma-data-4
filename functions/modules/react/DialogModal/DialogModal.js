@@ -107,7 +107,7 @@ export default class extends React.Component {
             <ModalBody scene={ scene }
                 lang={ lang }
                 translations={ translations }/>
-            <InteractiveBottom dialogId={ dialog._id }
+            <InteractiveBottom dialog={ dialog }
                 scene={ scene }
                 menuOptions={ {
                   goToScene: this.goToScene.bind(this),

@@ -3,9 +3,10 @@ import getValidClass from './getValidClass/getValidClass'
 import _helpers from './_helpers'
 
 const evalCheck = (code, {
-  scope,
-  form
+  scope, form,
+  dialog, scene
 }) => {
+  const lang = window.__PROPS__.lang
   const { 
     getMainDialogProps,
     getExtractProps
@@ -24,17 +25,15 @@ const menuClick = (click, {
 }
 
 export default ({
-  dialogId,
-  scene,
+  dialog, scene,
   menuOptions,
-  scope,
-  form,
+  scope, form,
   translations
 }) => {
   const { back, next, menu } = scene
   const props = {
-    scope,
-    form
+    scope, form,
+    dialog, scene,
   }
   const fullProps = { 
     ...menuOptions,
@@ -58,7 +57,7 @@ export default ({
                   .filter(item => !!item.click && !item.hidden || !evalCheck(item.hidden, props))
                   .map(item => (
                       <button type='button'
-                          key={ `${ dialogId }+${ item.key }` }
+                          key={ `${ dialog.key }+${ item.key }` }
                           className={ `btn btn-${
                             getValidClass(item.valid, props)
                           } col-12 col-lg-8 mx-2 my-1 txt-white py-2 text-uppercase` }
