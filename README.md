@@ -10,17 +10,27 @@
 * [object references](object-references)
 
 ### concepts
-* mongo aggregations
-* client bundle & [_common](#client-bundle-_common)
-* [server apps](#server-apps) (**content** and **api**)
-* routing [router factory](# router-factory)
-* dialog ([API](#dialog-API))
 
+#### client
+* **client bundle**
+  * [_common](#client-bundle-_common)
+  * `window.__PROPS__`
+  * `window.__STATE__`
+  * `window.__METHODS__`
+* **dialogs**
+  * [<DialogModal/> component](#dialog-component),
+  * `window.__STATE__.dialogs`
+  * `window.__METHODS__.openDialog(type[, id])`
+
+#### server
+* **mongo aggregations** 
+* [server apps](#server-apps) (**content** & **api**)
+* routing [router factory](# router-factory)
 
 ## WIP (v4.2)
 
 ### goals & done
-*see the treelo**
+*refer to the [PERMADATA trello board](https://trello.com/b/WkynhqO6/permadata)*
 
 #### done
 * client bundle rework with :
@@ -343,7 +353,7 @@ module.exports = props => {
 }
 ```
 
-## dialog API
+## dialog component
 
 ### logic
 each given dialog get its own temporary state variables :
