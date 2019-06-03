@@ -2,19 +2,19 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import firebaseConfig from '../../../firebase.config'
 import commons from './_transitions'
-import initWindowProps from './initWindowProps/initWindowProps'
-import initWindowState from './initWindowState/initWindowState'
+import initWindow from './initWindow/initWindow'
 import mergeTransitions from './mergeTransitions/mergeTransitions'
 import bundleProvisioning from './bundleProvisioning/bundleProvisioning'
 import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
-import updateUserFactory from './_transitions/_helpers/updateUserFactory/updateUserFactory'
 
 // common module intialization
 export default specifics => {
-  initWindowProps()
-  initWindowState()
-  window.__METHODS__ = {}
   const transitions = mergeTransitions(commons, specifics)
+  initWindow({
+    methods: {
+      userUpdated: transitions['user updated']
+    }
+  })
   try {
     transitions['bundle received']()
     firebase.initializeApp(firebaseConfig)
@@ -44,7 +44,6 @@ export default specifics => {
 
     // user authentication listener
     firebase.auth().onIdTokenChanged(user => {
-      delete window.__STATE__.dialogs
       if (user) {
         try {
           transitions['user authenticated']()
@@ -54,8 +53,11 @@ export default specifics => {
           userDataProvisioning(window.__STATE__.user, window.__PROPS__.lang)
             .then(data => {
               try {
-                window.__METHODS__.updateUser = updateUserFactory(transitions['user updated'])
                 window.__STATE__.user.data = data
+                window.__STATE__.dialogs = {
+                  list: {},
+                  history: []
+                }
                 transitions['user data provisioned']()
                 if (window.__STATE__.bundle) {
                   transitions['auth app']()
@@ -72,6 +74,7 @@ export default specifics => {
       } else {
         try {
           window.__STATE__.user = false
+          delete window.__STATE__.dialogs
           if (window.__STATE__.bundle) {
             transitions['unauth app']()
           }

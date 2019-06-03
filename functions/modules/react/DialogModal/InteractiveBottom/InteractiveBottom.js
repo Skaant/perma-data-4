@@ -1,13 +1,15 @@
 import React from 'react'
 import getValidClass from './getValidClass/getValidClass'
-import getMainDialogProps from './getMainDialogProps/getMainDialogProps'
-import getExtractProps from './getExtractProps/getExtractProps'
+import _helpers from './_helpers'
 
 const evalCheck = (code, {
-  scope, form,
-  getMainDialogProps,
-  getExtractProps
+  scope,
+  form
 }) => {
+  const { 
+    getMainDialogProps,
+    getExtractProps
+  } = _helpers
   // unused params are meant to be consumed by eval call
   return code && eval(code)
 }
@@ -15,9 +17,8 @@ const evalCheck = (code, {
 const menuClick = (click, {
     goToScene,
     scope, setScope,
-    form, setForm, sendForm,
-    openExtract,
-    openDialog, closeDialog }) => {
+    form, setForm, sendForm }) => {
+  const { openDialog, closeDialog } = window.__METHODS__
   // unused params are meant to be consumed by eval call
   click && eval(click)
 }
@@ -33,9 +34,7 @@ export default ({
   const { back, next, menu } = scene
   const props = {
     scope,
-    form,
-    getMainDialogProps,
-    getExtractProps
+    form
   }
   const fullProps = { 
     ...menuOptions,

@@ -22,7 +22,7 @@ export default extract => {
         extract: {
           pictures: extract.pictures,
           back: {
-            click: 'openDialog()'
+            click: 'openDialog(\'previous\')'
           }
         }
       }

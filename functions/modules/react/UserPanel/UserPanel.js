@@ -8,6 +8,10 @@ export default class extends React.Component {
     this.state = {}
   }
 
+  openDialog() {
+    window.__METHODS__.openDialog('main')
+  }
+
   signOut() {
     firebase.auth().signOut()
       .then(() => this.setState({
@@ -22,7 +26,6 @@ export default class extends React.Component {
         data: {
           pseudo
         }},
-      openDialog,
       translations
     } = this.props
     return (
@@ -32,7 +35,7 @@ export default class extends React.Component {
           <b>{ pseudo || email }</b></button>
         <button type='button' className='btn btn-light px-3 text-uppercase'
             title={ translations.openDialog }
-            onClick={ () => openDialog() }>
+            onClick={ this.openDialog }>
           { translations.dialog }</button>
         <button type='button' className='btn btn-danger' aria-label='Close'
             title={ translations.disconnect }

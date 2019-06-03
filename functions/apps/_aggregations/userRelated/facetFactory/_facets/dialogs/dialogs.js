@@ -54,7 +54,7 @@ module.exports = lang => ([
                   '_id': '$$dialog._id',
                   [lang]: `$$dialog.${ lang }`,
                   'scenes': '$$dialog.scenes', 
-                  'openFirst': '$$dialog.openFirst'
+                  'main': '$$dialog.main'
                 }
               }
             }

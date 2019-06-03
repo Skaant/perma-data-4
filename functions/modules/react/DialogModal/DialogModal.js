@@ -8,56 +8,24 @@ import mergeSceneSource from './mergeSceneSource/mergeSceneSource'
 export default class extends React.Component {
   constructor(props) {
     super(props)
-    this.initDialog = this._initDialog.bind(this)
-    this.initDialog(props, true)
-  }
-
-  _initDialog(props, first) {
-    const { _id, scenes, initScope } = props.dialog
-    window.__STATE__.dialogs = [{
-      _id,
-      current: scenes.first
-    }]
-    if (first) {
-      this.state = {
-        current: scenes.first,
-        form: {},
-        scope: initScope || {}
-      }
-    } else {
-      this.setState({
-        current: scenes.first,
-        form: {},
-        scope: initScope || {}
-      })
-    }
+    this.state = props.initialState
   }
 
   componentDidUpdate() {
-    const { dialog, current } = this.props
-    const { _id, scenes, initScope } = dialog
-    // user changed
-    if (!window.__STATE__.dialogs) {
-      this.initDialog(this.props)
-    }
-    // dialog changed
-    if (_id != window.__STATE__.dialogs[0]._id) {
-      window.__STATE__.dialogs.unshift({
-        _id,
-        current: current || scenes.first
-      })
-      this.setState({
-        current: current || scenes.first,
-        form: {},
-        scope: initScope || {}
-      })
+    const { initialState } = this.props
+    const { uid, key } = this.state
+
+    // user changed or dialog changed
+    if (initialState.uid !== uid || initialState.key !== key) {
+      this.setState(initialState)
     }
   }
 
   goToScene(value) {
-    window.__STATE__.dialogs[0].current = value
+    window.__STATE__.dialogs.list[
+      window.__STATE__.dialogs.history[0]].sceneKey = value
     this.setState({
-      current: value
+      sceneKey: value
     })
     setTimeout(() => $('#anchor-dialog').modal().scrollTop(0), 15);
   }
@@ -106,16 +74,18 @@ export default class extends React.Component {
   render() {
     const {
       dialog,
-      openExtract,
-      openDialog, closeDialog,
+      initialState,
       lang, translations
     } = this.props
-    const { current, scope, form } = this.state
+    const { 
+      uid, key,
+      sceneKey,
+      scope, form
+    } = this.state
 
-    if (window.__STATE__.dialogs 
-        && window.__STATE__.dialogs[0]._id === dialog._id) {
-      const baseScene = dialog.scenes.list[current]
-      const langScene = dialog[lang].scenes && dialog[lang].scenes[current] || false
+    if (initialState.uid === uid && initialState.key === key) {
+      const baseScene = dialog.scenes.list[sceneKey]
+      const langScene = dialog[lang].scenes && dialog[lang].scenes[sceneKey] || false
       const scene = mergeSceneSource(baseScene, langScene)
   
       // _staticStyle  - used here for the multiple ContentDisplay instanciation occuring inside
@@ -127,7 +97,7 @@ export default class extends React.Component {
             <div className='modal-header alert-dark'>
               <ModalTitle scene={ scene }
                   title={ dialog[lang].dialog.title }
-                  current={ current }
+                  sceneKey={ sceneKey }
                   pages={ dialog.scenes.pages } />
               <button type='button' className='close'
                   data-dismiss='modal' aria-label='Close'>
@@ -143,10 +113,7 @@ export default class extends React.Component {
                   goToScene: this.goToScene.bind(this),
                   setScope: this.setScope.bind(this),
                   setForm: this.setForm.bind(this),
-                  sendForm: this.sendForm.bind(this),
-                  openExtract: openExtract,
-                  openDialog: openDialog,
-                  closeDialog: closeDialog
+                  sendForm: this.sendForm.bind(this)
                 } }
                 scope={ scope }
                 form={ form }
