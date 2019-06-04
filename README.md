@@ -457,3 +457,82 @@ const langScene = {
     }
 }
 ```
+
+## DOMS
+
+### no TRIGHBS
+
+#### ong-cite embryo
+**restricted to the `'introduction'` & `'maturing kolo-seed'` dialogs**
+
+##### behaviour
+* initial, no interaction
+* no more **empty rooms**, displays the "release" button
+  * if confirmed, go to the next `'wandering kolo-seed'` dialog
+
+#### re-hydrated ong-cite embryo
+**restricted to the `'wandering kolo-seed'` & `'installed kolo-seed'` dialogs**
+
+##### behaviour
+* `'wandering kolo-seed'`, no interaction
+* `'installed kolo-seed'`, displays the "start" button
+  * if confirmed, go to the next `'starting ong-cite'` dialog
+
+#### empty rooms
+**restricted to the `'maturing kolo-seed'` dialog**
+
+##### properties
+* **dialogs**
+  * "fill room", choose **TRIGHBS** or access presentation event dialog
+ 
+* **quantity** (number of empty rooms)
+  * initialized with 3
+  * in the `'maturing kolo-seed'` step, choosing a **TRIGHB RAYÖN** will reduce the quantity by 1
+  * at 0, removes the **DOMS** from `user.data.home` and allows the **ong-cite embryo** to be released
+
+##### behaviour
+* displays the "fill room" button which open the "fill room" dialog
+* "fill room" dialog allows:
+  * direct **TRIGHB** selection
+  * **TRIGHB**-related event dialog opening
+
+### ARKEOS
+
+#### kolo-seed shell
+
+##### properties
+* **extracts**, contains extract references
+  * when validating user (first user data provisioning), randomly pick up 2 extracts about each of the 5 following concepts: **FRAST**, **HOL-ONG**, **ZUMS**, **TRIGHBS**, **KOLO-SEED**
+  * at the `'introduction'` dialog validation, when the **kolo-seed shell** is added, this random extracts are bound to it
+
+### SPARKERS
+
+#### sparkers rayon
+
+#### photo-cells
+
+### NOVS
+
+#### novs rayon
+
+#### rangers body
+
+### MIKORIS
+
+#### mikoris rayon
+
+### GRANOS
+
+#### granos rayon
+
+#### granos silo
+
+#### sow calendar
+
+### LISTERS
+
+#### listers rayon
+
+#### persistent list column
+
+#### list tag observatory
