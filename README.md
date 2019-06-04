@@ -18,7 +18,8 @@
   * `window.__STATE__`
   * `window.__METHODS__`
 * **dialogs**
-  * [<DialogModal/> component](#dialog-component),
+  * [`<DialogModal/>` component](#dialog-component),
+  * `dialog` prop object specification
   * `window.__STATE__.dialogs`
   * `window.__METHODS__.openDialog(type[, id])`
 
@@ -364,7 +365,11 @@ these variables can be accessed through the `menu`, `back` or `next` actions; ex
 
 when the dialog changes, both variables are re-initialized
 
-### format
+#### open dialog (& close)
+
+#### history & 'previous'
+
+## dialog specification
 ```javascript
 const dialog = {
     _id: 'string',
