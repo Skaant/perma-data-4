@@ -42,7 +42,11 @@ module.exports = req =>
                   message: `no user found, neither for ${ uid } nor ${ email }`
                 })
               }
-              validateUser(dbUsers, user, uid)
+              validateUser(dbUsers, Object.assign({
+                uid,
+                email,
+                pseudo: user.pseudo
+              }), client)
                 .then(user => 
                   dbUsers
                     .aggregate(userRelated(uid, lang))

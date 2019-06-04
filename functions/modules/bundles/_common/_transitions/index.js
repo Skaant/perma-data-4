@@ -6,6 +6,7 @@ import userAuthenticated from './userAuthenticated/userAuthenticated'
 import userDataFetch from './userDataFetch/userDataFetch'
 import userDataProvisioned from './userDataProvisioned/userDataProvisioned'
 import authApp from './authApp/authApp'
+import userUpdated from './userUpdated/userUpdated'
 import bundleError from './bundleError/bundleError'
 import bundleDataError from './bundleDataError/bundleDataError'
 import userAuthenticatedError from './userAuthenticatedError/userAuthenticatedError'
@@ -23,5 +24,6 @@ export default {
   'user data fetch': userDataFetch,
   'user data error': userDataError,
   'user data provisioned': userDataProvisioned,
-  'auth app': authApp
+  'auth app': authApp,
+  'user updated': userUpdated
 }
