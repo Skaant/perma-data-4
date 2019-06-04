@@ -58,8 +58,8 @@ export default class extends React.Component {
 
   sendForm(key) {
     if (confirm(this.props.translations.confirmSend)) {
-      const { uid, lang, updateUser } = this.props
-      const { form } = this.state
+      const { lang } = this.props
+      const { uid, form } = this.state
       fetch('/api/dialog', {
         method: 'POST',
         body: JSON.stringify({
