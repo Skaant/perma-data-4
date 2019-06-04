@@ -463,11 +463,11 @@ const langScene = {
 ### no TRIGHBS
 
 #### ong-cite embryo
-**restricted to the `'introduction'` & `'maturing kolo-seed'` dialogs**
+**restricted to the `'maturing kolo-seed'` dialog**
 
 ##### behaviour
-* initial, no interaction
-* no more **empty rooms**, displays the "release" button
+* **[empty rooms].quantity > 0**, no interaction
+* **[empty rooms].quantity === 0**, displays the "release" button
   * if confirmed, go to the next `'wandering kolo-seed'` dialog
 
 #### re-hydrated ong-cite embryo
