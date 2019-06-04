@@ -32,21 +32,27 @@ export default class extends React.Component {
 
   setScope(key, value) {
     const { scope } = this.state
+    const newScope = { 
+      ...scope,
+      [key]: value
+    }
+    window.__STATE__.dialogs.list[
+      window.__STATE__.dialogs.history[0]].scope = newScope
     this.setState({
-      scope: { 
-        ...scope,
-        [key]: value
-      }
+      scope: newScope
     })
   }
 
   setForm(key, value) {
     const { form } = this.state
+    const newForm = { 
+      ...form,
+      [key]: value
+    }
+    window.__STATE__.dialogs.list[
+      window.__STATE__.dialogs.history[0]].form = newForm
     this.setState({
-      form: { 
-        ...form,
-        [key]: value
-      }
+      form: newForm
     })
   }
 

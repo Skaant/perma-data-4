@@ -14,5 +14,7 @@ export default (baseScene, langScene) =>
         }, {})
     }),
     back: { ...baseScene.back, ...langScene.back },
-    next: { ...baseScene.next, ...langScene.next }
+    back2: { ...baseScene.back2, ...langScene.back2 },
+    next: { ...baseScene.next, ...langScene.next },
+    next2: { ...baseScene.next2, ...langScene.next2 }
   }} : baseScene
