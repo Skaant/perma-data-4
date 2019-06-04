@@ -5,6 +5,7 @@ module.exports = req =>
   new Promise((resolve, reject) => {
     const { uid, email, lang } = req.query
     global.mongo.connect((err, client) => {
+      console.log(err)
       if (err) {
         reject(err)
       }

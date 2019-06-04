@@ -1,6 +1,5 @@
 const doms = require('./doms/doms')
 const events = require('./events/events')
-const userRelated = require('../../../../../../../../../_aggregations/userRelated/userRelated')
 
 module.exports = (dbUsers, uid, lang) => 
   new Promise((resolve, reject) => {

@@ -10,6 +10,8 @@ module.exports = lang => ([ {
 }, {
   $project: {
     '_id': '$_events._id',
-    [lang]: `$_events.${ lang }`
+    [lang]: `$_events.${ lang }`,
+    'menu': '$_events.menu',
+    'scenes': '$_events.scenes'
   }
 } ])

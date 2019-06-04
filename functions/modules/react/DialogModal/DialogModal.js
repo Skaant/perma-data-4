@@ -56,7 +56,7 @@ export default class extends React.Component {
     })
   }
 
-  sendForm(key) {
+  sendForm(key, directForm) {
     if (confirm(this.props.translations.confirmSend)) {
       const { lang } = this.props
       const { uid, form } = this.state
@@ -66,7 +66,7 @@ export default class extends React.Component {
           key,
           lang,
           uid,
-          form
+          form: directForm || form
         })
       })
         .then(result => result.json())

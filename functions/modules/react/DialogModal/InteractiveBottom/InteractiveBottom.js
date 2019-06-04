@@ -1,7 +1,8 @@
 import React from 'react'
-import isHidden from './isHidden/isHidden'
+import isHidden from '../../_helpers/isHidden/isHidden'
 import MenuButton from './MenuButton/MenuButton'
 import DirectionButton from './DirectionButton/DirectionButton'
+import evalStatic from './_eval/evalStatic';
 
 export default ({
   dialog, scene,
@@ -19,8 +20,8 @@ export default ({
     dialog, scene,
     ...menuOptions
   }
-  const hiddenBack = isHidden(back, props)
-  const hiddenNext = isHidden(next, props)
+  const hiddenBack = isHidden(back, props, evalStatic)
+  const hiddenNext = isHidden(next, props, evalStatic)
   return (
     <React.Fragment>
       {
@@ -33,7 +34,7 @@ export default ({
                     key,
                     ...menu.list[key]
                   }))
-                  .filter(item => !isHidden(item, props))
+                  .filter(item => !isHidden(item, props, evalStatic))
                   .map(item => (
                     <MenuButton key={ `${ props.dialog.key }+${ item.key }` }
                         item={ item }
@@ -56,7 +57,7 @@ export default ({
                           direction='next'
                           label={ translations.next }/>
                       {
-                        !isHidden(next2, props) && (
+                        !isHidden(next2, props, evalStatic) && (
                           <DirectionButton item={ next2 }
                               props={ props }
                               short={ true }/>)
@@ -74,7 +75,7 @@ export default ({
                           direction='back'
                           label={ translations.back }/>
                       {
-                        !isHidden(back2, props) && (
+                        !isHidden(back2, props, evalStatic) && (
                           <DirectionButton item={ back2 }
                               props={ props }
                               short={ true }/>)

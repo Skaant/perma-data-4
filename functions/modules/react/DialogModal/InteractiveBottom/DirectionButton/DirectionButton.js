@@ -1,5 +1,5 @@
 import React from 'react'
-import getValidClass from '../getValidClass/getValidClass'
+import getValidClass from '../../../_helpers/getValidClass/getValidClass'
 import evalClick from '../_eval/evalClick'
 import evalStatic from '../_eval/evalStatic'
 
