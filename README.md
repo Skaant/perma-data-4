@@ -18,10 +18,11 @@
   * `window.__STATE__`
   * `window.__METHODS__`
 * **dialogs**
+  * [logic](#dialogs logic)
   * [`<DialogModal/>` component](#dialog-component),
-  * `dialog` prop object specification
-  * `window.__STATE__.dialogs`
+  * [`dialog` prop object specification](#dialog-object-input-specification)
   * `window.__METHODS__.openDialog(type[, id])`
+  * `window.__STATE__.dialogs`
 
 #### server
 * **mongo aggregations** 
@@ -354,32 +355,61 @@ module.exports = props => {
 }
 ```
 
-## dialog component
+## dialogs
 
 ### logic
+a dialog is a succession of **scenes**
+
+**scenes** display content and can output server-side actions. They usually can be browsed through the **Back** & **Next** buttons
+
 each given dialog get its own temporary state variables :
 * **scope**, UI or form validation data,
 * **form**, data to be sent at some point in the dialog
 
-these variables can be accessed through the `menu`, `back` or `next` actions; exposed to the `<InteractiveBottom>` component
+these variables are historized
 
-when the dialog changes, both variables are re-initialized
+these variables also can be used in the `_eval` methods: **evalStatic** and **evalClick**, in addition to the contextual given props
 
-#### open dialog (& close)
+**user change re-initializes dialog history**
+
+#### openDialog pipeline
+dialog is opened by calling the global function `window.__METHODS__.openDialog(type[, id[, options]])`
+
+given the function's parameters, the `<DialogModal/>` will be rendered with a processed dialog variable
+
+obtaining this processed variable is achieved through the following two steps :
+1. **_sourceGetters**, where dialog data is provisioned
+2. **_dialogBuilders**, where data is processed in order to meet the `<DialogModal/>`'s **dialog property** requirements
+
+specific step behaviour is arranged according to the `type` param, which accepts the following value :
+* **'main'**
+* **'previous'**
+* **'extract'**, requires the `id` param
+* **'event'**, requires the `id` param
+* **'dom'**, requires the `id` param
 
 #### history & 'previous'
+whenever a dialog is opened, it creates an entry in the history
 
-## dialog specification
+changing scene, scope or form is saved in the history entry
+
+### component
+
+### dialog object input specification
+what's expected from the inputed `<DialogModal/>`'s dialog prop
+
+target format can be obtained through the `_dialogBuilders` step
+
 ```javascript
 const dialog = {
     _id: 'string',
-    extracts: ['<required_extract_id>: ObjectId'],
+    extracts: ['<extractId>: ObjectId'], // optional, used in introduction, when the KOLO-SEED shell isn't available
     scenes: {
-        first: '<scene_id>: string',
+        first: '<sceneId>: string',
         pages: [ // index gives the current page displayed in the dialog title
-            ['<scene_id>: string'] ], // matching scene ids
+            ['<sceneId>: string'] ], // matching scene ids
         list: {
-            '<scene_id>: string': '<scene>'
+            ['<sceneId>: string']: '<scene>'
         }
     },
     '<lang>': {
@@ -387,31 +417,33 @@ const dialog = {
             title
         },
         scenes: {
-            '<scene_id>: string': '<lang_scene>'
+            '<sceneId>: string': '<langScene>'
         }
     },
-    openFirst: false || true // if true, dialog will be opened when the user auth
+    main: false || true // if true, dialog will be opened when the user auth
 }
 
 const scene = {
-    extracts: ['<extract_id>: string'], // extracts has to be required through dialog.extracts property
+    extracts: ['<extractId>: string'], // extracts has to be required through dialog.extracts property
     menu: {
-        order: ['<option_id>: string'],
+        order: ['<optionId>: string'],
         list: {
-            '<option_id>: string': '<menu_item>'
+            ['<optionIdd>: string']: '<menuItem>'
         },
-    back: '<menu_item>',
-    next: '<menu_item>'
+    back: '<menuItem>',
+    back2: '<menuItem>', // requires 'back' to be first set in order to be displayed
+    next: '<menuItem>',
+    next2: '<menuItem>'  // requires 'next' to be first set in order to be displayed
 }
 
-const menu_item = {
+const menuItem = {
     hidden: false || true || 'evaluable code for exposed dialog API',
     disabled: false || true || 'evaluable code ...',
     valid: false || true || 'evaluable code ...',
     click: 'evaluable code'
 }
 
-const lang_scene = {
+const langScene = {
     content: '<markdown>: string',
     summary: 'evaluable code , for templating',
     menu: {
