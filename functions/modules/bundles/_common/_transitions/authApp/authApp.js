@@ -1,7 +1,5 @@
-import updateUser from '../_helpers/updateUser/updateUser'
-
 export default () => {
-  updateUser()
+  window.__METHODS__.updateUser()
   $('#anchor-user-panel').removeClass('d-none')
   $('#launch-info').addClass('d-none')
 }

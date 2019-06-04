@@ -1,5 +1,5 @@
-const initializeHome = require('./initializeHome/initializeHome')
+const introduction = require('./introduction/introduction')
 
 module.exports = {
-  'KOLO-SEED': initializeHome
+  'introduction': introduction
 }

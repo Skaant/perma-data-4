@@ -1,23 +1,31 @@
 import React from 'react'
-import DomsList from './DomsList/DomsList'
+import Frast from './Frast/Frast'
+import CiteZum from '../CiteZum/CiteZum'
 
 export default ({
   user: {
     data: {
-      pseudo,
-      home
+      home: {
+        context
+      },
+      doms,
+      events
     }
   },
-  lang,
   translations
-}) => {
-  return (
-    <React.Fragment>
-      <div className='row'>
-        <h2 className='col-12 my-4'>
-          { translations.welcome } !</h2>
-      </div>
-      <DomsList doms={ home.doms } lang={ lang }/>
-    </React.Fragment>
-  )
-}
+}) => (
+  <React.Fragment>
+    {
+      // 'frast' is introduction
+      context === 'frast' ? (
+        <Frast translations={ translations }/>
+      ) : (
+        <CiteZum context={ context }
+            doms={ doms }
+            events={ events }
+            translations={ Object.assign({}, translations,
+              window.__STATE__.bundle.translations.citeZum) }/>
+      )
+    }
+  </React.Fragment>
+)

@@ -2,17 +2,19 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import firebaseConfig from '../../../firebase.config'
 import commons from './_transitions'
-import initWindowProps from './initWindowProps/initWindowProps'
-import initWindowState from './initWindowState/initWindowState'
+import initWindow from './initWindow/initWindow'
 import mergeTransitions from './mergeTransitions/mergeTransitions'
 import bundleProvisioning from './bundleProvisioning/bundleProvisioning'
 import userDataProvisioning from './userDataProvisioning/userDataProvisioning'
 
 // common module intialization
 export default specifics => {
-  initWindowProps()
-  initWindowState()
   const transitions = mergeTransitions(commons, specifics)
+  initWindow({
+    methods: {
+      userUpdated: transitions['user updated']
+    }
+  })
   try {
     transitions['bundle received']()
     firebase.initializeApp(firebaseConfig)
@@ -52,6 +54,10 @@ export default specifics => {
             .then(data => {
               try {
                 window.__STATE__.user.data = data
+                window.__STATE__.dialogs = {
+                  list: {},
+                  history: []
+                }
                 transitions['user data provisioned']()
                 if (window.__STATE__.bundle) {
                   transitions['auth app']()
@@ -68,6 +74,7 @@ export default specifics => {
       } else {
         try {
           window.__STATE__.user = false
+          delete window.__STATE__.dialogs
           if (window.__STATE__.bundle) {
             transitions['unauth app']()
           }

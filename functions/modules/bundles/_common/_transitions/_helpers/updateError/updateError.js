@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 
 export default (err, type, isUser) => {
-  $('#launch-info').addClass('d-none')
+  $('#launch-info, #anchor-user-panel').addClass('d-none')
 
   $('#error-modal__label, #error-info__status')
     .html(window.__loadingTexts__[type])

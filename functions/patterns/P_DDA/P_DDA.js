@@ -5,5 +5,6 @@ module.exports = _provisioner =>
     _provisioner(req)
       .then(data => res.json(data))
       .catch(err => {
-        console.log('aaa', err)
-        P_AER(err, res)})
+        console.error(err)
+        P_AER(err, res)
+      })
