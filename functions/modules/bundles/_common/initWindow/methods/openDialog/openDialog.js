@@ -20,7 +20,14 @@ export default (type, id, options) => {
       window.__STATE__.dialogs.history.shift()
 
     } else if (type !== 'previous') {
-      const entryKey = type === 'main' ? `dialog-${ dialog._id }` : `${ type }-${ id }`
+      let entryKey
+      if (type === 'main') {
+        entryKey = `dialog-${ dialog._id }`
+      } else if (type === 'dom') {
+        entryKey = `${ id }-${ options.dialog }`
+      } else {
+        entryKey = `${ type }-${ id }`
+      }
       const historyEntryIndex = window.__STATE__.dialogs.history
         .indexOf(entry => entry === entryKey)
 

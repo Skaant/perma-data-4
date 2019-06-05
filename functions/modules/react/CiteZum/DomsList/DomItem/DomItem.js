@@ -21,7 +21,7 @@ export default props => {
         }
         {
           description && (
-            <div className='card-body font-weight-light'
+            <div className='card-body font-weight-light border-bottom pb-2'
                 dangerouslySetInnerHTML={ {
                 __html: marked(description.join('\n\n'))
               } }/>)

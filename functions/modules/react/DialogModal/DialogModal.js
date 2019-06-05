@@ -18,6 +18,16 @@ export default class extends React.Component {
     // user changed or dialog changed
     if (initialState.uid !== uid || initialState.key !== key) {
       this.setState(initialState)
+      const { lang, dialog } = this.props
+      if (dialog.provision) {
+        fetch(`/api/dialog/provision?key=${ dialog.provision }&uid=${
+            initialState.uid }&lang=${ lang }`)
+          .then(result => result.json())
+          .then(result => console.log(result))
+          .catch(err => console.log(err) 
+            // TODO do something with error
+          )
+      }
     }
   }
 

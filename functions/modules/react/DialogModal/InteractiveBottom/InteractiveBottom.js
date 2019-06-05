@@ -2,7 +2,7 @@ import React from 'react'
 import isHidden from '../../_helpers/isHidden/isHidden'
 import MenuButton from './MenuButton/MenuButton'
 import DirectionButton from './DirectionButton/DirectionButton'
-import evalStatic from './_eval/evalStatic';
+import evalStatic from './_eval/evalStatic'
 
 export default ({
   dialog, scene,
