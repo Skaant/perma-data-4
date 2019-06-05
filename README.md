@@ -502,10 +502,12 @@ const langScene = {
 
 ##### properties
 * **extracts**, contains extract references
-  * when validating user (first user data provisioning), randomly pick up 2 extracts about each of the 5 following concepts: **FRAST**, **HOL-ONG**, **ZUMS**, **TRIGHBS**, **KOLO-SEED**
-  * at the `'introduction'` dialog validation, when the **kolo-seed shell** is added, this random extracts are bound to it
+  * when validating user (first user data provisioning), randomly pick up 2 extracts about each of the 5 following concepts: "**FRAST**", "**HOL-ONG**", "**ZUMS**", "**TRIGHBS**", "**KOLO-SEED**"
+  * at the `'introduction'` dialog validation, when the **kolo-seed shell** is added, these random extracts are bound to it
 
 ### SPARKERS
+
+#### hibernating sparkers rayon
 
 #### sparkers rayon
 
@@ -513,15 +515,21 @@ const langScene = {
 
 ### NOVS
 
+#### hibernating novs rayon
+
 #### novs rayon
 
 #### rangers body
 
 ### MIKORIS
 
+#### hibernating mikoris rayon
+
 #### mikoris rayon
 
 ### GRANOS
+
+#### hibernating granos rayon
 
 #### granos rayon
 
@@ -530,6 +538,8 @@ const langScene = {
 #### sow calendar
 
 ### LISTERS
+
+#### hibernating listers rayon
 
 #### listers rayon
 
