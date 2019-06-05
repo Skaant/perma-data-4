@@ -6,16 +6,16 @@ import evalClick from '../_eval/evalClick/evalClick'
 
 export default props => {
   const lang = window.__PROPS__.lang
-  const event = props.event
-  const baseMenu = event.menu
-  const langMenu = event[lang].menu
+  const dom = props.dom
+  const baseMenu = dom.menu
+  const langMenu = dom[lang].menu
   return baseMenu.order
     .map(key =>
       Object.assign({}, { key }, baseMenu.list[key],
         (langMenu && langMenu[key]) || {}))
     .filter(item => !isHidden(item, props, evalStatic))
     .map(item => (
-      <MenuButton key={ `${ props.event._id }+${ item.key }` }
+      <MenuButton key={ `${ props.dom._id }+${ item.key }` }
           item={ item }
           evalStatic={ evalStatic }
           evalClick={ evalClick }
