@@ -24,7 +24,7 @@ export default class extends React.Component {
             initialState.uid }&lang=${ lang }`)
           .then(result => result.json())
           .then(result => console.log(result))
-          .catch(err => console.log(err) 
+          .catch(err => console.error(err) 
             // TODO do something with error
           )
       }
@@ -81,7 +81,7 @@ export default class extends React.Component {
       })
         .then(result => result.json())
         .then(result => window.__METHODS__.updateUser(result))
-        .catch(err => console.log(err) 
+        .catch(err => console.error(err) 
           // TODO do something with error
         )
     }
