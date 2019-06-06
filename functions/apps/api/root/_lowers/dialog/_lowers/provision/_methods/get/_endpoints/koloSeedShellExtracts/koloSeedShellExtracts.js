@@ -9,11 +9,13 @@ module.exports = ({ query }) =>
       }
       const dbUsers = client.db('prod').collection('users')
       dbUsers.aggregate(userExtracts(uid, lang))
-        .toArray((err, result) => {
+        .toArray((err, extracts) => {
           if (err) {
             reject(err)
           }
-          resolve(result)
+          resolve({ 
+            userData: { extracts }
+          })
         })
     })
   })
