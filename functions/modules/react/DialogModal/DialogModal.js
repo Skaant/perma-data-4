@@ -1,14 +1,22 @@
 import React from 'react'
-import InteractiveBottom from './InteractiveBottom/InteractiveBottom'
-import ModalTitle from './ModalTitle/ModalTitle'
-import ModalBody from './ModalBody/ModalBody'
+import InteractiveBottom from './_components/InteractiveBottom/InteractiveBottom'
+import ModalTitle from './_components/ModalTitle/ModalTitle'
+import ModalBody from './_components/ModalBody/ModalBody'
 import _staticStyle from './_staticStyle/_staticStyle'
-import mergeSceneSource from './mergeSceneSource/mergeSceneSource'
+import mergeSceneSource from './_helpers/mergeSceneSource/mergeSceneSource'
+import deepStateUpdate from './_helpers/deepStateUpdate/deepStateUpdate';
 
 export default class extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props.initialState
+    const { dialog, initialState } = props
+    this.state = initialState
+    this.provisionDialog = this._provisionDialog.bind(this)
+    
+    if (dialog.provision) {
+      const { lang } = props
+      this.provisionDialog(dialog.provision, initialState.uid, lang)
+    }
   }
 
   componentDidUpdate() {
@@ -19,16 +27,37 @@ export default class extends React.Component {
     if (initialState.uid !== uid || initialState.key !== key) {
       this.setState(initialState)
       const { lang, dialog } = this.props
-      if (dialog.provision) {
-        fetch(`/api/dialog/provision?key=${ dialog.provision }&uid=${
-            initialState.uid }&lang=${ lang }`)
-          .then(result => result.json())
-          .then(result => console.log(result))
-          .catch(err => console.error(err) 
-            // TODO do something with error
-          )
+      const { provisioned } = this.state
+
+      if (dialog.provision && !provisioned) {
+        this.provisionDialog(dialog.provision, initialState.uid, lang)
       }
     }
+  }
+
+  _provisionDialog(provisionKey, uid, lang) {
+    // dialog.key != (provision: key)
+    const { key } = this.props.initialState
+    window.__STATE__.dialogs.list[key].provisioned = true
+    this.setState({
+      provisioned: true 
+    })
+
+    fetch(`/api/dialog/provision?key=${ provisionKey }&uid=${ uid }&lang=${ lang }`)
+      .then(result => result.json())
+      .then(({ userData, dialogState }) => {
+        if (dialogState) {
+          const updatedState = deepStateUpdate(this.state, dialogState)
+          window.__STATE__.dialogs.list[key] = updatedState
+          if (!userData) {
+            this.setState(updatedState)
+          }
+        }
+        if (userData) {
+          window.__METHODS__.updateUser(userData)
+        }
+      })
+      .catch(err => console.error(err))    
   }
 
   goToScene(value) {
