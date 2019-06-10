@@ -4,7 +4,6 @@ import ModalTitle from './_components/ModalTitle/ModalTitle'
 import ModalBody from './_components/ModalBody/ModalBody'
 import _staticStyle from './_staticStyle/_staticStyle'
 import mergeSceneSource from './_helpers/mergeSceneSource/mergeSceneSource'
-import deepStateUpdate from './_helpers/deepStateUpdate/deepStateUpdate';
 
 export default class extends React.Component {
   constructor(props) {
@@ -27,9 +26,9 @@ export default class extends React.Component {
     if (initialState.uid !== uid || initialState.key !== key) {
       this.setState(initialState)
       const { lang, dialog } = this.props
-      const { provisioned } = this.state
+      const { fetching, provisioned } = this.state
 
-      if (dialog.provision && !provisioned) {
+      if (dialog.provision && !provisioned && !fetching) {
         this.provisionDialog(dialog.provision, initialState.uid, lang)
       }
     }
@@ -40,22 +39,22 @@ export default class extends React.Component {
     const { key } = this.props.initialState
     window.__STATE__.dialogs.list[key].provisioned = true
     this.setState({
-      provisioned: true 
+      fetching: true 
     })
 
     fetch(`/api/dialog/provision?key=${ provisionKey }&uid=${ uid }&lang=${ lang }`)
       .then(result => result.json())
-      .then(({ userData, dialogState }) => {
-        if (dialogState) {
-          const updatedState = deepStateUpdate(this.state, dialogState)
-          window.__STATE__.dialogs.list[key] = updatedState
-          if (!userData) {
-            this.setState(updatedState)
-          }
+      .then(({ userData, dialogData }) => {
+        if (dialogData) {
+          window.__STATE__.dialogs.list[key].data = dialogData
         }
         if (userData) {
           window.__METHODS__.updateUser(userData)
         }
+        this.setState({
+          data: dialogData || false,
+          fetching: false
+        })
       })
       .catch(err => console.error(err))    
   }
@@ -66,7 +65,6 @@ export default class extends React.Component {
     this.setState({
       sceneKey: value
     })
-    setTimeout(() => $('#anchor-dialog').modal().scrollTop(0), 15);
   }
 
   setScope(key, value) {
@@ -125,7 +123,8 @@ export default class extends React.Component {
     const { 
       uid, key,
       sceneKey,
-      scope, form
+      scope, form,
+      data
     } = this.state
 
     if (initialState.uid === uid && initialState.key === key) {
@@ -150,8 +149,8 @@ export default class extends React.Component {
                   &times;</span></button>
             </div>
             <ModalBody scene={ scene }
-                lang={ lang }
-                translations={ translations }/>
+                translations={ translations }
+                data={ data }/>
             <InteractiveBottom dialog={ dialog }
                 scene={ scene }
                 menuOptions={ {

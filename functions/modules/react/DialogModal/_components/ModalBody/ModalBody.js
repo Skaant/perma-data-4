@@ -3,8 +3,9 @@ import ContentDisplay from './ContentDisplay/ContentDisplay'
 import SceneSummary from './SceneSummary/SceneSummary'
 import CommentsList from './CommentsList/CommentsList'
 import TopAlert from './TopAlert/TopAlert'
+import ProvisionDynamics from './ProvisionDynamics/ProvisionDynamics';
 
-export default ({ scene, translations }) => (
+export default ({ scene, translations, data }) => (
   <React.Fragment>
     <div className='modal-body container p-4'>
       {
@@ -21,6 +22,11 @@ export default ({ scene, translations }) => (
         )
       }
     </div>
+    {
+      data && (
+        <ProvisionDynamics dialogState={ dialogState }/>
+      )
+    }
     {
       scene.comments && (
         <CommentsList comments={ scene.comments }

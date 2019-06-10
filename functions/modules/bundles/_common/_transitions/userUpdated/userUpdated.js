@@ -8,6 +8,4 @@ export default updates => {
   render(<UserPanel user={ user }
       translations={ window.__STATE__.bundle.translations.userPanel }/>,
     document.getElementById('anchor-user-panel'))
-
-  window.__METHODS__.openDialog('main')
 }

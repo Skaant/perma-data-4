@@ -48,7 +48,8 @@ export default (type, id, options) => {
           lang={ window.__PROPS__.lang }
           translations={ window.__STATE__.bundle.translations.dialog }/>,
       document.getElementById('anchor-dialog'))
-    $('#anchor-dialog').modal('show')
+    setTimeout(() =>
+      $('#anchor-dialog').modal('show'), 1)
   } else {
     $('#anchor-dialog').modal('hide')
   }
