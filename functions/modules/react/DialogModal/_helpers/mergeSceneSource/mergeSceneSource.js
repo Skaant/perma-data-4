@@ -3,11 +3,10 @@ export default (baseScene, langScene) =>
     menu: baseScene.menu && ({
       order: baseScene.menu.order,
       list: Object.keys(baseScene.menu.list)
-        .map(key => ({
-          key,
-          ...baseScene.menu.list[key],
-          ...langScene.menu[key]
-          }))
+        .map(key => 
+          Object.assign({}, { key }, 
+            baseScene.menu.list[key],
+            langScene.menu && langScene.menu[key] || {}))
         .reduce((list, { key, ...item }) => {
           list[key] = item
           return list

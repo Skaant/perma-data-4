@@ -2,7 +2,7 @@ import _helpers from './_helpers'
 
 
 export default (code, {
-  scope, form,
+  data, scope, form,
   dialog, scene
 }) => {
   const lang = window.__PROPS__.lang

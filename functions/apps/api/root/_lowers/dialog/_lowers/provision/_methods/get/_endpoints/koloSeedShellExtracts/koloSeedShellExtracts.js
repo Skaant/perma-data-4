@@ -13,7 +13,12 @@ module.exports = ({ query }) =>
           if (err) {
             reject(err)
           }
-          resolve({ 
+          resolve({
+            dialogData: {
+              'extracts list': {
+                list: extracts.map(extract => extract._id)
+              }
+            },
             userData: { extracts }
           })
         })

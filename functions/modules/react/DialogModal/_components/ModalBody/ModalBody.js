@@ -1,11 +1,10 @@
 import React from 'react'
-import ContentDisplay from './ContentDisplay/ContentDisplay'
 import SceneSummary from './SceneSummary/SceneSummary'
 import CommentsList from './CommentsList/CommentsList'
 import TopAlert from './TopAlert/TopAlert'
-import ProvisionDynamics from './ProvisionDynamics/ProvisionDynamics';
+import ContentLine from './ContentLine/ContentLine'
 
-export default ({ scene, translations, data }) => (
+export default ({ scene, translations, provisioned, data, dialogKey }) => (
   <React.Fragment>
     <div className='modal-body container p-4'>
       {
@@ -14,19 +13,28 @@ export default ({ scene, translations, data }) => (
         )
       }
       {
+        scene.source && (
+          <p className='text-init small font-weight-light text-center mb-4 pb-4'>
+            <span className='badge badge-secondary py-1 mr-2'>
+              { translations.source }</span>
+            { scene.source }</p>
+        )
+      }
+      {
         scene.content && (
-          <ContentDisplay content={ scene.content }
-              pictures={ scene.pictures }
-              source={ scene.source }
-              translations={ translations }/>
+          <div className='content-display'>
+            {
+              scene.content.map((line, index) => (
+                <ContentLine key={ `${ dialogKey }-${ index }` }
+                    line={ line }
+                    data={ data }
+                    contentFragments={ scene.contentFragments || false }/>
+              ))
+            }
+          </div>
         )
       }
     </div>
-    {
-      data && (
-        <ProvisionDynamics dialogState={ dialogState }/>
-      )
-    }
     {
       scene.comments && (
         <CommentsList comments={ scene.comments }

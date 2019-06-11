@@ -3,11 +3,12 @@ import isHidden from '../../../_helpers/isHidden/isHidden'
 import MenuButton from './MenuButton/MenuButton'
 import DirectionButton from './DirectionButton/DirectionButton'
 import evalStatic from './_eval/evalStatic'
+import MenuSwitch from './MenuSwitch/MenuSwitch'
 
 export default ({
   dialog, scene,
   menuOptions,
-  scope, form,
+  data, scope, form,
   translations
 }) => {
   const {
@@ -16,7 +17,7 @@ export default ({
     menu
   } = scene
   const props = {
-    scope, form,
+    data, scope, form,
     dialog, scene,
     ...menuOptions
   }
@@ -35,10 +36,15 @@ export default ({
                     ...menu.list[key]
                   }))
                   .filter(item => !isHidden(item, props, evalStatic))
-                  .map(item => (
-                    <MenuButton key={ `${ props.dialog.key }+${ item.key }` }
-                        item={ item }
-                        props={ props }/>))
+                  .map(item => 
+                      item.type ? (
+                        <MenuSwitch key={ `${ props.dialog.key }+${ item.key }` }
+                            { ...item } data={
+                              item.key && data && data[item.key] || false }/>
+                      ) : (
+                        <MenuButton key={ `${ props.dialog.key }+${ item.key }` }
+                            item={ item }
+                            props={ props }/>))
               }
             </div>
           </div>

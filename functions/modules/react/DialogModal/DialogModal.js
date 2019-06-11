@@ -150,7 +150,8 @@ export default class extends React.Component {
             </div>
             <ModalBody scene={ scene }
                 translations={ translations }
-                data={ data }/>
+                data={ data }
+                dialogKey={ key }/>
             <InteractiveBottom dialog={ dialog }
                 scene={ scene }
                 menuOptions={ {
@@ -161,6 +162,7 @@ export default class extends React.Component {
                 } }
                 scope={ scope }
                 form={ form }
+                data={ data }
                 translations={ translations }/>
           </div>
         </div>
