@@ -10,7 +10,7 @@ export default (type, id, options, dialog) => {
   } else if (type === 'dom') {
     const dom = user.data.doms
       .find(dom => dom._id === id)
-    key = `${ dom._id }-${ options.dialog }`
+    key = `dom-${ dom._id }-${ options.dialog }`
   } else {
     key = `${ type }-${ id }`
   }
@@ -22,11 +22,13 @@ export default (type, id, options, dialog) => {
     return {
       uid: user.uid,
       key,
-      type,
+      type: type === 'main' ? 'dialog' : 
+        type === 'previous' ? entry.type : type,
       _id: type === 'main' ? dialog._id : id,
       sceneKey: dialog.scenes.first,
       scope: dialog.initScope || {},
-      form: {}
+      form: {},
+      options
     }
   }
 }

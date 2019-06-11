@@ -59,6 +59,7 @@ export default ({
                   !hiddenNext && (
                     <React.Fragment>
                       <DirectionButton item={ next }
+                          type={ dialog.type }
                           props={ props }
                           direction='next'
                           label={ translations.next }/>

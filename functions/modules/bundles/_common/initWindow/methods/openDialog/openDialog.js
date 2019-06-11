@@ -7,8 +7,10 @@ import getInitialState from './getInitialState/getInitialState'
 
 export default (type, id, options) => {
   const source = _sourceGetters[type](id, options)
-  const dialog = _dialogBuilders[type] ?
-    _dialogBuilders[type](source, options) : source
+  const sourceType = type === 'previous' ? source.type : type
+  const dialog = _dialogBuilders[sourceType] ?
+    _dialogBuilders[sourceType](source, 
+      type === 'previous' ? source.options : options) : source
 
   if (dialog) {
     // getInitialState returns :
@@ -24,7 +26,7 @@ export default (type, id, options) => {
       if (type === 'main') {
         entryKey = `dialog-${ dialog._id }`
       } else if (type === 'dom') {
-        entryKey = `${ id }-${ options.dialog }`
+        entryKey = `dom-${ id }-${ options.dialog }`
       } else {
         entryKey = `${ type }-${ id }`
       }
