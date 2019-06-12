@@ -15,7 +15,7 @@ module.exports = ({ query }) =>
           }
           resolve({
             dialogData: {
-              'extracts list': {
+              'extract list': {
                 list: extracts.map(extract => extract._id)
               }
             },

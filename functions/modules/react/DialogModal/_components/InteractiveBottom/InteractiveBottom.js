@@ -39,8 +39,9 @@ export default ({
                   .map(item => 
                       item.type ? (
                         <MenuSwitch key={ `${ props.dialog.key }+${ item.key }` }
-                            { ...item } data={
-                              item.key && data && data[item.key] || false }/>
+                            item={ item } 
+                            scope={ scope }
+                            data={ item.key && data && data[item.key] || false }/>
                       ) : (
                         <MenuButton key={ `${ props.dialog.key }+${ item.key }` }
                             item={ item }
