@@ -10,7 +10,7 @@ export default updates => {
     document.getElementById('anchor-user-panel'))
 
   if (updates && updates.dialogs
-      && updates.dialogs.find(dialog => dialog.main === true)) {
+      && updates.dialogs.find(dialog => dialog.baseData.main === true)) {
     window.__METHODS__.openDialog('main')
   }
 }

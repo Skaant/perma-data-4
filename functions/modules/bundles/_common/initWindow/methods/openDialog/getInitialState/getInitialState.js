@@ -26,7 +26,7 @@ export default (type, id, options, dialog) => {
         type === 'previous' ? entry.type : type,
       _id: type === 'main' ? dialog._id : id,
       sceneKey: dialog.scenes.first,
-      scope: dialog.initScope || {},
+      scope: (dialog.userData && dialog.userData.initScope) || {},
       form: {},
       options
     }
