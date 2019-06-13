@@ -15,18 +15,9 @@ export default props => {
   } else {
     const { data, contentFragments } = props
     const contentFragment = contentFragments[line]
-    if (contentFragment.type === 'picture') {
-      return (
-        <div className='row img'>
-          <img src={ contentFragment.source }/>
-        </div>
-      )
-    // else, the line features a module
-    } else {
-      return (
-        <LineSwitch { ...contentFragment }
-            data={ contentFragment.key && data[contentFragment.key] || false }/>
-      )
-    }
+    return (
+      <LineSwitch { ...contentFragment }
+          data={ contentFragment.key && data[contentFragment.key] || false }/>
+    )
   }
 }

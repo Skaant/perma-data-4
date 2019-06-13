@@ -8,4 +8,9 @@ export default updates => {
   render(<UserPanel user={ user }
       translations={ window.__STATE__.bundle.translations.userPanel }/>,
     document.getElementById('anchor-user-panel'))
+
+  if (updates && updates.dialogs
+      && updates.dialogs.find(dialog => dialog.main === true)) {
+    window.__METHODS__.openDialog('main')
+  }
 }

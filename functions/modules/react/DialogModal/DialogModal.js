@@ -65,6 +65,7 @@ export default class extends React.Component {
     this.setState({
       sceneKey: value
     })
+    setTimeout(() => $('#anchor-dialog').modal().scrollTop(0), 30)
   }
 
   setScope(key, value) {
