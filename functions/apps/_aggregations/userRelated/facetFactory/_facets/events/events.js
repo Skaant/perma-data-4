@@ -14,4 +14,8 @@ module.exports = lang => ([ {
     'menu': '$_events.menu',
     'scenes': '$_events.scenes'
   }
+}, {
+  $sort: {
+    '_id': 1
+  }
 } ])
