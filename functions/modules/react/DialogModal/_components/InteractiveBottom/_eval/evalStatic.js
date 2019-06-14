@@ -8,7 +8,8 @@ export default (code, {
   const lang = window.__PROPS__.lang
   const { 
     getMainDialogProps,
-    getExtractProps
+    getExtractProps,
+    getPreviousDialogProps
   } = _helpers
   // unused params are meant to be consumed by eval call
   return code && eval(code)
