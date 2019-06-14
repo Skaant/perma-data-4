@@ -1,6 +1,7 @@
 # perma-data-4
 
 ## starting the application
+*requires a `firebase.config.js` and a `mongo.config.js` in the project root directory*
 1. cd functions
 2. firebase serve
 ## table of content
