@@ -11,7 +11,7 @@ export default extract => {
           comments,
           source,
           back: {
-            label: '`${ getMainDialogProps().title }`'
+            label: '`${ getPreviousDialogProps().title }`'
           }
         }
       }

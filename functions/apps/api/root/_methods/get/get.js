@@ -1,5 +1,5 @@
 module.exports = req =>
   new Promise((resolve, reject) =>
     resolve({
-      version: 0.1
+      version: 4.2
     }))

@@ -9,5 +9,8 @@ export default updates => {
       translations={ window.__STATE__.bundle.translations.userPanel }/>,
     document.getElementById('anchor-user-panel'))
 
-  window.__METHODS__.openDialog('main')
+  if (updates && updates.dialogs
+      && updates.dialogs.find(dialog => dialog.baseData.main === true)) {
+    window.__METHODS__.openDialog('main')
+  }
 }

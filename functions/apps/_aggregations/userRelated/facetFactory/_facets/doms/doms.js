@@ -49,6 +49,9 @@ module.exports = lang => ([
               'in': {
                 'k': '$$dom._id', 
                 'v': {
+                  'statics': '$$dom.statics',
+                  'menu': '$$dom.menu',
+                  'dialogs': '$$dom.dialogs',
                   [lang]: `$$dom.${ lang }`
                 }
               }
@@ -69,6 +72,10 @@ module.exports = lang => ([
   }, {
     '$replaceRoot': {
       'newRoot': '$data'
+    }
+  }, {
+    $sort: {
+      '_id': 1
     }
   }
 ])

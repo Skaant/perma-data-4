@@ -7,8 +7,10 @@ import getInitialState from './getInitialState/getInitialState'
 
 export default (type, id, options) => {
   const source = _sourceGetters[type](id, options)
-  const dialog = _dialogBuilders[type] ?
-    _dialogBuilders[type](source, options) : source
+  const sourceType = type === 'previous' ? source.type : type
+  const dialog = _dialogBuilders[sourceType] ?
+    _dialogBuilders[sourceType](source, 
+      type === 'previous' ? source.options : options) : source
 
   if (dialog) {
     // getInitialState returns :
@@ -20,7 +22,14 @@ export default (type, id, options) => {
       window.__STATE__.dialogs.history.shift()
 
     } else if (type !== 'previous') {
-      const entryKey = type === 'main' ? `dialog-${ dialog._id }` : `${ type }-${ id }`
+      let entryKey
+      if (type === 'main') {
+        entryKey = `dialog-${ dialog._id }`
+      } else if (type === 'dom') {
+        entryKey = `dom-${ id }-${ options.dialog }`
+      } else {
+        entryKey = `${ type }-${ id }`
+      }
       const historyEntryIndex = window.__STATE__.dialogs.history
         .indexOf(entry => entry === entryKey)
 
@@ -41,7 +50,8 @@ export default (type, id, options) => {
           lang={ window.__PROPS__.lang }
           translations={ window.__STATE__.bundle.translations.dialog }/>,
       document.getElementById('anchor-dialog'))
-    $('#anchor-dialog').modal('show')
+    setTimeout(() =>
+      $('#anchor-dialog').modal('show'), 1)
   } else {
     $('#anchor-dialog').modal('hide')
   }

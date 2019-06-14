@@ -50,18 +50,6 @@ export default `
     color: grey;
   }
 
-  .content-display > .row:not(.img) + .row.img {
-    margin-top: 3.5rem;
-  }
-
   .content-display .img > img {
     margin: auto;
-  }
-  
-  .content-display .img {
-    margin-top: 1rem;
-  }
-  
-  .content-display .img {
-    margin-bottom: 1.5rem;
   }`

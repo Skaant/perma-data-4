@@ -1,5 +1,5 @@
 import React from 'react'
-import EventItem from './EventItem/EventItem';
+import EventItem from './EventItem/EventItem'
 
 export default ({ events, translations }) => {
   return (

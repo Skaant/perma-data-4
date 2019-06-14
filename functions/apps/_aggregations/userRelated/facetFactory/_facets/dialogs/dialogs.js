@@ -40,7 +40,7 @@ module.exports = lang => ([
             'in': {
               'k': '$$dialog.k', 
               'v': {
-                'initScope': '$$dialog.v.initScope'
+                'userData': '$$dialog.v'
               }
             }
           }
@@ -53,8 +53,8 @@ module.exports = lang => ([
                 'v': {
                   '_id': '$$dialog._id',
                   [lang]: `$$dialog.${ lang }`,
-                  'scenes': '$$dialog.scenes', 
-                  'main': '$$dialog.main'
+                  'scenes': '$$dialog.scenes',
+                  'baseData': '$$dialog.data'
                 }
               }
             }
