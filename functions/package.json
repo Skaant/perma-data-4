@@ -17,7 +17,7 @@
     "firebase-tools": "^6.5.3",
     "marked": "^0.6.2",
     "mongodb": "^3.1.13",
-    "pug": "^2.0.3"
+    "pug": "^3.0.1"
   },
   "private": true,
   "devDependencies": {
